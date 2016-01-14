@@ -1,11 +1,9 @@
-.DS_Store
 .tmp
 .idea
-.git
-.gitignore
-.git_orig/
 dist/
 node_modules/
+.DS_Store
 me/
 me_v0/
 me_v0.1/
+.git_orig/
