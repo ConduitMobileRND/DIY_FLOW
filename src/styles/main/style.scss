@@ -308,10 +308,10 @@ label{position:relative;}
   span{font-weight:300;}
 }
 .pageWrap{min-height: 100vh;}
-div.error input{border:solid 2px $error-color;}
-[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], body textarea, body select{color:$input-color;font-size:$input-font-size;box-shadow:none!important;line-height: $input-height;  height: $input-height;/*border:solid 2px $pure-white;*/background-color:$pure-white!important;margin-bottom:rem-calc(4);padding-left:rem-calc(15);border-radius:5px;}
-[type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus, textarea:focus{border:solid 2px $pure-black;}
-body select{line-height:1;}
+div.error input{/*border:solid 2px $error-color;*/background-color: $input-error-bg-color!important;}
+[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], body textarea, body select{color:$input-color;font-size:$input-font-size;box-shadow:none!important;line-height: $input-height;  height: $input-height;/*border:solid 2px $pure-white;*/background-color:$input-bg-color!important;margin-bottom:rem-calc(4);padding-left:rem-calc(15);border-radius:5px;border:none;}
+[type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus, textarea:focus{background-color:$pure-white!important;border:none;}
+body select{line-height:1.2;}
 ::-webkit-input-placeholder {color: $placeholder-color; font-size:$input-font-size}
 :-moz-placeholder {color: $placeholder-color; font-size:$input-font-size}
 ::-moz-placeholder {color: $placeholder-color; font-size:$input-font-size}

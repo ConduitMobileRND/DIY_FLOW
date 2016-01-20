@@ -2,14 +2,14 @@
 .pageWrap.home{background-repeat:no-repeat;background-size:100%; transition: background-image 1s ease-in-out;    background-position: 0 center;
   .darkened{background-color: rgba(0, 0, 0, 0.35);    height: 100%;padding:10% 0;}
 }
-.button{width: 100%;  margin: 0;  padding: rem-calc(8) 1rem;}
-.logo{padding:rem-calc(40);position:absolute;top:0;left:0;width:100%;
-  img{width:rem-calc(155);height:rem-calc(40);}
+body button.button{width: 100%;  margin: 0;  padding: rem-calc(8) 1rem;
+  &.postfix{font-size:rem-calc(18);}
 }
+.logo{padding:rem-calc(40);position:absolute;top:0;left:0;  width: 14.7rem;  }
 h1, p{color:$pure-white;}
 form{margin-bottom:rem-calc(40);}
 .description{margin:0 0 rem-calc(47) 0;}
-input[type='email']{border-left:solid 1px $gentle-blue;}
-input[type='text']{border-right:solid 1px $gentle-blue;}
+.home input[type='email']{border-left:solid 1px $placeholder-color;}
+.home input[type='text']{border-right:solid 1px $placeholder-color;}
 .terms{font-size:$rem-base;color:$grey;display: inline-block;position:relative;top:rem-calc(1px);}
 .terms:hover{text-decoration:underline;color:$grey;}

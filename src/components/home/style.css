@@ -9,20 +9,19 @@
     height: 100%;
     padding: 10% 0; }
 
-.button {
+body button.button {
   width: 100%;
   margin: 0;
   padding: 0.5rem 1rem; }
+  body button.button.postfix {
+    font-size: 1.125rem; }
 
 .logo {
   padding: 2.5rem;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; }
-  .logo img {
-    width: 9.6875rem;
-    height: 2.5rem; }
+  width: 14.7rem; }
 
 h1, p {
   color: #ffffff; }
@@ -33,11 +32,11 @@ form {
 .description {
   margin: 0 0 2.9375rem 0; }
 
-input[type='email'] {
-  border-left: solid 1px #acdcea; }
+.home input[type='email'] {
+  border-left: solid 1px #bfc1c4; }
 
-input[type='text'] {
-  border-right: solid 1px #acdcea; }
+.home input[type='text'] {
+  border-right: solid 1px #bfc1c4; }
 
 .terms {
   font-size: 14px;

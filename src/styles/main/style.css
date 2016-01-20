@@ -2789,7 +2789,8 @@ label {
   min-height: 100vh; }
 
 div.error input {
-  border: solid 2px #ff2c77; }
+  /*border:solid 2px $error-color;*/
+  background-color: #f3dde5 !important; }
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], body textarea, body select {
   color: #282f3a;
@@ -2798,16 +2799,18 @@ div.error input {
   line-height: 3.125rem;
   height: 3.125rem;
   /*border:solid 2px $pure-white;*/
-  background-color: #ffffff !important;
+  background-color: #f7f7f7 !important;
   margin-bottom: 0.25rem;
   padding-left: 0.9375rem;
-  border-radius: 5px; }
+  border-radius: 5px;
+  border: none; }
 
 [type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus, textarea:focus {
-  border: solid 2px #000000; }
+  background-color: #ffffff !important;
+  border: none; }
 
 body select {
-  line-height: 1; }
+  line-height: 1.2; }
 
 ::-webkit-input-placeholder {
   color: #bfc1c4;

@@ -10,9 +10,7 @@ import image1 from './images/hpBg1.jpg';
 import image2 from './images/hpBg2.jpg';
 import image3 from './images/hpBg3.jpg';
 import image4 from './images/hpBg4.jpg';
-
-
-
+import Isvg from 'react-inlinesvg';
 
 class Home extends Component {
     constructor(props) {
@@ -116,7 +114,8 @@ class Home extends Component {
             <div className="pageWrap home" style = {bgImage}>
                <div className="darkened">
                   <div className="logo">
-                   <img src="images/logo_como.svg" alt="Como Logo"/>
+
+                      <Isvg src="images/logo_como.svg"></Isvg>
                   </div>
                    <div className="row text-center">
                        <div className="columns large-12">
@@ -126,7 +125,7 @@ class Home extends Component {
                                <div className="row collapse">
                                    <Input className="borderLeft" foundationClasses="large-5 columns" ref= "store" name="store" stateId="store" placeholder="Store name" isValid={this.state.data.payload.store.isValid} type="text" value={this.state.data.payload.store.value} onChange={this._setData} onBlur={this._handleValidation} errorMsg='Please provide a valid store name' isRequired='true' validType='text'/>
                                    <Input className="borderNone" foundationClasses="large-5 columns" name="email" ref="email" stateId="email" placeholder = "Email" type="email" isValid={this.state.data.payload.email.isValid} value={this.state.data.payload.email.value} onChange={this._setData} onBlur={this._handleValidation} errorMsg='Please provide a valid email address' isRequired='true' validType='email'/>
-                                   <Button className="borderRight" foundationClasses="columns large-2" buttonSize="large" btnText="Start" onClick={this._handleBtnClick}/>
+                                   <Button className="borderRight postfix" foundationClasses="columns large-2" buttonSize="large" btnText="Start" onClick={this._handleBtnClick}/>
                                </div>
                            </form>
                            <p className="grey">By clicking Start you agree to the <a className="terms" href="" target="_blank">terms &amp; conditions</a> of use</p>

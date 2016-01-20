@@ -56,7 +56,6 @@ export default class Step1 extends Component {
         this.setState({data: this.state.data});
     }
     _handleBtnClick(elem,event){
-        return;
         event.preventDefault();
         let formValid = true;
         let obj = this.refs;
@@ -74,8 +73,16 @@ export default class Step1 extends Component {
             formValid = true;
             return;
         }
-        let cpTask = new Handler(this.state.data.id,"cp",{facebook:this.state.data.payload.facebook.value});
+        let cpTask = new Handler(this.state.data.id,"cp",{
+            facebook:this.state.data.payload.facebook.value,
+            phone: `${this.state.data.payload.areaCode.value}-${this.state.data.payload.phoneLocal.value}`,
+            website: this.state.data.payload.website.value,
+            category:this.state.data.payload.category.value,
+            location:this.state.data.payload.businessAddress.value,
+            info: this.state.data.payload.info.value
+        });
         let cpReturnData = cpTask.handleData();
+        /*TBD - engine task will be in the callback of CP task*/
         let engineTask = new Handler(this.state.data.id, "engine");
         let engineReturnData = engineTask.handleData();
         if(engineReturnData.error || !engineReturnData.data.nextStepUri){
