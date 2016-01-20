@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+.hero {
+  background-color: white;
+  height: 70px;
+  position: relative;
+  overflow: hidden; }
+  .hero h1 {
+    position: absolute;
+    font-size: 4.2em;
+    font-weight: 600;
+    color: #fefefe;
+    bottom: -0.5em;
+    right: 0;
+    text-shadow: -4px -4px 15px #daeefb; }
+
+/*# sourceMappingURL=header.css.map */

@@ -48,11 +48,9 @@ export default class App extends Component {
   render () {
     return (
       <div id="page-wrapper" className="page-wrapper">
-        <Header currentRoute={this.state.currentRoute} />
         <div id="currentScreen">
             <Routes/>
         </div>
-        <Footer/>
       </div>
     );
   }

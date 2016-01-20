@@ -4,10 +4,8 @@ import { Router, Route, IndexRoute, Link } from 'react-router';
 import { createHistory } from 'history';
 
 // Components
-import MainDashboard from './components/mainDashboard';
-import PrintMaterials from './components/printMaterials';
-import ShowEditor from './components/showEditor'
-import Show from './components/show';
+import Home from './components/home';
+import Step1 from './components/step1';
 import NotFound from './components/notFound';
 
 export default class Routes extends Component {
@@ -18,16 +16,12 @@ export default class Routes extends Component {
 
   render() {
     console.log('Routes was rendered');
-    debugger;
+    //debugger;
     return(
   		<Router history={createHistory()}>
-  			<Route name='Dashboard'       path='/'              component={MainDashboard}/>
-        <Route name='Print Materials' path='print/:showId'  component={PrintMaterials} />
-        <Route name='Create'          path='create'         component={ShowEditor} />
-  			<Route name='Edit'            path='edit/:showId'   component={ShowEditor} />
-  			<Route name='Show'            path='show/:showId'   component={Show} />
-  			<Route name='Peek'            path='peek/:showId'   component={Show} />
-  			<Route name='404'             path='*'              component={NotFound} />
+  		<Route name='Home'       path='/'              component={Home}/>
+        <Route name='Step1' path='step1'  component={Step1} />
+        <Route name='404'             path='*'              component={NotFound} />
   		</Router>
   	);
   }

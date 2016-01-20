@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+#step1.pageWrap {
+  background-image: none;
+  background-color: #08b9e4;
+  padding: 100px 0; }
+
+form > .row {
+  position: relative;
+  margin-bottom: 1.875rem; }
+
+.autoCompleteList {
+  position: absolute;
+  z-index: 1;
+  top: 4.9375rem; }
+  .autoCompleteList ul {
+    background-color: #ffffff;
+    max-height: 12.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: all 0.2s; }
+    .autoCompleteList ul li {
+      padding: 0.125rem 0.3125rem;
+      cursor: pointer;
+      background-color: #ffffff;
+      transition: background-color 0.2s; }
+      .autoCompleteList ul li:hover {
+        background-color: #a8e3f2; }
+      .autoCompleteList ul li span.imageWrap {
+        display: inline-block;
+        width: 3.125rem;
+        height: 3.125rem;
+        margin-right: 0.3125rem; }
+      .autoCompleteList ul li .optionDetailsWrap {
+        display: inline-block; }
+        .autoCompleteList ul li .optionDetailsWrap span {
+          display: block; }
+
+.fbRow .iconWrap {
+  width: 3.125rem;
+  height: 3.125rem;
+  background-color: #4a90e2;
+  position: absolute;
+  top: 1.6875rem;
+  right: 0;
+  text-align: center;
+  padding-top: 0.15625rem;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  /*cursor:pointer;*/
+  /*&:hover{background-color:#4281ca;}*/ }
+  .fbRow .iconWrap img {
+    width: 2.8125rem;
+    height: 2.8125rem; }
+
+label > span {
+  color: #ffffff; }
+
+#step1 .btnWrap {
+  margin: 1.875rem auto; }
+
+/*# sourceMappingURL=step1.css.map */

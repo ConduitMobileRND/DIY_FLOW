@@ -47,7 +47,7 @@ export default class Footer extends Component {
 }
 
 // Sticky footer
-$(window).bind("load", function() {
+/*$(window).bind("load", function() {
        positionFooter();
        function positionFooter() {
          let contentHeight = $('header').height()+$("#currentScreen").height()+$('footer').height();
@@ -58,4 +58,4 @@ $(window).bind("load", function() {
        $(window)
                .scroll(positionFooter)
                .resize(positionFooter)
-});
+});*/

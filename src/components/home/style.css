@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+.pageWrap.home {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  transition: background-image 1s ease-in-out;
+  background-position: 0 center; }
+  .pageWrap.home .darkened {
+    background-color: rgba(0, 0, 0, 0.35);
+    height: 100%;
+    padding: 10% 0; }
+
+.button {
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 1rem; }
+
+.logo {
+  padding: 2.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
+  .logo img {
+    width: 9.6875rem;
+    height: 2.5rem; }
+
+h1, p {
+  color: #ffffff; }
+
+form {
+  margin-bottom: 2.5rem; }
+
+.description {
+  margin: 0 0 2.9375rem 0; }
+
+input[type='email'] {
+  border-left: solid 1px #acdcea; }
+
+input[type='text'] {
+  border-right: solid 1px #acdcea; }
+
+.terms {
+  font-size: 14px;
+  color: #d0d0d0;
+  display: inline-block;
+  position: relative;
+  top: 0.0625rem; }
+
+.terms:hover {
+  text-decoration: underline;
+  color: #d0d0d0; }
+
+/*# sourceMappingURL=style.css.map */
