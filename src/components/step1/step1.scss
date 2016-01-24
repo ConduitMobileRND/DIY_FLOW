@@ -19,7 +19,7 @@ form > .row{position:relative;margin-bottom:rem-calc(30);}
 label > span{color:$pure-white;}
 #step1 .btnWrap{margin:rem-calc(30) auto;
   button {
-    background-color: $button-hover-blue;    padding-top: 10px;    padding-bottom: 10px;
+    background-color: $button-hover-blue;    padding-top: 10px;    padding-bottom: 10px;border-radius:5px;
     &:hover {
       background: $button-on-blue-hover-blue;
     }

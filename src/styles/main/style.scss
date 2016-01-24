@@ -300,6 +300,7 @@ body.direction-ltr .locale-text-align {
 
 
 /*olga*/
+.clearfix{clear:both;}
 body h1{font-size:$title-font-size;color:$pure-white;text-align:center;    line-height: 1.3;margin-bottom:rem-calc(16);}
 body h1.businessTitle{font-weight:300;text-align:left;margin-bottom:rem-calc(60);}
 label{position:relative;}
@@ -308,7 +309,9 @@ label{position:relative;}
   span{font-weight:300;}
 }
 .pageWrap{min-height: 100vh;}
-div.error input{/*border:solid 2px $error-color;*/background-color: $input-error-bg-color!important;}
+div.error {
+  input,select,textarea {    background-color: $input-error-bg-color !important;  }
+}
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], body textarea, body select{color:$input-color;font-size:$input-font-size;box-shadow:none!important;line-height: $input-height;  height: $input-height;/*border:solid 2px $pure-white;*/background-color:$input-bg-color!important;margin-bottom:rem-calc(4);padding-left:rem-calc(15);border-radius:5px;border:none;}
 [type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus, textarea:focus{background-color:$pure-white!important;border:none;}
 body select{line-height:1.2;}

@@ -8,7 +8,7 @@ const LanguageApi = {
   init(languageInfo) {
     this.info = {
       langId: languageInfo.lang_id || 1,
-      langCode: languageInfo.lang_code || 'en',
+      langCode: languageInfo.lang_codepost || 'en',
       direction: languageInfo.direction || 'rtl',
     };
 

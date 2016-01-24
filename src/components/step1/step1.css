@@ -60,7 +60,8 @@ label > span {
   #step1 .btnWrap button {
     background-color: #1da7c7;
     padding-top: 10px;
-    padding-bottom: 10px; }
+    padding-bottom: 10px;
+    border-radius: 5px; }
     #step1 .btnWrap button:hover {
       background: #0694b5; }
 

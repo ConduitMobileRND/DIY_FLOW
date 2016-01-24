@@ -62,20 +62,8 @@ class Home extends Component {
             formValid = true;
             return;
         }
-        let cpTask = new Handler(this.state.data.id, "cp", {
-            store: this.state.data.payload.store.value,
-            email: this.state.data.payload.email.value
-        });
+        let cpTask = new Handler(this);
         let cpReturnData = cpTask.handleData();
-        let engineTask = new Handler(this.state.data.id, "engine");
-        let engineReturnData = engineTask.handleData();
-        if (engineReturnData.error || !engineReturnData.data.nextStepUri) {
-            alert("OOPS... We didn't get a next page, fallback needed here");
-            return;
-        }
-        this.state.data.to = engineReturnData.data.nextStepUri;
-        localStorage.state = JSON.stringify(this.state.data.payload);
-        this.props.history.pushState(null, this.state.data.to);
     }
     _handleValidation(props, e){
         console.log(props);
@@ -136,5 +124,4 @@ class Home extends Component {
         );
     }
 }
-
 export default Home;

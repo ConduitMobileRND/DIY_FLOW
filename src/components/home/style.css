@@ -7,7 +7,8 @@
   .pageWrap.home .darkened {
     background-color: rgba(0, 0, 0, 0.35);
     height: 100%;
-    padding: 10% 0; }
+    padding: 10% 0;
+    min-height: 100vh; }
 
 body button.button {
   width: 100%;
@@ -34,9 +35,6 @@ form {
 
 .home input[type='email'] {
   border-left: solid 1px #bfc1c4; }
-
-.home input[type='text'] {
-  border-right: solid 1px #bfc1c4; }
 
 .terms {
   font-size: 14px;

@@ -23,7 +23,13 @@ const Fetch = {
 
    post(url, options) {
      options = options || {};
-
+    let getFormData = function(data){
+        let formData = new FormData();
+        for(let key in data){
+            formData.append(key,data[key]);
+        }
+        return formData;
+    }
      let request = buildRequest(url, {
        method: 'POST',
        headers: options.dataType === 'form-urlencoded'
@@ -31,7 +37,9 @@ const Fetch = {
         : {},
        body: options.dataType === 'form-urlencoded'
         ? serialize(options.data)
-        : JSON.stringify(options.data)
+           /*Changed: need actually form data to be sent to register new user in keeperz */
+        //: JSON.stringify(options.data)
+         : getFormData(options.data)
      });
 
      return fetch(request)
@@ -48,6 +56,9 @@ const Fetch = {
 ///////////////////
 
 function buildRequest(url, options) {
+    if(typeof apiPrefix == "undefined"){
+        apiPrefix = "";
+    }
   return new Request(apiPrefix + url, _.defaults(options, {
     method: 'GET'
   }));

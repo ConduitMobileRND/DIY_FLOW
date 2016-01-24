@@ -2759,6 +2759,9 @@ body.direction-ltr .locale-text-align {
 
 /*reusable custom style*/
 /*olga*/
+.clearfix {
+  clear: both; }
+
 body h1 {
   font-size: 3rem;
   color: #ffffff;
@@ -2788,8 +2791,7 @@ label {
 .pageWrap {
   min-height: 100vh; }
 
-div.error input {
-  /*border:solid 2px $error-color;*/
+div.error input, div.error select, div.error textarea {
   background-color: #f3dde5 !important; }
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], body textarea, body select {

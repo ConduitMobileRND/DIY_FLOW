@@ -1,0 +1,22 @@
+@import '../../styles/foundation/settings.scss';
+#step2.pageWrap{background-image:none;padding:100px 0;}
+body h1{color:$button-blue;}
+.phone{background-image:url("phone-transp.png");background-repeat:no-repeat;max-width:rem-calc(460);height:0;padding-bottom:76%;position:relative;background-size:cover;
+  .inner{width:70%;max-width:rem-calc(316);border:solid 1px rgba(0,0,0,0.7);margin:rem-calc(74) auto 0;
+    .topPas{width:100%;height:rem-calc(63);padding-top:rem-calc(23);
+      .dynamic{width:50%;height:rem-calc(15);margin:0 auto;border-radius:10px;background-color:rgba(255,255,255,0.5);}
+    }
+  }
+}
+.paletteWrap{width:rem-calc(74);height:rem-calc(74);border-radius:50%;border:solid 2px $pure-white;
+  &.selected{border:solid 2px $border-blue;}
+}
+.palette {position:relative;border-radius:50%;border:solid 5px $white;width:rem-calc(70);height:rem-calc(70); overflow: hidden;cursor:pointer;
+  .color{float:left;width:33%;height:100%;}
+}
+.iconColumnWrap{width:50%;margin:7% 0;}
+.iconColumn{width:47%;height:0;padding-bottom:47%;border-radius:50%;margin:0 auto;}
+.iconBorder{width:64%;height:0; padding-bottom:6%;background-color:#c8cccd; margin:0 auto;border-radius:5px;margin-top:6%;}
+.welcomeImages{text-align:center;
+  img{max-width:rem-calc(225);width:75%;}
+}
