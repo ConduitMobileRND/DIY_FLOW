@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+#step3 .phone {
+  max-width: 17rem;
+  background-size: 100%;
+  padding-top: 6%; }
+  #step3 .phone .inner {
+    margin: 0 auto; }
+#step3 .titleWrap {
+  margin-bottom: 3.75rem; }
+  #step3 .titleWrap h1.businessTitle {
+    margin-bottom: 0; }
+  #step3 .titleWrap h1, #step3 .titleWrap p {
+    color: #282f3a; }
+
+/*# sourceMappingURL=step3.css.map */

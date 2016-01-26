@@ -20,6 +20,8 @@ export default class Step1 extends Component {
     constructor(props) {
         super();
         let stored = JSON.parse(localStorage.state);
+        let storedPage0 = JSON.parse(stored.page_0);
+        let store = storedPage0.store;
         this.state = {
             data: {
                 id: 1,
@@ -31,7 +33,7 @@ export default class Step1 extends Component {
                     phoneLocal:{value:"", isValid:true},
                     website:{value:"",isValid:true},
                     category:{value:"", isValid:true},
-                    businessName:{value:stored.store, isValid:true},
+                    businessName:{value:store, isValid:true},
                     businessAddress:{value:"", isValid:true},
                     info:{value:"", isValid:true}
                 },
@@ -42,7 +44,6 @@ export default class Step1 extends Component {
                 businessCategories:businessCategories
             }
         }
-        console.log(this.state.data.stored.store);
         this._handleBtnClick = this._handleBtnClick.bind(this);
         this._setData = this._setData.bind(this);
         this._handleValidation = this._handleValidation.bind(this);

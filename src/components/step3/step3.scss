@@ -1,0 +1,15 @@
+@import '../../styles/foundation/settings.scss';
+
+#step3 {
+  .phone{max-width:rem-calc(272);    background-size: 100%;padding-top:6%;
+    .inner{margin:0 auto;}
+  }
+  .titleWrap {
+    margin-bottom: rem-calc(60);
+    h1.businessTitle {
+      margin-bottom: 0;
+    }
+    h1,p{color:$black;}
+
+  }
+}
