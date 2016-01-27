@@ -25,8 +25,8 @@ import ConfigApi from './api/config-api'
 
 // Import components to render in App
 import Routes from './routes'
-import Header from './components/generalComponents/header'
-import Footer from './components/generalComponents/footer'
+//import Header from './components/generalComponents/header'
+//import Footer from './components/generalComponents/footer'
 
 // App
 export default class App extends Component {

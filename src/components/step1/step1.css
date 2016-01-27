@@ -3,6 +3,8 @@
   background-image: none;
   background-color: #08b9e4;
   padding: 100px 0; }
+  #step1.pageWrap h1 {
+    color: #ffffff; }
 
 form > .row {
   position: relative;

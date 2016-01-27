@@ -1,5 +1,7 @@
 @import '../../styles/foundation/settings.scss';
-#step1.pageWrap{background-image:none;background-color:#08b9e4;padding:100px 0;}
+#step1.pageWrap{background-image:none;background-color:#08b9e4;padding:100px 0;
+  h1{color:$pure-white;}
+}
 form > .row{position:relative;margin-bottom:rem-calc(30);}
 .autoCompleteList{position:absolute;z-index:1;top:rem-calc($input-height)+rem-calc(29);
   ul{background-color:$pure-white;max-height:$input-height*4;overflow-y:scroll;overflow-x:hidden; transition: all 0.2s;

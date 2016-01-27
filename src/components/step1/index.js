@@ -232,7 +232,7 @@ export default class Step1 extends Component {
         return (
             <div id="step1" className="pageWrap" onClick={this._onWrapperClick}>
                 <div className="row">
-                    <h1 className="businessTitle columns large-10 large-offset-1">This is step 1 page. Welcome!</h1>
+                    <h1 className="businessTitle columns large-10 large-offset-1">About your business</h1>
                 </div>
                     <form>
                         <div className="row fbRow">

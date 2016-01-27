@@ -27,7 +27,12 @@ export default class Step4 extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <PhoneColumn deviceImageSrc="images/device_info.png" iconName="infoIcon" iconBgColor={this.state.data.phoneColors.iconsColor} text=""/>
+                    <PhoneColumn wrapClasses="columns large-3" deviceImageSrc="images/device_info.png" iconName="infoIcon" iconBgColor={this.state.data.phoneColors.iconsColor} text="Providing Information"/>
+                    <PhoneColumn wrapClasses="columns large-3" deviceImageSrc="images/device_rewards.png" iconName="rewardsIcon" iconBgColor={this.state.data.phoneColors.iconsColor} text="Providing Information"/>
+                    <PhoneColumn wrapClasses="columns large-3" deviceImageSrc="images/device_favourites.png" iconName="favouritesIcon" iconBgColor={this.state.data.phoneColors.iconsColor} text="Providing Information"/>
+                    <PhoneColumn wrapClasses="columns large-3" deviceImageSrc="images/device_fb.png" iconName="fbIcon" iconBgColor={this.state.data.phoneColors.iconsColor} text="Providing Information"/>
                 </div>
+            </div>
+        )
     }
 }
