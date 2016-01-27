@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AA0CQ,0EAAkE;ACzC1E,MAAM;EAAC,gBAAgB,EDwFV,OAAO",
+"sources": ["../../styles/foundation/settings.scss","step4.scss"],
+"names": [],
+"file": "step4.css"
+}
