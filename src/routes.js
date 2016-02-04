@@ -9,6 +9,7 @@ import Step1 from './components/step1';
 import Step2 from './components/step2';
 import Step3 from './components/step3';
 import Step4 from './components/step4';
+import Finish from './components/finish';
 import NotFound from './components/notFound';
 
 export default class Routes extends Component {
@@ -27,6 +28,7 @@ export default class Routes extends Component {
         <Route name='Step2' path='step2'  component={Step2} />
         <Route name='Step3' path='step3'  component={Step3} />
         <Route name='Step4' path='step4'  component={Step4} />
+        <Route name='Finish' path='finish' component={Finish} />
         <Route name='404'             path='*'              component={NotFound} />
   		</Router>
   	);

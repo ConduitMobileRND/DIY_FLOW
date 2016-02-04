@@ -73,21 +73,39 @@
 .slick-arrow.slick-hidden {
   display: none; }
 
+#step3 .pagination {
+  right: -198px;
+  line-height: 0.82; }
+  #step3 .pagination .huge {
+    letter-spacing: 0px; }
 #step3 .phone {
   max-width: 31.25rem;
   background-size: 100%;
   padding-top: 6%;
-  padding-bottom: 50%; }
+  padding-bottom: 100%; }
   #step3 .phone .inner {
-    margin: 0 auto; }
+    margin: 0 auto;
+    top: 2.375rem;
+    width: 70%; }
+    #step3 .phone .inner .topPas {
+      height: 2.875rem;
+      padding-top: 1.125rem; }
+      #step3 .phone .inner .topPas .dynamic {
+        height: 0.5625rem; }
     #step3 .phone .inner .welcomeImages img {
       width: 100%; }
+#step3 .iconColumn {
+  width: 46%;
+  padding-bottom: 44%; }
 #step3 .titleWrap {
   margin-bottom: 3.75rem; }
   #step3 .titleWrap h1.businessTitle {
     margin-bottom: 0; }
   #step3 .titleWrap h1, #step3 .titleWrap p {
     color: #282f3a; }
+#step3 .btnWrap {
+  margin-top: 3.75rem;
+  margin-bottom: 6.25rem; }
 
 .lightGreyBg {
   background-color: #f1f1f1; }
@@ -99,7 +117,7 @@
 .images {
   text-align: center;
   background-color: #ffffff;
-  padding: 2.5rem 0;
+  padding: 2.5rem 0 3.125rem;
   position: relative;
   background: #ffffff;
   border-top: 1px solid #d0d0d0;
@@ -215,5 +233,41 @@ input.imageDescription {
   border-bottom-color: #d0d0d0;
   border-width: 31px;
   margin-left: -31px; }
+
+/*slider navigation*/
+button.slick-prev, button.slick-next {
+  position: absolute;
+  top: 23%;
+  width: 3.125rem; }
+  button.slick-prev:before, button.slick-next:before {
+    content: " ";
+    width: 3.125rem;
+    height: 3.125rem;
+    background-image: url("nav-sprite-opt.png");
+    background-repeat: no-repeat;
+    display: block; }
+  button.slick-prev:hover:before, button.slick-next:hover:before {
+    background-position: 0 bottom; }
+
+button.slick-prev {
+  left: -4.375rem; }
+  button.slick-prev:before {
+    background-position: left top; }
+  button.slick-prev:hover:before {
+    background-position: left bottom; }
+
+button.slick-next {
+  right: -4.375rem; }
+  button.slick-next:before {
+    background-position: right top; }
+  button.slick-next:hover:before {
+    background-position: right bottom; }
+
+.imageOnScreen {
+  width: 100%;
+  height: 0;
+  background-size: cover;
+  background-position: center center;
+  padding-bottom: 70%; }
 
 /*# sourceMappingURL=step3.css.map */

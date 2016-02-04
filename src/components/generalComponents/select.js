@@ -11,7 +11,7 @@ export default class Select extends Component {
 
     _createOptionRow(option){
         return(
-            <option key={option.id}>
+            <option key={option.id} value={option.value}>
                 {(option.text) ? option.text : option.value}
             </option>
         );

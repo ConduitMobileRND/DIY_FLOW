@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 .pageWrap.home {
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   transition: background-image 1s ease-in-out;
   background-position: 0 center; }
   .pageWrap.home .darkened {
@@ -21,8 +21,7 @@ body button.button {
   padding: 2.5rem;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 14.7rem; }
+  left: 0; }
 
 h1, p {
   color: #ffffff; }
@@ -46,5 +45,16 @@ form {
 .terms:hover {
   text-decoration: underline;
   color: #d0d0d0; }
+
+.btnWrap button.borderRight {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px; }
+
+.home .description {
+  color: #ffffff;
+  font-size: 1.125rem;
+  margin-bottom: 2.0625rem; }
 
 /*# sourceMappingURL=style.css.map */

@@ -7,6 +7,7 @@ export default class Input extends Component {
             return(
                 <div className="iconWrap">
                     <img src={src}/>
+                    <i/>
                 </div>
             )
         }
@@ -28,7 +29,7 @@ export default class Input extends Component {
             <div className={className}>
                 <label>
                     {this._setLabelText()}
-                    <input className={this.props.className} name={this.props.name} isRequired={this.props.isRequired} validType={this.props.validType} stateId = {this.props.stateId} type={this.props.type} placeholder={this.props.placeholder} ref={this.props.ref} value = {this.props.value} onChange = {this.props.onChange.bind(null,this.props.stateId)} onBlur = {this.props.onBlur.bind(null, this.props)} onKeyUp = {this.props.onKeyUp ? this.props.onKeyUp.bind(null, this.props) : ""}/>
+                    <input className={this.props.className} name={this.props.name} isRequired={this.props.isRequired} validType={this.props.validType} stateId = {this.props.stateId} type={this.props.type} placeholder={this.props.placeholder} ref={this.props.ref} value = {this.props.value} onChange = {this.props.onChange.bind(null,this.props.stateId)} onBlur = {this.props.onBlur.bind(null, this.props)} onFocus={this.props.onFocus} onKeyUp = {this.props.onKeyUp ? this.props.onKeyUp.bind(null, this.props) : ""}/>
                     <div className="errorMessage">{this.props.errorMsg}</div>
                     {this._setIconWrap()}
                 </label>

@@ -1,14 +1,16 @@
 @import '../../styles/foundation/settings.scss';
-.pageWrap.home{background-repeat:no-repeat;background-size:100%; transition: background-image 1s ease-in-out;    background-position: 0 center;
+.pageWrap.home{background-repeat:no-repeat;background-size:cover; transition: background-image 1s ease-in-out;    background-position: 0 center;
   .darkened{background-color: rgba(0, 0, 0, 0.35);    height: 100%;padding:10% 0;min-height:100vh;}
 }
 body button.button{width: 100%;  margin: 0;  padding: rem-calc(8) 1rem;
   &.postfix{font-size:rem-calc(18);}
 }
-.logo{padding:rem-calc(40);position:absolute;top:0;left:0;  width: 14.7rem;  }
+.logo{padding:rem-calc(40);position:absolute;top:0;left:0;  }
 h1, p{color:$pure-white;}
 form{margin-bottom:rem-calc(40);}
 .description{margin:0 0 rem-calc(47) 0;}
 .home input[type='email']{border-left:solid 1px $placeholder-color;}
 .terms{font-size:$rem-base;color:$grey;display: inline-block;position:relative;top:rem-calc(1px);}
 .terms:hover{text-decoration:underline;color:$grey;}
+.btnWrap button.borderRight{    border-bottom-right-radius: 3px;  border-top-right-radius: 3px;  border-bottom-left-radius: 0px;  border-top-left-radius: 0px;}
+.home .description{color:$pure-white; font-size:rem-calc(18);margin-bottom:rem-calc(33);}

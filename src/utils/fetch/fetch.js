@@ -24,9 +24,35 @@ const Fetch = {
    post(url, options) {
      options = options || {};
     let getFormData = function(data){
-        let formData = new FormData();
+        //debugger;
+        var formData = new FormData();
         for(let key in data){
-            formData.append(key,data[key]);
+            if(!Array.isArray(data[key])) {
+                if((typeof data[key] === "object") && (data[key] !== null)){
+                    console.log("object but not array");
+                    for(let j in data[key]){
+                    //  for(let i in data[key][j]){
+                          if((typeof data[key][j] === "object") && (data[key][j] !== null)){
+                              console.log("object inside object");
+                              for(let i in data[key][j]) {
+                                  formData.append(key + "[" + j + "][" + i + "]", data[key][j][i]);
+                              }
+                          }else {
+                              formData.append(key + "[" + j + "]", data[key][j]);
+                          }
+                     // }
+                    }
+                } else {
+                    formData.append(key, data[key]);
+                }
+            }else{
+                //let newArr = [];
+                for(let ind in data[key]){
+                    for(let objInd in data[key][ind]) {
+                        formData.append(key + "[" + ind + "][" + objInd + "]", data[key][ind][objInd]);
+                    }
+                }
+            }
         }
         return formData;
     }

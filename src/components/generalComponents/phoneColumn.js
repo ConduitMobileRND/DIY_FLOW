@@ -37,7 +37,8 @@ export default class PhoneColumn extends Component {
             <div className={this.props.wrapClasses}>
                 <img src={this.props.deviceImageSrc} alt={this.props.text}/>
                 {this._getTheIcon(this.props.iconName)}
-                <p>{this.props.text}</p>
+                <p className="feature">{this.props.feature}</p>
+                <p className="description">{this.props.text}</p>
                 <img src="images/icon_okey.png"/>
             </div>
         )

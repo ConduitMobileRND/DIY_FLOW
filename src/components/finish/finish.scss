@@ -1,0 +1,12 @@
+@import '../../styles/foundation/settings.scss';
+#finish{background-color:$border-blue;
+  h1{padding-top:rem-calc(100);}
+  .code{max-width:rem-calc(302);background-color:$lightGreyBg;border-radius:5px;font-size:rem-calc(24);text-align:center;padding:rem-calc(23) 0;}
+  .qrWrap{margin-top:rem-calc(90)}
+  img.react-qr{border-radius:5px;}
+  img.deviceIcon {    display: block;    margin: rem-calc(20) auto rem-calc(80);  }
+  .description{margin-top:rem-calc(5);
+    span{font-weight:400;}
+  }
+  a.mailTo{display:inline-block;background-color:#0e9ec1;border-radius:15px;color:$pure-white;padding:rem-calc(2) rem-calc(15);}
+}

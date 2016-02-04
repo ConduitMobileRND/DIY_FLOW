@@ -1,14 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 #step1.pageWrap {
   background-image: none;
-  background-color: #08b9e4;
-  padding: 100px 0; }
+  background-color: #08b9e4; }
+  #step1.pageWrap form {
+    margin-bottom: 0; }
+  #step1.pageWrap .topPad .pagination {
+    color: #ffffff; }
   #step1.pageWrap h1 {
     color: #ffffff; }
+  #step1.pageWrap [type='text'], #step1.pageWrap [type='password'], #step1.pageWrap [type='date'], #step1.pageWrap [type='datetime'], #step1.pageWrap [type='datetime-local'], #step1.pageWrap [type='month'], #step1.pageWrap [type='week'], #step1.pageWrap [type='email'], #step1.pageWrap [type='number'], #step1.pageWrap [type='search'], #step1.pageWrap [type='tel'], #step1.pageWrap [type='time'], #step1.pageWrap [type='url'], #step1.pageWrap [type='color'] {
+    height: 2.5rem;
+    line-height: 2.5rem; }
+  #step1.pageWrap select {
+    height: 2.5rem;
+    line-height: 1.375rem; }
+
+form {
+  margin-bottom: 1.6875rem; }
 
 form > .row {
   position: relative;
-  margin-bottom: 1.875rem; }
+  margin-bottom: 0.9375rem; }
 
 .autoCompleteList {
   position: absolute;
@@ -38,33 +50,33 @@ form > .row {
           display: block; }
 
 .fbRow .iconWrap {
-  width: 3.125rem;
-  height: 3.125rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background-color: #4a90e2;
   position: absolute;
   top: 1.6875rem;
   right: 0;
   text-align: center;
-  padding-top: 0.15625rem;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
   /*cursor:pointer;*/
   /*&:hover{background-color:#4281ca;}*/ }
   .fbRow .iconWrap img {
-    width: 2.8125rem;
-    height: 2.8125rem; }
+    display: inline-block; }
+  .fbRow .iconWrap i {
+    display: inline-block;
+    height: 100%; }
 
 label > span {
   color: #ffffff; }
 
 #step1 .btnWrap {
-  margin: 1.875rem auto; }
+  margin: 0 auto; }
   #step1 .btnWrap button {
-    background-color: #1da7c7;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px; }
+    background-color: #0694b5;
+    max-width: 150px;
+    float: right; }
     #step1 .btnWrap button:hover {
-      background: #0694b5; }
+      background: #1da7c7; }
 
 /*# sourceMappingURL=step1.css.map */

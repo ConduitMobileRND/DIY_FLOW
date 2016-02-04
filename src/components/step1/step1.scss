@@ -1,8 +1,15 @@
 @import '../../styles/foundation/settings.scss';
-#step1.pageWrap{background-image:none;background-color:#08b9e4;padding:100px 0;
+#step1.pageWrap{background-image:none;background-color:#08b9e4;
+  form{margin-bottom:0;}
+  .topPad{
+    .pagination{color:$pure-white;}
+  }
   h1{color:$pure-white;}
+  [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color']{height:$input-narrow-height;line-height:$input-narrow-height;}
+  select{height:$input-narrow-height;line-height:rem-calc(22);}
 }
-form > .row{position:relative;margin-bottom:rem-calc(30);}
+form{margin-bottom:rem-calc(27)}
+form > .row{position:relative;margin-bottom:rem-calc(15);}
 .autoCompleteList{position:absolute;z-index:1;top:rem-calc($input-height)+rem-calc(29);
   ul{background-color:$pure-white;max-height:$input-height*4;overflow-y:scroll;overflow-x:hidden; transition: all 0.2s;
     li{padding:rem-calc(2) rem-calc(5);    cursor: pointer;background-color:$pure-white;transition:background-color 0.2s;
@@ -14,16 +21,17 @@ form > .row{position:relative;margin-bottom:rem-calc(30);}
     }
   }
 }
-.fbRow .iconWrap{width:rem-calc(50);height:rem-calc(50);background-color:#4a90e2;position:absolute;top:rem-calc(27);right:0;    text-align: center;  padding-top: rem-calc(2.5); border-bottom-right-radius: 5px; border-top-right-radius: 5px;/*cursor:pointer;*/
+.fbRow .iconWrap{width:rem-calc(40);height:rem-calc(40);background-color:#4a90e2;position:absolute;top:rem-calc(27);right:0;    text-align: center; border-bottom-right-radius: 3px; border-top-right-radius: 3px;/*cursor:pointer;*/
   /*&:hover{background-color:#4281ca;}*/
-  img{width:rem-calc(45);height:rem-calc(45)}
+  img{display:inline-block;}
+  i{display:inline-block;    height: 100%;}
 }
 label > span{color:$pure-white;}
-#step1 .btnWrap{margin:rem-calc(30) auto;
+#step1 .btnWrap{margin:0 auto;
   button {
-    background-color: $button-hover-blue;    padding-top: 10px;    padding-bottom: 10px;border-radius:5px;
+    background-color: $button-on-blue-hover-blue;max-width: 150px;    float: right;
     &:hover {
-      background: $button-on-blue-hover-blue;
+      background: $button-blue;
     }
   }
 }

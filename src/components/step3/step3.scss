@@ -2,11 +2,18 @@
 @import '../../../bower_components/slick-carousel/slick/slick.scss';
 
 #step3 {
-  .phone{max-width:rem-calc(500);    background-size: 100%;padding-top:6%;padding-bottom:50%;
-    .inner{margin:0 auto;
+  .pagination {right:-198px;
+    .huge{letter-spacing:0px};line-height: 0.82;
+  }
+  .phone{max-width:rem-calc(500);    background-size: 100%;padding-top:6%;padding-bottom:100%;
+    .inner{margin:0 auto;top:rem-calc(38);width:70%;
+      .topPas{height:rem-calc(46);padding-top:rem-calc(18);
+        .dynamic{height:rem-calc(9);}
+      }
       .welcomeImages img{width:100%;}
     }
   }
+  .iconColumn{width:46%;padding-bottom:44%;}
   .titleWrap {
     margin-bottom: rem-calc(60);
     h1.businessTitle {
@@ -15,11 +22,12 @@
     h1,p{color:$black;}
 
   }
+  .btnWrap{margin-top:rem-calc(60);margin-bottom:rem-calc(100);}
 }
 .lightGreyBg{background-color:$lightGreyBg;}
 .topPhone {  max-height: rem-calc(335);}
 /*selected images*/
-.images{text-align: center; background-color:$pure-white;padding:rem-calc(40) 0; position: relative;  background: #ffffff;  border-top: 1px solid $grey;border-bottom: 1px solid $grey;}
+.images{text-align: center; background-color:$pure-white;padding:rem-calc(40) 0 rem-calc(50); position: relative;  background: #ffffff;  border-top: 1px solid $grey;border-bottom: 1px solid $grey;}
 .slider{background-color:$black;height:0;overflow:hidden;transition:all 0.3s;padding-top:0;
   &.show{height:rem-calc(167);padding-top:rem-calc(40);}
 }
@@ -80,3 +88,24 @@ input.imageDescription {  border: none;  height: 30px;  margin-top: rem-calc(6);
   border-width: 31px;
   margin-left: -31px;
 }
+
+/*slider navigation*/
+button.slick-prev, button.slick-next{position: absolute;    top: 23%;  width: rem-calc(50);
+  &:before{content:" ";width:rem-calc(50);height:rem-calc(50);background-image:url("nav-sprite-opt.png");background-repeat:no-repeat;    display: block;}
+  &:hover{
+    &:before{background-position:0 bottom;}
+  }
+}
+button.slick-prev{left: rem-calc(-70);
+  &:before{background-position:left top;}
+  &:hover{
+    &:before{background-position:left bottom;}
+  }
+}
+button.slick-next{right:rem-calc(-70);
+  &:before{background-position:right top;}
+  &:hover{
+    &:before{background-position:right bottom;}
+  }
+}
+.imageOnScreen{width:100%;height:0;background-size:cover;background-position:center center;padding-bottom: 70%;}

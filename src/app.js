@@ -41,7 +41,7 @@ export default class App extends Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(theme),
+      muiTheme: ThemeManager.getMuiTheme(theme)
     };
   }
 

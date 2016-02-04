@@ -1,2 +1,8 @@
 @import '../../styles/foundation/settings.scss';
-#page4{background-color:$border-blue;}
+#step4{background-color:#f1f1f1;
+  h1{color:$black; margin-bottom:rem-calc(20);}
+  .titleWrap{margin-bottom:rem-calc(100);}
+  svg{width:rem-calc(26);margin-top:rem-calc(10);margin-bottom:rem-calc(5);}
+  .description{margin-bottom:rem-calc(13);}
+  .btnWrap{margin:rem-calc(60) auto rem-calc(100);}
+}
