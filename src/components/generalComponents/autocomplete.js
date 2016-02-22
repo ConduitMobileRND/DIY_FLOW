@@ -8,6 +8,7 @@ export default class AutoComplete extends Component {
         }
     }
     _createOptionRow(option){
+        //debugger;
         return(
             <li key={option.id} onClick = {this.props.onClick.bind(null,option)}>
                 <span className="imageWrap">

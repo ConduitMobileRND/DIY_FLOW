@@ -1,5 +1,8 @@
+import React, { Component } from 'react';
 import Fetch from '../utils/fetch/fetch';
 import lodash from 'lodash';
+import jQuery from 'jquery';
+
 
 class Handler{
     constructor(obj){
@@ -47,12 +50,25 @@ class Handler{
                 url={nextStepId: 4, nextStepUri: "/step4"};
                 break;
             case 4:
-                url={nextStepId: 5,nextStepUri:"https://dev-env.keeprz.com/?location_id="+this.locationId+"&location_version=0&token="+this.fbData.link};
+                url={nextStepId: 5,nextStepUri:"https://qa.keeprz.com/?location_id="+this.locationId+"&location_version=0&token="+this.fbData.link};
                 break;
         }
-        this.props.history.pushState(null, url.nextStepUri);
+        let _self = this;
+        jQuery(".pageWrap").animate({left:"-100%"},"slow", function(){
+            _self.props.history.pushState(null, url.nextStepUri);
+        });
     }
-
+    stayOnPage(stepId, errorObj,data){
+        //debugger;
+        let url="";
+        switch(stepId){
+            case 0:
+                url = "/?a="+errorObj.statusCode+"&email="+data.email+"&store="+data.store;
+                break;
+        }
+        //this.props.history.pushState(null, url);
+        window.location.href= url;
+    }
     handleData(){
         let error = false;
         let sendData = {};
@@ -71,18 +87,27 @@ class Handler{
                     sendData = {server: 3, displayName: store, email: email, app_lang: 1, phone_prefix: 1, timezone:'', ref:'diy'};
                             return Fetch
                                 //.post('https://www.keeprz.com/api/private/public/Register', {apiPrefix:"",dataType:"",data: sendData})
-                                .post('https://dev-env.keeprz.com/api/private/public/Register', {apiPrefix:"",dataType:"",data: sendData})
+                                .post('https://qa.keeprz.com/api/private/public/Register', {apiPrefix:"",dataType:"",data: sendData})
                                 .then((response)=> {
                                     console.log(response);
                                     if(response.statusCode != "user_created"){
+
                                         /*TBD WHAT TO DO OF USE NOT CREATED*/
-                                        alert("Oops...user not created! FallBack");
-                                        return;
+
+                                       _self.stayOnPage(this.currentStep,response,{"email":email,"store":store});
+                                    }else {
+                                        console.log("page 0 response:");
+                                        console.log(response);
+                                        _self.updateStorage(this.currentStep, {
+                                            store: this.data.store.value,
+                                            email: this.data.email.value,
+                                            userId: response.user_id,
+                                            locationId: response.location_id,
+                                            token: response.token,
+                                            groupId: response.group_id
+                                        });
+                                        _self.goToNextUrl(this.currentStep);
                                     }
-                                    console.log("page 0 response:");
-                                    console.log(response);
-                                    _self.updateStorage(this.currentStep,{store: this.data.store.value, email: this.data.email.value, userId: response.user_id, locationId: response.location_id  , token: response.token, groupId:response.group_id,});
-                                    _self.goToNextUrl(this.currentStep);
                                 });
                     break;
                 case 1:
@@ -109,7 +134,7 @@ class Handler{
                                                     },token:token,auth_location_id:locationId,auth_location_version:0
                                                     };
                                     return Fetch
-                                        .post("https://dev-env.keeprz.com/api/private/location/update",{apiPrefix:"",dataType:"",data:locationUpdateData})
+                                        .post("https://qa.keeprz.com/api/private/location/update",{apiPrefix:"",dataType:"",data:locationUpdateData})
                                         .then((response)=>{
                                             console.log("step1 updated:");
                                             console.log(response);
@@ -120,16 +145,12 @@ class Handler{
                                                                     auth_location_id: locationId, location_id: locationId, auth_location_version:0,token: token
                                             };
                                             return Fetch
-                                                /*  addressDetails:{value:{
-                                                 placeId:"",
-                                                 lat:"",lng:""
-                                                 }, isValid:true}*/
 
-                                            .post("https://dev-env.keeprz.com/api/private/branches/Update", {apiPrefix:"",dataType:"",data:branchesData})
+                                            .post("https://qa.keeprz.com/api/private/branches/Update", {apiPrefix:"",dataType:"",data:branchesData})
                                             .then((response) =>{
                                                     console.log(response);
                                                     return Fetch
-                                                        .get("https://dev-env.keeprz.com/api/private/public/GetFacebookUIThemes?fburl="+ fbLink+"&auth_location_id="+locationId+"&auth_location_version=0&token="+token)
+                                                        .get("https://qa.keeprz.com/api/private/public/GetFacebookUIThemes?fburl="+ fbLink+"&auth_location_id="+locationId+"&auth_location_version=0&token="+token)
                                                         .then((response)=> {
                                                             console.log("fb themes");
                                                             console.log(response);
@@ -151,7 +172,6 @@ class Handler{
                         break;
 
                 case 2:
-
                     let fbLink2 = this.fbData.link;
                     let token2 = this.token;
                     let objToStore = {response:{}, phoneColors:this.phoneColors}
@@ -162,12 +182,12 @@ class Handler{
                     let scheme = this.justData.schemes[selectedKey];
                     let themeToUpdate = {data:scheme, auth_location_id:locationId2, auth_location_version:0, token:token2}
                     return Fetch
-                        .post("https://dev-env.keeprz.com/api/private/uipacks/updateActive",{apiPrefix:"",dataType:"",data:themeToUpdate})
+                        .post("https://qa.keeprz.com/api/private/uipacks/updateActive",{apiPrefix:"",dataType:"",data:themeToUpdate})
                         .then((response)=> {
                             console.log("step2 updated:");
                             console.log(response);
                             return Fetch
-                                .get("https://dev-env.keeprz.com/api/private/public/UploadFacebookImages?fburl=" + fbLink2 + "&auth_location_id=" + locationId2 + "&auth_location_version=0&token=" + token2)
+                                .get("https://qa.keeprz.com/api/private/public/UploadFacebookImages?fburl=" + fbLink2 + "&auth_location_id=" + locationId2 + "&auth_location_version=0&token=" + token2)
                                 .then((response)=> {
                                     objToStore.response = response;
                                     _self.updateStorage(this.currentStep, objToStore);
@@ -189,7 +209,7 @@ class Handler{
                     }
 
                     return Fetch
-                    .post("https://dev-env.keeprz.com/api/private/welcomeMessages/bulkupdate",{apiPrefix:"", dataType:"",data:imagesToUpdate})
+                    .post("https://qa.keeprz.com/api/private/welcomeMessages/bulkupdate",{apiPrefix:"", dataType:"",data:imagesToUpdate})
                     .then((response) => {
                             console.log("step3 updated:");
                             console.log(response);

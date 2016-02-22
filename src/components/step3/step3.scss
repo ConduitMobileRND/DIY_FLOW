@@ -2,10 +2,11 @@
 @import '../../../bower_components/slick-carousel/slick/slick.scss';
 
 #step3 {
+  .subtitle{font-size:rem-calc(18);padding-top:rem-calc(10);line-height:1.5;}
   .pagination {right:-198px;
     .huge{letter-spacing:0px};line-height: 0.82;
   }
-  .phone{max-width:rem-calc(500);    background-size: 100%;padding-top:6%;padding-bottom:100%;
+  .phone{max-width:rem-calc(500);    background-size: 100%;padding-top:6%;padding-bottom:100%;opacity:0;
     .inner{margin:0 auto;top:rem-calc(38);width:70%;
       .topPas{height:rem-calc(46);padding-top:rem-calc(18);
         .dynamic{height:rem-calc(9);}
@@ -15,31 +16,37 @@
   }
   .iconColumn{width:46%;padding-bottom:44%;}
   .titleWrap {
-    margin-bottom: rem-calc(60);
+    margin-bottom: rem-calc(0);
     h1.businessTitle {
       margin-bottom: 0;
     }
     h1,p{color:$black;}
 
   }
-  .btnWrap{margin-top:rem-calc(60);margin-bottom:rem-calc(100);}
+  .btnWrap{margin-top:rem-calc(30);margin-bottom:rem-calc(0);
+    .button{margin-bottom:10px;}
+  }
 }
 .lightGreyBg{background-color:$lightGreyBg;}
-.topPhone {  max-height: rem-calc(335);}
+.topPhone {  max-height: rem-calc(245);overflow:hidden;}
 /*selected images*/
-.images{text-align: center; background-color:$pure-white;padding:rem-calc(40) 0 rem-calc(50); position: relative;  background: #ffffff;  border-top: 1px solid $grey;border-bottom: 1px solid $grey;}
+.images{text-align: center; background-color:$pure-white;padding:rem-calc(20) 0 rem-calc(11); position: relative;  background: #ffffff;  border-top: 1px solid $grey;border-bottom: 1px solid $grey;  height:211px;}
 .slider{background-color:$black;height:0;overflow:hidden;transition:all 0.3s;padding-top:0;
-  &.show{height:rem-calc(167);padding-top:rem-calc(40);}
+  &.show{height:rem-calc(137);padding-top:rem-calc(20);}
 }
 .thumb{margin:0 auto;border-radius:3px;}
-.borderWrap {  padding: 3px;  width: 182px;  height: 182px;  border: solid 3px transparent;  border-radius: 8px;}
+.thumbWrap.slick-slide{position:relative;height:104px;}
+.afterStriker{background-color:transparent;height:6px; width:45%;position:absolute;border-radius:5px;bottom: 0;  left: 50%;  margin-left: -25%;}
+.selectedThumb .afterStriker{background-color:$pure-white;}
+.borderWrap {  padding: 3px;  width: 142px;  height: 142px;  border: solid 3px transparent;  border-radius: 8px;    margin: 0 auto;}
 .selected .borderWrap{border: solid 3px $black;}
-.imageWrap{display:inline-block;text-align:center;overflow:hidden;position: relative;
+.imageWrap{display:inline-block;text-align:center;overflow:hidden;position: relative;opacity:0;
+  &.alwaysVisible{opacity:1!important;}
   &:hover{
     .blanket{background-color:rgba(0,0,0,0.5);}
     input{background-color:$lightGreyBg;}
   }
-  .innerWrap {position:relative; height: rem-calc(170);      width: rem-calc(170);overflow:hidden;    border-radius: 5px;
+  .innerWrap {position:relative; height: rem-calc(130);      width: rem-calc(130);overflow:hidden;    border-radius: 5px;
 
     .blanket {      position: absolute;      width: 100%;      height: 100%;      top: 0;      left: 0;
       &.noHover{background-color:transparent;}
@@ -67,7 +74,7 @@ input.imageDescription {  border: none;  height: 30px;  margin-top: rem-calc(6);
 /*the arrow*/
 .images:after, .images:before {
   bottom: 100%;
-  left: 50%;
+  left: 61.2%;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -79,14 +86,15 @@ input.imageDescription {  border: none;  height: 30px;  margin-top: rem-calc(6);
 .images:after {
   border-color: rgba(255, 255, 255, 0);
   border-bottom-color: #ffffff;
-  border-width: 30px;
-  margin-left: -30px;
+  border-width: 20px;
+  margin-left: -20px;
+
 }
 .images:before {
   border-color: rgba(208, 208, 208, 0);
   border-bottom-color: $grey;
-  border-width: 31px;
-  margin-left: -31px;
+  border-width: 21px;
+  margin-left: -21px;
 }
 
 /*slider navigation*/

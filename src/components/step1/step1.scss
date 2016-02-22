@@ -1,20 +1,22 @@
 @import '../../styles/foundation/settings.scss';
+#currentScreen{background-color:$pure-white;}
 #step1.pageWrap{background-image:none;background-color:#08b9e4;
+
   form{margin-bottom:0;}
-  .topPad{
+
     .pagination{color:$pure-white;}
-  }
+
   h1{color:$pure-white;}
   [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color']{height:$input-narrow-height;line-height:$input-narrow-height;}
   select{height:$input-narrow-height;line-height:rem-calc(22);}
 }
 form{margin-bottom:rem-calc(27)}
 form > .row{position:relative;margin-bottom:rem-calc(15);}
-.autoCompleteList{position:absolute;z-index:1;top:rem-calc($input-height)+rem-calc(29);
+.autoCompleteList{position:absolute;z-index:1;top:rem-calc($input-height)+rem-calc(18);
   ul{background-color:$pure-white;max-height:$input-height*4;overflow-y:scroll;overflow-x:hidden; transition: all 0.2s;
     li{padding:rem-calc(2) rem-calc(5);    cursor: pointer;background-color:$pure-white;transition:background-color 0.2s;
       &:hover{background-color:$li-hover;}
-      span.imageWrap{display:inline-block;width:rem-calc(50);height:rem-calc(50);margin-right:rem-calc(5);}
+      span.imageWrap{display:inline-block;width:rem-calc(50);height:rem-calc(50);margin-right:rem-calc(5);opacity:1;}
       .optionDetailsWrap{display: inline-block;
         span{display:block;}
       }
@@ -28,6 +30,8 @@ form > .row{position:relative;margin-bottom:rem-calc(15);}
 }
 label > span{color:$pure-white;}
 #step1 .btnWrap{margin:0 auto;
+
+  /*.vAlign.visible{opacity: 1;}*/
   button {
     background-color: $button-on-blue-hover-blue;max-width: 150px;    float: right;
     &:hover {

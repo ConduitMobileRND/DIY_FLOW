@@ -1,11 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 #step4 {
   background-color: #f1f1f1; }
+  #step4 .subtitle {
+    font-size: 1.125rem;
+    line-height: 1.5; }
+  #step4 .pagination .huge {
+    letter-spacing: -4px; }
   #step4 h1 {
     color: #282f3a;
-    margin-bottom: 1.25rem; }
+    margin-bottom: 0.25rem; }
   #step4 .titleWrap {
-    margin-bottom: 6.25rem; }
+    margin-bottom: 1.875rem; }
   #step4 svg {
     width: 1.625rem;
     margin-top: 0.625rem;
@@ -14,5 +19,19 @@
     margin-bottom: 0.8125rem; }
   #step4 .btnWrap {
     margin: 3.75rem auto 6.25rem; }
+  #step4 a.button {
+    background-color: #1da7c7;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    line-height: 3.125rem; }
+    #step4 a.button:hover {
+      background-color: #08b9e4; }
+  #step4 .phoneWrap img {
+    max-width: 139px;
+    display: block;
+    margin: 0 auto; }
+    #step4 .phoneWrap img.device {
+      opacity: 0; }
 
 /*# sourceMappingURL=step4.css.map */

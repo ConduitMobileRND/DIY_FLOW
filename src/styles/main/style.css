@@ -2581,7 +2581,9 @@ html {
 
 body {
   line-height: 1;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Open Sans", sans-serif;
+  min-height: 100%;
+  height: 100%; }
 
 article,
 aside,
@@ -2736,9 +2738,11 @@ body, body * {
 
 body, html, #root, .page-wrapper {
   position: relative;
-  min-height: 100%; }
+  min-height: 100%;
+  height: 100%; }
 
-.page-wrapper {
+#currentScreen {
+  min-height: 100%;
   height: 100%; }
 
 body.direction-rtl .block,
@@ -2759,6 +2763,11 @@ body.direction-ltr .locale-text-align {
 
 /*reusable custom style*/
 /*olga*/
+.vAlign {
+  position: relative;
+  margin-right: 0;
+  margin-left: 0; }
+
 .clearfix {
   clear: both; }
 
@@ -2793,7 +2802,7 @@ body.direction-ltr .locale-text-align {
 
 .bottomLeftImg {
   position: fixed;
-  bottom: 1%;
+  bottom: 0%;
   left: 0; }
 
 body h1 {
@@ -2801,7 +2810,8 @@ body h1 {
   color: #ffffff;
   text-align: center;
   line-height: 1.2;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  letter-spacing: -1px; }
 
 body h1.businessTitle {
   font-weight: 300;
@@ -2823,7 +2833,7 @@ label {
     font-weight: 300; }
 
 .pageWrap {
-  min-height: 100vh; }
+  min-height: 100%; }
 
 div.error input, div.error select, div.error textarea {
   background-color: #f3dde5 !important; }
@@ -2941,16 +2951,16 @@ body textarea {
     border: solid 2px rgba(0, 0, 0, 0.3);
     margin: 0 auto;
     position: relative;
-    top: 4.625rem;
+    top: 2.625rem;
     border-radius: 3px; }
     .phone .inner .topPas {
       width: 100%;
-      height: 3.9375rem;
-      padding-top: 1.4375rem;
+      height: 2.6875rem;
+      padding-top: 1.0625rem;
       border-bottom: solid 1px rgba(0, 0, 0, 0.1); }
       .phone .inner .topPas .dynamic {
         width: 50%;
-        height: 0.9375rem;
+        height: 0.625rem;
         margin: 0 auto;
         border-radius: 10px;
         background-color: rgba(255, 255, 255, 0.5); }
@@ -2963,9 +2973,9 @@ body textarea {
   margin: 4% 0; }
 
 .iconColumn {
-  width: 47%;
+  width: 46%;
   height: 0;
-  padding-bottom: 45.5%;
+  padding-bottom: 44%;
   border-radius: 50%;
   margin: 0 auto;
   border: solid 1px rgba(0, 0, 0, 0.1); }
@@ -2985,8 +2995,12 @@ body textarea {
     max-width: 16.875rem;
     width: 79%; }
 
+.btnWrap {
+  text-align: center; }
+
 .btnWrap button {
-  border-radius: 5px; }
+  border-radius: 5px;
+  max-width: 9.375rem; }
 
 .home .btnWrap button {
   padding-top: 0px !important;
@@ -3010,6 +3024,9 @@ body textarea {
   color: #282f3a; }
 
 /*google maps input*/
+.geosuggest__input {
+  margin-bottom: 0.0625rem; }
+
 ul.geosuggest__suggests {
   background-color: #ffffff;
   borde-radius: 3px;
@@ -3019,17 +3036,85 @@ ul.geosuggest__suggests {
   transition: all 0.3s;
   position: absolute;
   z-index: 5;
-  padding: 10px;
+  padding: 0 10px;
   width: 100%; }
   ul.geosuggest__suggests.geosuggest__suggests--hidden {
-    max-height: 0;
-    padding: 0 10px; }
+    max-height: 0; }
   ul.geosuggest__suggests li {
     cursor: pointer; }
+    ul.geosuggest__suggests li:first-child {
+      margin-top: 10px; }
+    ul.geosuggest__suggests li:last-child {
+      margin-bottom: 10px; }
     ul.geosuggest__suggests li:hover {
       background-color: #acdcea; }
 
 .row {
   max-width: 53.125rem; }
+
+-webkit-autofill {
+  display: none !important; }
+
+.vAlign {
+  opacity: 0;
+  position: absolute;
+  width: 100%; }
+  .vAlign.visible {
+    /*opacity:1;*/ }
+
+.pagination {
+  opacity: 0;
+  transition: 1s opacity;
+  display: none; }
+  .pagination.visible {
+    opacity: 1; }
+
+.bottomLeftImg {
+  opacity: 0;
+  transition: 1s opacity;
+  display: none; }
+  .bottomLeftImg.visible {
+    opacity: 1; }
+
+.pageWrap.show .pagination, .pageWrap.show .bottomLeftImg {
+  display: block; }
+
+.pageWrap {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 100%; }
+
+.pageWrap.home {
+  left: 0; }
+
+#step1 .pagination {
+  -webkit-animation-duration: .5s;
+  -moz-animation-duration: .5s;
+  -ms-animation-duration: .5s; }
+
+#step1 .bottomLeftImg {
+  -webkit-animation-duration: .3s;
+  -moz-animation-duration: .3s;
+  -ms-animation-duration: .3s; }
+
+.vAlign {
+  /*-webkit-animation-duration: .5s;-moz-animation-duration: .5s;-ms-animation-duration: .5s;*/ }
+
+.paletteWrap {
+  -webkit-animation-duration: .1s;
+  -moz-animation-duration: .1s;
+  -ms-animation-duration: .1s; }
+
+.pageWrap {
+  /*display:none;*/ }
+  .pageWrap.show {
+    display: block; }
+
+#step1, #step2, #step3, #step4 {
+  left: 100%; }
+
+.slick-track {
+  transition: all 0.3s ease-in-out !important; }
 
 /*# sourceMappingURL=style.css.map */

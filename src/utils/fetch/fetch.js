@@ -10,8 +10,8 @@ const Fetch = {
 
   get(url) {
     let request = buildRequest(url);
-
     return fetch(request)
+
       .then(checkStatus)
       .then(parseJSON)
       .then(function(data) {
@@ -96,7 +96,8 @@ function serialize(data) {
   }).join('&');
 };
 
-function checkStatus(response) {  
+function checkStatus(response) {
+
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {

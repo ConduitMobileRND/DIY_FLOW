@@ -1,10 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+#currentScreen {
+  background-color: #ffffff; }
+
 #step1.pageWrap {
   background-image: none;
   background-color: #08b9e4; }
   #step1.pageWrap form {
     margin-bottom: 0; }
-  #step1.pageWrap .topPad .pagination {
+  #step1.pageWrap .pagination {
     color: #ffffff; }
   #step1.pageWrap h1 {
     color: #ffffff; }
@@ -25,7 +28,7 @@ form > .row {
 .autoCompleteList {
   position: absolute;
   z-index: 1;
-  top: 4.9375rem; }
+  top: 4.25rem; }
   .autoCompleteList ul {
     background-color: #ffffff;
     max-height: 12.5rem;
@@ -43,7 +46,8 @@ form > .row {
         display: inline-block;
         width: 3.125rem;
         height: 3.125rem;
-        margin-right: 0.3125rem; }
+        margin-right: 0.3125rem;
+        opacity: 1; }
       .autoCompleteList ul li .optionDetailsWrap {
         display: inline-block; }
         .autoCompleteList ul li .optionDetailsWrap span {
@@ -71,7 +75,8 @@ label > span {
   color: #ffffff; }
 
 #step1 .btnWrap {
-  margin: 0 auto; }
+  margin: 0 auto;
+  /*.vAlign.visible{opacity: 1;}*/ }
   #step1 .btnWrap button {
     background-color: #0694b5;
     max-width: 150px;

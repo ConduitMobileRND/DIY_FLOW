@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import style from './step2.scss';
 import Button from '../generalComponents/button';
 import lodash from 'lodash';
-import Handler from '../../api/handler';
-import Isvg from 'react-inlinesvg';
 import jQuery from 'jquery';
+
 import InfoIcon from '../generalComponents/icons/infoIcon';
 import RewardsIcon from '../generalComponents/icons/rewardsIcon';
 import FavouritesIcon from '../generalComponents/icons/favouritesIcon';
@@ -13,77 +12,40 @@ import FbIcon from '../generalComponents/icons/fbIcon';
 
 export default class Step2 extends Component {
     constructor(props) {
-        super();
+        super(props);
+       // ;
 
-        let stored = JSON.parse(localStorage.state);
-        let themeData = JSON.parse(stored.page_1);
-        let appData = JSON.parse(stored.page_0);
-        let themeSchemes = [];
-        let selectedThemeId = "";
-        for(let i = 0; i < 3; i ++){
-            if(typeof themeData.fbThemes.data[i] != "undefined"){
-                themeSchemes.push(themeData.fbThemes.data[i]);
-                if(i == 0){
-                    selectedThemeId = themeData.fbThemes.data[i].uipack_id;
-                }
-            }else{
-                let ind = Math.floor(Math.random() * (themeData.defaultThemes.data.length + 1));
-                console.log("index: " + ind);
-                themeSchemes.push(themeData.defaultThemes.data[ind]);
-            }
-        }
 
         this.state=
         {
             data:{
-                id: 2,
-                schemes: themeSchemes,
-                selectedScheme: selectedThemeId,
-                token:appData.token,
-                locationId:appData.locationId,
-                fbData:themeData.fbData.data,
-                phoneColors:{
-                    upperColor: themeSchemes[0].pageHeaderBackgroundColorFrom,
-                    iconsColor: themeSchemes[0].tileBackgroundColorFrom,
-                    bgColor:themeSchemes[0].backgroundImageOverlayColor,
-                    brightness:themeSchemes[0].brightness
-                }
+
             }
         }
 
-        this._toggleSelectedPalette = this._toggleSelectedPalette.bind(this);
+
         this._handleBtnClick = this._handleBtnClick.bind(this);
         this._createCompletePaletteRow = this._createCompletePaletteRow(this);
 
     }
+
     _handleBtnClick(){
-        let cpTask = new Handler(this);
-        let cpReturnData = cpTask.handleData();
+        jQuery("#step2 .btnWrap button").html("<img src='images/ajax-loader1.gif'/>");
+        this.props.handleBtnClick(this.refs, "getImages", event);
     }
-    _toggleSelectedPalette(paletteId){
-       // debugger;
-        this.state.data.selectedScheme = paletteId;
-        let index = this._getIndexByPaletteId(paletteId);
-        this.state.data.phoneColors.upperColor = this.state.data.schemes[index].pageHeaderBackgroundColorFrom;
-        //this.state.data.phoneColors.upperColor = this.state.data.schemes[index].tileBackgroundColorFrom;
-        //this.state.data.phoneColors.iconsColor = this.state.data.schemes[index].tileInnerBackgroundColor;
-        this.state.data.phoneColors.iconsColor = this.state.data.schemes[index].tileBackgroundColorFrom;
-        //this.state.data.phoneColors.bgColor = this.state.data.schemes[index].backgroundImageOverlayColor;
-        this.state.data.phoneColors.bgColor = this.state.data.schemes[index].backgroundImageOverlayColor;
-        this.state.data.phoneColors.brightness = this.state.data.schemes[index].brightness;
-        this.setState({data: this.state.data});
-    }
-    _createPaletteRow(palette){
-        let selected = palette.uipack_id == this.state.data.selectedScheme ? "selected" : "";
+
+    _createPaletteRow(palette, index){
+        let selected = palette.uipack_id == this.props.selectedScheme || (index == 0 && !this.props.paletteSelected)? "selected" : "";
         let className = "paletteWrap " + selected;
         let id="uiPack_"+ palette.uipack_id;
-        let index = this._getIndexByPaletteId(palette.uipack_id);
+       // debugger;
+        let index1 = this.props.getIndexByPaletteId(palette.uipack_id);
         return(
-            <div className={className} key={palette.uipack_id} onClick={this._toggleSelectedPalette.bind(null,palette.uipack_id)}>
+            <div className={className} key={palette.uipack_id} onClick={this.props.onPaletteClick.bind(null,palette.uipack_id)}>
                 <div className="palette">
-                    <div className="color" style={{backgroundColor:this.state.data.schemes[index].pageHeaderBackgroundColorFrom}}></div>
-                    <div className="color" style={{backgroundColor:this.state.data.schemes[index].backgroundImageOverlayColor}}></div>
-                    <div className="color" style={{backgroundColor:this.state.data.schemes[index].tileBackgroundColorFrom}}></div>
+                    <div className="color" style={{backgroundColor:this.props.schemes[index1][this.props.upperColorsSrc]}}></div>
+                    <div className="color" style={{backgroundColor:this.props.schemes[index1].backgroundImageOverlayColor}}></div>
+                    <div className="color" style={{backgroundColor:this.props.schemes[index1][this.props.iconsColorSrc]}}></div>
                     <div className="clearfix"></div>
                 </div>
             </div>
@@ -91,7 +53,26 @@ export default class Step2 extends Component {
     }
     /*TEMPORARY FOR DESIGNERS NEEDS*/
     _createCompletePaletteRow(){
-        let firstPalette = this.state.data.schemes[0];
+        let firstPalette = {};
+        let defaultColor = "white";
+        if(this.props.schemes.length > 0) {
+            let firstPalette = this.props.schemes[0];
+        }else{
+            firstPalette.backgroundImageOverlayColor = defaultColor;
+            firstPalette.listBackgroundColor = defaultColor;
+            firstPalette.listItemBackgroundColor = defaultColor;
+            firstPalette.locationColor = defaultColor;
+            firstPalette.negativeLocationColor = defaultColor;
+            firstPalette.pageHeaderBackgroundColorFrom = defaultColor;
+            firstPalette.pageHeaderBackgroundColorTo = defaultColor;
+            firstPalette.pageHeaderTextColor = defaultColor;
+            firstPalette.textColor = defaultColor;
+            firstPalette.tileBackgroundColor = defaultColor;
+            firstPalette.tileBackgroundColorFrom = defaultColor;
+            firstPalette.tileBackgroundColorTo = defaultColor;
+            firstPalette.tileHeaderTextColor = defaultColor;
+            firstPalette.tileInnerBackgroundColor = defaultColor;
+        }
         return(
             <div className="row hide" style={{marginTop:"30px"}}>
                 <div className="columns large-4" style={{border:"solid 1px grey"}}>
@@ -121,7 +102,7 @@ export default class Step2 extends Component {
                 <div className="columns large-4" style={{border:"solid 1px grey"}}>
                     <h6>pageHeaderBackgroundColorTo</h6>
                     <div style={{backgroundColor: firstPalette.pageHeaderBackgroundColorTo, minHeight:"40px"}}></div>
-                </div>
+                </div>;
                 <div className="columns large-4" style={{border:"solid 1px grey"}}>
                     <h6>pageHeaderTextColor</h6>
                     <div style={{backgroundColor: firstPalette.pageHeaderTextColor, minHeight:"40px"}}></div>
@@ -154,95 +135,86 @@ export default class Step2 extends Component {
 
         )
     }
-    _getSelectedSchemeIndex(){
-        var index = 0 ;
-        for (let i in this.state.data.schemes){
-            if(this.state.data.schemes[i].uipack_id == this.state.selectedScheme){
-                index = i;
-            }
-        }
-        return index;
-    }
-    _getIndexByPaletteId(paletteId){
-        let index = 0;
-        for(let i in this.state.data.schemes){
-            if(this.state.data.schemes[i].uipack_id == paletteId){
-                index = i;
-            }
-        }
-        return index;
-    }
+
+
 
     render() {
-        let wrapClass = "phone "+this.state.data.phoneColors.brightness;
+        let wrapClass = "phone "+this.props.phoneColors.brightness;
         return (
             <div id="step2" className="pageWrap">
-                <div className="row relative topPad">
-                    <div className="absolute pagination"><span className="huge">2</span><span className="tiny">/4</span></div>
-                </div>
-                <div className="row">
-                    <h1 className="businessTitle columns large-10 large-offset-1">Choose your colors</h1>
-                </div>
-                <div className="row">
-                    <div className="columns large-2 medium-2 medium-offset-1 large-offset-1 paletteSchemes">
-                        {this.state.data.schemes.map(this._createPaletteRow, this)}
+                <div className="absolute pagination"><span className="huge">2</span><span className="tiny">/4</span></div>
+                <div className="vAlign">
+                    <div className="row">
+                        <h1 className="businessTitle columns large-10 medium-10 medium-offset-2 large-offset-2">Choose your colors</h1>
                     </div>
-                    <div className="columns large-6 medium-7 end">
-                        <div className={wrapClass}>
-                            <div className="inner">
-                                <div className="topPas" style={{backgroundColor: this.state.data.phoneColors.upperColor}}>
-                                    <div className="dynamic"></div>
-                                </div>
-                                <div className="bgWrap" style={{backgroundColor:this.state.data.phoneColors.bgColor}}>
-                                    <div className="iconsRow">
-                                        <div className="iconColumnWrap" style={{float:"left"}}>
-                                            <div className="iconColumn"  ref="iconBg">
-                                                <InfoIcon fillColor={this.state.data.phoneColors.iconsColor}/>
-                                            </div>
-                                            <div className="iconBorder"></div>
-                                        </div>
-                                        <div className="iconColumnWrap" style={{float:"right"}}>
-                                            <div className="iconColumn">
-                                                <RewardsIcon fillColor={this.state.data.phoneColors.iconsColor}/>
-                                            </div>
-                                            <div className="iconBorder"></div>
-                                        </div>
-                                        <div className="clearfix"></div>
+                    <div className="row phoneContent">
+                        <div className="columns large-2 medium-2 medium-offset-2 large-offset-2 paletteSchemes">
+                            {this.props.schemes.map(this._createPaletteRow, this)}
+                        </div>
+                        <div className="columns large-4 medium-4 end">
+                            <div className={wrapClass}>
+                                <div className="inner">
+                                    <div className="topPas" style={{backgroundColor: this.props.phoneColors.upperColor}}>
+                                        <div className="dynamic"></div>
                                     </div>
-                                    <div className="welcomeImages">
-                                        <img src="images/imge_placeholder.png" alt=""/>
-                                    </div>
-                                    <div className="iconsRow">
-                                        <div className="iconColumnWrap" style={{float:"left"}}>
-                                            <div className="iconColumn">
-                                                <FavouritesIcon fillColor={this.state.data.phoneColors.iconsColor}/>
+                                    <div className="bgWrap" style={{backgroundColor:this.props.phoneColors.bgColor}}>
+                                        <div className="iconsRow">
+                                            <div className="iconColumnWrap" style={{float:"left"}}>
+                                                <div className="iconColumn"  ref="iconBg">
+                                                    <InfoIcon fillColor={this.props.phoneColors.iconsColor}/>
+                                                </div>
+                                                <div className="iconBorder"></div>
                                             </div>
-                                            <div className="iconBorder"></div>
-                                        </div>
-                                        <div className="iconColumnWrap" style={{float:"right"}}>
-                                            <div className="iconColumn">
-                                                <FbIcon fillColor={this.state.data.phoneColors.iconsColor}/>
+                                            <div className="iconColumnWrap" style={{float:"right"}}>
+                                                <div className="iconColumn">
+                                                    <RewardsIcon fillColor={this.props.phoneColors.iconsColor}/>
+                                                </div>
+                                                <div className="iconBorder"></div>
                                             </div>
-                                            <div className="iconBorder"></div>
+                                            <div className="clearfix"></div>
                                         </div>
-                                        <div className="clearfix"></div>
+                                        <div className="welcomeImages">
+                                            <img src="images/imge_placeholder.png" alt=""/>
+                                        </div>
+                                        <div className="iconsRow">
+                                            <div className="iconColumnWrap" style={{float:"left"}}>
+                                                <div className="iconColumn">
+                                                    <FavouritesIcon fillColor={this.props.phoneColors.iconsColor}/>
+                                                </div>
+                                                <div className="iconBorder"></div>
+                                            </div>
+                                            <div className="iconColumnWrap" style={{float:"right"}}>
+                                                <div className="iconColumn">
+                                                    <FbIcon fillColor={this.props.phoneColors.iconsColor}/>
+                                                </div>
+                                                <div className="iconBorder"></div>
+                                            </div>
+                                            <div className="clearfix"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div className="row relative">
+                        <Button foundationClasses="large-4 large-offset-4 columns medium-4 medium-offset-4" buttonSize="large" btnText="NEXT" onClick={this._handleBtnClick}/>
+
+                    </div>
                 </div>
-                <div className="row relative">
-                    <Button foundationClasses="large-4 columns large-centered" buttonSize="large" btnText="NEXT" onClick={this._handleBtnClick}/>
                     <img className="absolute bottomLeftImg" src="images/icon_page_selectcolors.png" alt=""/>
-                </div>
-
-
                      {this._createCompletePaletteRow}
-
-
             </div>
         )
     }
 }
 
+Step2.propTypes = {
+    schemes: React.PropTypes.array.isRequired,
+    phoneColors: React.PropTypes.object.isRequired,
+    upperColorsSrc: React.PropTypes.string.isRequired,
+    iconsColorSrc: React.PropTypes.string.isRequired,
+    selectedScheme: React.PropTypes.string.isRequired,
+    getIndexByPaletteId: React.PropTypes.func.isRequired,
+    onPaletteClick: React.PropTypes.func.isRequired,
+    paletteSelected: React.PropTypes.bool.isRequired
+}

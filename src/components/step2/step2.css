@@ -1,6 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+#currentScreen {
+  background-color: #f1f1f1; }
+
 #step2.pageWrap {
-  background-image: none; }
+  background-color: #ffffff; }
   #step2.pageWrap h1 {
     margin-bottom: 2.8125rem;
     color: #1da7c7; }
@@ -11,16 +14,15 @@
     #step2.pageWrap .pagination .huge {
       letter-spacing: 0px; }
   #step2.pageWrap .btnWrap {
-    margin-top: 3.125rem; }
-  #step2.pageWrap .bottomLeftImg {
-    top: 3.125rem; }
+    margin-top: 1.875rem; }
 
 .paletteWrap {
-  width: 5.375rem;
-  height: 5.375rem;
+  width: 4.875rem;
+  height: 4.875rem;
   border-radius: 50%;
   border: solid 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2.1875rem; }
+  margin-bottom: 2.1875rem;
+  opacity: 0; }
   .paletteWrap.selected {
     border: solid 3px #08b9e3; }
 
@@ -28,8 +30,8 @@
   position: relative;
   border-radius: 50%;
   border: solid 5px #fefefe;
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   overflow: hidden;
   cursor: pointer; }
   .palette .color {

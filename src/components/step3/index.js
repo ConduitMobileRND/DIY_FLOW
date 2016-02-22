@@ -12,179 +12,131 @@ const defaultImgText = "Add your image title";
 
 export default class Step3 extends Component {
     constructor(props) {
-        super();
+        super(props);
 
-        let stored = JSON.parse(localStorage.state);
-        let appData = JSON.parse(stored.page_0);
-        let prevStored = JSON.parse(stored.page_2);
-        console.log(prevStored);
         this.state =
         {
             data: {
-                id: 3,
-                token: appData.token,
-                locationId:appData.locationId,
-                storedImages: prevStored.response,
-                phoneColors: prevStored.phoneColors,
-                payload:{
-                    selectedImages:[{image:prevStored.response.data[0], imageText:defaultImgText, selected:false},{image:prevStored.response.data[1], imageText:defaultImgText, selected:false},{image:prevStored.response.data[2], imageText:defaultImgText, selected:false},{image:prevStored.response.data[3], imageText:defaultImgText, selected:false}]
-                },
-                imageOnScreen: prevStored.response.data[0].url
+                loaded : true
             }
         }
-        this._onClickThumb = this._onClickThumb.bind(this);
-        this._createImageItem = this._createImageItem.bind(this);
-        this._selectImage = this._selectImage.bind(this);
         this._handleBtnClick = this._handleBtnClick.bind(this);
-        this._onTextInputBlur = this._onTextInputBlur.bind(this);
-        /*create initial pull of selected images*/
 
     }
     _handleBtnClick(){
-        let cpTask = new Handler(this);
-        let cpReturnData = cpTask.handleData();
+        jQuery("#step3 .btnWrap button").html("<img src='images/ajax-loader1.gif'/>");
+        this.props.handleBtnClick(this.refs, "sendImages", event);
     }
-    _toggleClass(options){
-       // debugger;
-        if(options.action == "add"){
-            jQuery("."+options.className).addClass(options.toggleClass);
-        }else{
-            jQuery("."+options.className).removeClass(options.toggleClass);
-        }
-    }
-    _selectImage(index){
-        for(let i in this.state.data.payload.selectedImages){
-            this.state.data.payload.selectedImages[i].selected = false;
-        }
 
-        this.state.data.payload.selectedImages[index].selected = true;
-        this.state.data.imageOnScreen = this.state.data.payload.selectedImages[index].image.url;
 
-        this.setState({data:this.state.data});
-        jQuery(".slider").addClass("show");
-    }
     _createImageItem(item,index){
-        let imageId = "image_"+item.image.image_id;
-        let wrapClasses = "imageWrap columns large-3";
+        let imageId = "image_"+item.image.image_id+"_index_"+index;
+        let wrapClasses = "imageWrap columns large-3 imageId_"+item.image.image_id;
+        let imageWrapperOpacity = this.state.data.loaded ? 1 : 0;
         if(item.selected == true){
             wrapClasses += " selected";
         }
         let keyId = item.image.image_id+ Math.floor((Math.random() * 1000) + 1);
         return (
-            <div className={wrapClasses} key={keyId} id={imageId}>
+            <div className={wrapClasses} key={keyId} id={imageId} style={{opacity:imageWrapperOpacity}}>
                 <div className="borderWrap">
-                    <div className="innerWrap" style={{backgroundSize:"cover",backgroundImage:"url('"+item.image.url+"')",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}  onClick={this._selectImage.bind(null, index)}>
+                    <div className="innerWrap" style={{backgroundSize:"cover",backgroundImage:"url('"+item.image.url+"')",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}  onClick={this.props.selectImage.bind(null, index,item.image.image_id)}>
                         <div className="blanket"></div>
                     </div>
                 </div>
-                <input className="imageDescription" defaultValue={item.imageText} ref="SelectedText" onFocus={this._toggleClass.bind(null, {className:"blanket",toggleClass:"noHover", action:"add"})} onBlur={this._onTextInputBlur.bind(null,{"index":index},{className:"blanket",toggleClass:"noHover", action:"remove"})}/>
+                <input className="imageDescription" defaultValue={item.imageText} ref="SelectedText" onFocus={this.props.toggleClass.bind(null, {className:"blanket",toggleClass:"noHover", action:"add"})} onBlur={this.props.onTextInputBlur.bind(null,{"index":index},{className:"blanket",toggleClass:"noHover", action:"remove"})}/>
             </div>
         )
     }
-    _onTextInputBlur(index, classParams, event){
-        this._toggleClass(classParams);
-        this.state.data.payload.selectedImages[index.index].imageText = event.target.value;
-        this.setState({data:this.state.data});
-        console.log(index);
-        console.log(classParams);
-        console.log(event);
-    }
-    _onClickThumb(item){
-        let selectedText = jQuery(".imageWrap.selected").find("input.imageDescription").val();
 
-        let images = this.state.data.storedImages.data;
-        let theEnteringImageObj = {};
-        for (let i in images){
-            if(images[i].image_id == item.id){
-                theEnteringImageObj = {image: images[i], imageText: selectedText, selected: true};
-            }
-        }
-        for(let i in this.state.data.payload.selectedImages){
-            if(this.state.data.payload.selectedImages[i].selected == true){
-                this.state.data.payload.selectedImages[i] = theEnteringImageObj;
-            }
-        }
-        this.state.data.imageOnScreen = theEnteringImageObj.image.url;
-        this.setState({data:this.state.data});
-        return;
-    }
+
     render(){
-        let wrapClass = "phone "+this.state.data.phoneColors.brightness;
-        console.log("inside render");
-        console.log(wrapClass);
-        console.log(this);
+        let wrapClass = "phone "+this.props.phoneColors.brightness;
         return (
-            <div id="step3" className="pageWrap lightGreyBg">
-                <div className="row relative topPad">
-                    <div className="absolute pagination"><span className="huge">3</span><span className="tiny">/4</span></div>
-                </div>
-                <div className="row">
-                    <div className="columns large-10 large-offset-1 titleWrap">
-                        <h1 className="businessTitle">Welcome messages</h1>
-                        <p className="subtitle">Edit your welcom messages to attract and engage users, showcasing your delicious food, great products, happy customers etc.</p>
-                    </div>
-                </div>
-                <div className="topPhone">
+            <div id="step3" className="pageWrap lightGreyBg" onClick={this.props.onPageClick}>
+                <div className="absolute pagination"><span className="huge">3</span><span className="tiny">/4</span></div>
+                <div className="vAlign">
                     <div className="row">
-                        <div className="columns large-4 large-centered">
-                            <div className={wrapClass}>
-                                <div className="inner">
-                                    <div className="topPas" style={{backgroundColor: this.state.data.phoneColors.upperColor}}>
-                                        <div className="dynamic"></div>
-                                    </div>
-                                    <div className="bgWrap" style={{backgroundColor:this.state.data.phoneColors.bgColor}}>
-                                        <div className="iconsRow">
-                                            <div className="iconColumnWrap" style={{float:"left"}}>
-                                                <div className="iconColumn"  ref="iconBg">
-                                                    <InfoIcon fillColor={this.state.data.phoneColors.iconsColor}/>
-                                                </div>
-                                                <div className="iconBorder"></div>
-                                            </div>
-                                            <div className="iconColumnWrap" style={{float:"right"}}>
-                                                <div className="iconColumn">
-                                                    <RewardsIcon fillColor={this.state.data.phoneColors.iconsColor}/>
-                                                </div>
-                                                <div className="iconBorder"></div>
-                                            </div>
-                                            <div className="clearfix"></div>
+                        <div className="columns large-10 titleWrap">
+                            <h1 className="businessTitle">Welcome messages</h1>
+                        </div>
+                    </div>
+                    <div className="topPhone">
+                        <div className="row">
+                            <div className="columns large-4">
+                                <p className="subtitle">Edit your welcom messages to attract and engage users, showcasing your delicious food, great products, happy customers etc.</p>
+                            </div>
+                            <div className="columns large-4 end large-offset-3">
+                                <div className={wrapClass}>
+                                    <div className="inner">
+                                        <div className="topPas" style={{backgroundColor: this.props.phoneColors.upperColor}}>
+                                            <div className="dynamic"></div>
                                         </div>
-                                        <div className="welcomeImages">
-                                            <div className="imageOnScreen" style={{backgroundImage:"url('"+this.state.data.imageOnScreen+"')"}}></div>
+                                        <div className="bgWrap" style={{backgroundColor:this.props.phoneColors.bgColor}}>
+                                            <div className="iconsRow">
+                                                <div className="iconColumnWrap" style={{float:"left"}}>
+                                                    <div className="iconColumn"  ref="iconBg">
+                                                        <InfoIcon fillColor={this.props.phoneColors.iconsColor}/>
+                                                    </div>
+                                                    <div className="iconBorder"></div>
+                                                </div>
+                                                <div className="iconColumnWrap" style={{float:"right"}}>
+                                                    <div className="iconColumn">
+                                                        <RewardsIcon fillColor={this.props.phoneColors.iconsColor}/>
+                                                    </div>
+                                                    <div className="iconBorder"></div>
+                                                </div>
+                                                <div className="clearfix"></div>
+                                            </div>
+                                            <div className="welcomeImages">
+                                                <div className="imageOnScreen" style={{backgroundImage:"url('"+this.props.imageOnScreen+"')"}}></div>
 
-                                        </div>
-                                        <div className="iconsRow">
-                                            <div className="iconColumnWrap" style={{float:"left"}}>
-                                                <div className="iconColumn" style={{backgroundColor: this.state.data.phoneColors.iconsColor}}></div>
-                                                <div className="iconBorder"></div>
                                             </div>
-                                            <div className="iconColumnWrap" style={{float:"right"}}>
-                                                <div className="iconColumn" style={{backgroundColor: this.state.data.phoneColors.iconsColor}}></div>
-                                                <div className="iconBorder"></div>
+                                            <div className="iconsRow">
+                                                <div className="iconColumnWrap" style={{float:"left"}}>
+                                                    <div className="iconColumn" style={{backgroundColor: this.props.phoneColors.iconsColor}}></div>
+                                                    <div className="iconBorder"></div>
+                                                </div>
+                                                <div className="iconColumnWrap" style={{float:"right"}}>
+                                                    <div className="iconColumn" style={{backgroundColor: this.props.phoneColors.iconsColor}}></div>
+                                                    <div className="iconBorder"></div>
+                                                </div>
+                                                <div className="clearfix"></div>
                                             </div>
-                                            <div className="clearfix"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="images">
-                    <div className="row">
-                        {this.state.data.payload.selectedImages.map(this._createImageItem, this)}
+                    <div className="images">
+                        <div className="row">
+                            {this.props.selectedImages.map(this._createImageItem, this)}
+                        </div>
                     </div>
-                </div>
-                <div className="slider">
-                    <div className="row">
-                        <ThumbsSlider images={this.state.data.storedImages.data} onClickThumb={this._onClickThumb}/>
+                    <div className="slider">
+                        <div className="row">
+                            <ThumbsSlider selectedImageId={this.props.selectedFromGalleryImageId} images={this.props.allImages} thumbGoTo={this.props.thumbGoTo} onClickThumb={this.props.onClickThumb.bind(null,this)}/>
+                        </div>
                     </div>
-                </div>
-                <div className="nextBtn">
-                    <div className="row">
-                        <Button foundationClasses="large-4 columns large-centered" buttonSize="large" btnText="NEXT" onClick={this._handleBtnClick}/>
+                    <div className="nextBtn">
+                        <div className="row">
+                            <Button foundationClasses="large-4 columns large-offset-7" buttonSize="large" btnText="NEXT" onClick={this._handleBtnClick}/>
+                        </div>
                     </div>
                 </div>
             </div>
         )
     }
+}
+Step3.propTypes = {
+    phoneColors: React.PropTypes.object.isRequired,
+    onPageClick: React.PropTypes.func.isRequired,
+    imageOnScreen: React.PropTypes.string.isRequired,
+    selectedImages: React.PropTypes.array.isRequired,
+    allImages: React.PropTypes.array.isRequired,
+    onClickThumb: React.PropTypes.func.isRequired,
+    selectImage: React.PropTypes.func.isRequired,
+    onTextInputBlur: React.PropTypes.func.isRequired,
+    handleBtnClick: React.PropTypes.func.isRequired
 }

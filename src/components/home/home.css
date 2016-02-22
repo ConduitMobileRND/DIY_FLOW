@@ -3,12 +3,17 @@
   background-repeat: no-repeat;
   background-size: cover;
   transition: background-image 1s ease-in-out;
-  background-position: 0 center; }
+  -webkit-transition: background-image 1s ease-in-out;
+  background-position: 0 center;
+  background-color: #ffffff; }
   .pageWrap.home .darkened {
     background-color: rgba(0, 0, 0, 0.35);
     height: 100%;
-    padding: 10% 0;
+    padding: 0;
     min-height: 100vh; }
+
+#currentScreen {
+  /*background-color:#08b9e4;*/ }
 
 body button.button {
   width: 100%;
@@ -26,8 +31,8 @@ body button.button {
 h1, p {
   color: #ffffff; }
 
-form {
-  margin-bottom: 2.5rem; }
+.home form {
+  margin-bottom: 0.8125rem; }
 
 .description {
   margin: 0 0 2.9375rem 0; }
@@ -57,4 +62,4 @@ form {
   font-size: 1.125rem;
   margin-bottom: 2.0625rem; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=home.css.map */

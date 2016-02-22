@@ -1,6 +1,6 @@
 @import '../../styles/foundation/settings.scss';
 #finish{background-color:$border-blue;
-  h1{padding-top:rem-calc(100);}
+
   .code{max-width:rem-calc(302);background-color:$lightGreyBg;border-radius:5px;font-size:rem-calc(24);text-align:center;padding:rem-calc(23) 0;}
   .qrWrap{margin-top:rem-calc(90)}
   img.react-qr{border-radius:5px;}
