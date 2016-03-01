@@ -30,7 +30,9 @@
 /* set variables */
 .loading {
   pointer-events: none;
+  img{position:relative;top:-2px;}
 }
+
 /* less.css custom mixins */
 /* create a niue blur effect */
 /*
@@ -304,12 +306,14 @@ body.direction-ltr .locale-text-align {
 
 
 /*olga*/
+
+#root{overflow-x:hidden;}
 .vAlign{position:relative;    margin-right: 0;  margin-left: 0;}
 .clearfix{clear:both;}
 .absolute{position:absolute}
 .relative{position:relative;}
 .topPad{height:rem-calc(55);}
-.pagination{top:0;right:-159px; font-size:$title-font-size;font-weight:700;position:fixed!important;top:1%!important;right:3%!important;
+.pagination{top:0;right:-159px; font-size:$title-font-size;font-weight:700;position:fixed!important;top:1%!important;right:3%!important;z-index:1;
   .huge{font-size:rem-calc(200px);    font-weight: 700;    line-height: 0.8;display:inline-block;vertical-align:bottom;letter-spacing:-21px;}
   .tiny{font-size:$title-font-size;font-weight:300;line-height:0.9;}
 }
@@ -346,7 +350,7 @@ body button.button:hover{background-color:$button-hover-blue;}
 body textarea{height:rem-calc(120);    line-height: 1.5;  padding-top: 16px;}
 
 /*phone*/
-.phone{background-image:url("images/phone-transp1.png");background-repeat:no-repeat;max-width:rem-calc(460);margin:0 auto;height:0;    padding-bottom: 160%;position:relative;background-size:cover;
+.phone{background-image:url("images/imge_page_selectcolors_device.png");background-repeat:no-repeat;max-width:rem-calc(460);margin:0 auto;height:0;    padding-bottom: 160%;position:relative;background-size:cover;
   .inner{width:73.5%;max-width:rem-calc(319);border:solid 2px rgba(0,0,0,0.3);margin:0 auto; position:relative; top:rem-calc(42);border-radius:3px;
     .topPas{width:100%;height:rem-calc(43);padding-top:rem-calc(17); border-bottom: $gentle-border;
       .dynamic{width:50%;height:rem-calc(10);margin:0 auto;border-radius:10px;background-color:rgba(255,255,255,0.5);}
@@ -365,7 +369,9 @@ body textarea{height:rem-calc(120);    line-height: 1.5;  padding-top: 16px;}
     img{max-width:rem-calc(270);width:79%;}
   }
   .btnWrap{text-align:center;}
-.btnWrap button{border-radius:5px; max-width:rem-calc(150);}
+.btnWrap button{border-radius:25px; max-width:rem-calc(150);
+  &.loading{background-color:$button-on-blue-hover-blue!important;}
+}
 .home .btnWrap button{padding-top:0px!important;padding-bottom:0px!important;}
 .subtitle{font-weight:300;font-size:rem-calc(24);color:$subtitle-color;line-height:rem-calc(32);}
 .feature{font-weight:700;font-size:rem-calc(14);color:$subtitle-color;line-height:rem-calc(18);}
@@ -392,22 +398,27 @@ ul.geosuggest__suggests{background-color:$pure-white;borde-radius:3px;overflow:h
   &.visible{/*opacity:1;*/}
 }
 .pagination{opacity:0;transition: 1s opacity;display:none;
-  &.visible{opacity:1;}
+  &.visible{opacity:1;display:block;}
 }
 .bottomLeftImg{opacity:0;transition: 1s opacity;display:none;
-  &.visible{opacity:1;}
+  &.visible{opacity:1;display:block;}
 }
+
 .pageWrap.show .pagination, .pageWrap.show .bottomLeftImg{display:block;}
 .pageWrap{position:absolute;width:100%;top:0;left:100%;}
 .pageWrap.home{left:0;}
 
-#step1 .pagination{-webkit-animation-duration: .5s;-moz-animation-duration: .5s;-ms-animation-duration: .5s;}
-#step1 .bottomLeftImg{-webkit-animation-duration: .3s;-moz-animation-duration: .3s;-ms-animation-duration: .3s;}
+.pagination{-webkit-animation-duration: .5s;-moz-animation-duration: .5s;-ms-animation-duration: .5s;}
+.bottomLeftImg{-webkit-animation-duration: .3s;-moz-animation-duration: .3s;-ms-animation-duration: .3s;}
 .vAlign{/*-webkit-animation-duration: .5s;-moz-animation-duration: .5s;-ms-animation-duration: .5s;*/}
-.paletteWrap{-webkit-animation-duration: .1s;-moz-animation-duration: .1s;-ms-animation-duration: .1s;}
-.pageWrap{/*display:none;*/
-  &.show{display:block;}
-}
+.paletteWrap{}
+
 #step1,#step2,#step3,#step4{left:100%;}
 
 .slick-track{transition:all 0.3s ease-in-out !important;}
+
+@media only screen and (max-width: 800px) {
+  .home .logo{padding-top:rem-calc(5);padding-left:rem-calc(5);
+    img{width:rem-calc(50)}
+  }
+}

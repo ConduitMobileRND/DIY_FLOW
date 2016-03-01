@@ -2494,6 +2494,9 @@ select {
 /* set variables */
 .loading {
   pointer-events: none; }
+  .loading img {
+    position: relative;
+    top: -2px; }
 
 /* less.css custom mixins */
 /* create a niue blur effect */
@@ -2763,6 +2766,9 @@ body.direction-ltr .locale-text-align {
 
 /*reusable custom style*/
 /*olga*/
+#root {
+  overflow-x: hidden; }
+
 .vAlign {
   position: relative;
   margin-right: 0;
@@ -2787,7 +2793,8 @@ body.direction-ltr .locale-text-align {
   font-weight: 700;
   position: fixed !important;
   top: 1% !important;
-  right: 3% !important; }
+  right: 3% !important;
+  z-index: 1; }
   .pagination .huge {
     font-size: 12.5rem;
     font-weight: 700;
@@ -2937,7 +2944,7 @@ body textarea {
 
 /*phone*/
 .phone {
-  background-image: url("images/phone-transp1.png");
+  background-image: url("images/imge_page_selectcolors_device.png");
   background-repeat: no-repeat;
   max-width: 28.75rem;
   margin: 0 auto;
@@ -2999,8 +3006,10 @@ body textarea {
   text-align: center; }
 
 .btnWrap button {
-  border-radius: 5px;
+  border-radius: 25px;
   max-width: 9.375rem; }
+  .btnWrap button.loading {
+    background-color: #0694b5 !important; }
 
 .home .btnWrap button {
   padding-top: 0px !important;
@@ -3067,14 +3076,16 @@ ul.geosuggest__suggests {
   transition: 1s opacity;
   display: none; }
   .pagination.visible {
-    opacity: 1; }
+    opacity: 1;
+    display: block; }
 
 .bottomLeftImg {
   opacity: 0;
   transition: 1s opacity;
   display: none; }
   .bottomLeftImg.visible {
-    opacity: 1; }
+    opacity: 1;
+    display: block; }
 
 .pageWrap.show .pagination, .pageWrap.show .bottomLeftImg {
   display: block; }
@@ -3088,12 +3099,12 @@ ul.geosuggest__suggests {
 .pageWrap.home {
   left: 0; }
 
-#step1 .pagination {
+.pagination {
   -webkit-animation-duration: .5s;
   -moz-animation-duration: .5s;
   -ms-animation-duration: .5s; }
 
-#step1 .bottomLeftImg {
+.bottomLeftImg {
   -webkit-animation-duration: .3s;
   -moz-animation-duration: .3s;
   -ms-animation-duration: .3s; }
@@ -3101,20 +3112,17 @@ ul.geosuggest__suggests {
 .vAlign {
   /*-webkit-animation-duration: .5s;-moz-animation-duration: .5s;-ms-animation-duration: .5s;*/ }
 
-.paletteWrap {
-  -webkit-animation-duration: .1s;
-  -moz-animation-duration: .1s;
-  -ms-animation-duration: .1s; }
-
-.pageWrap {
-  /*display:none;*/ }
-  .pageWrap.show {
-    display: block; }
-
 #step1, #step2, #step3, #step4 {
   left: 100%; }
 
 .slick-track {
   transition: all 0.3s ease-in-out !important; }
+
+@media only screen and (max-width: 800px) {
+  .home .logo {
+    padding-top: 0.3125rem;
+    padding-left: 0.3125rem; }
+    .home .logo img {
+      width: 3.125rem; } }
 
 /*# sourceMappingURL=style.css.map */

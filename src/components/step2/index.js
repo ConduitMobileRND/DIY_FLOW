@@ -30,11 +30,14 @@ export default class Step2 extends Component {
     }
 
     _handleBtnClick(){
-        jQuery("#step2 .btnWrap button").html("<img src='images/ajax-loader1.gif'/>");
+        jQuery("#step2 .btnWrap button").html("<img src='images/spinner_1.gif'/>").addClass("loading");
         this.props.handleBtnClick(this.refs, "getImages", event);
     }
 
     _createPaletteRow(palette, index){
+        if(typeof palette == "undefined"){
+            return;
+        }
         let selected = palette.uipack_id == this.props.selectedScheme || (index == 0 && !this.props.paletteSelected)? "selected" : "";
         let className = "paletteWrap " + selected;
         let id="uiPack_"+ palette.uipack_id;
@@ -197,7 +200,7 @@ export default class Step2 extends Component {
                         </div>
                     </div>
                     <div className="row relative">
-                        <Button foundationClasses="large-4 large-offset-4 columns medium-4 medium-offset-4" buttonSize="large" btnText="NEXT" onClick={this._handleBtnClick}/>
+                        <Button foundationClasses="large-4 large-offset-4 columns medium-4 medium-offset-4" buttonSize="large" btnText="Next" onClick={this._handleBtnClick}/>
 
                     </div>
                 </div>

@@ -4,9 +4,11 @@
 
 #step2.pageWrap {
   background-color: #ffffff; }
+  #step2.pageWrap .vAlign {
+    background-color: #ffffff; }
   #step2.pageWrap h1 {
     margin-bottom: 2.8125rem;
-    color: #1da7c7; }
+    color: #08b9e3; }
   #step2.pageWrap .pagination {
     color: #08b9e3;
     right: -198px;
@@ -22,7 +24,8 @@
   border-radius: 50%;
   border: solid 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 2.1875rem;
-  opacity: 0; }
+  opacity: 0;
+  /*-webkit-animation-duration: .1s;-moz-animation-duration: .1s;-ms-animation-duration: .1s;animation-duration: .1s;*/ }
   .paletteWrap.selected {
     border: solid 3px #08b9e3; }
 
@@ -36,7 +39,7 @@
   cursor: pointer; }
   .palette .color {
     float: left;
-    width: 33%;
+    width: 33.3%;
     height: 100%;
     border-left: solid 1px rgba(255, 255, 255, 0.1);
     border-right: solid 1px rgba(255, 255, 255, 0.1); }

@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 #step4 {
   background-color: #f1f1f1; }
+  #step4 .vAlign {
+    background-color: #f1f1f1; }
   #step4 .subtitle {
     font-size: 1.125rem;
     line-height: 1.5; }
@@ -17,21 +19,23 @@
     margin-bottom: 0.3125rem; }
   #step4 .description {
     margin-bottom: 0.8125rem; }
-  #step4 .btnWrap {
-    margin: 3.75rem auto 6.25rem; }
+  #step4 .btnWrap button {
+    margin: 2.1875rem auto 1.25rem; }
   #step4 a.button {
     background-color: #1da7c7;
     border-radius: 5px;
     font-size: 1.5rem;
     padding: 0 1rem;
-    line-height: 3.125rem; }
+    line-height: 3.125rem;
+    max-width: 9.375rem; }
     #step4 a.button:hover {
       background-color: #08b9e4; }
   #step4 .phoneWrap img {
-    max-width: 139px;
+    max-width: 85px;
     display: block;
     margin: 0 auto; }
     #step4 .phoneWrap img.device {
-      opacity: 0; }
+      opacity: 0;
+      position: relative; }
 
 /*# sourceMappingURL=step4.css.map */

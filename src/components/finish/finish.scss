@@ -1,12 +1,28 @@
 @import '../../styles/foundation/settings.scss';
-#finish{background-color:$border-blue;
-
-  .code{max-width:rem-calc(302);background-color:$lightGreyBg;border-radius:5px;font-size:rem-calc(24);text-align:center;padding:rem-calc(23) 0;}
-  .qrWrap{margin-top:rem-calc(90)}
-  img.react-qr{border-radius:5px;}
-  img.deviceIcon {    display: block;    margin: rem-calc(20) auto rem-calc(80);  }
-  .description{margin-top:rem-calc(5);
+#finish{background-color:#00b0e0;/*$border-blue*/
+  .code{background-color:$lightGreyBg;border-radius:5px;text-align:left;padding:rem-calc(20) rem-calc(10);
+    p{color:$black;
+      &.description{font-size:rem-calc(30);margin-bottom: 5px;text-align:left;}
+    }
+  }
+  .qrWrap{margin-top:rem-calc(30)}
+  img.react-qr{border-radius:5px;max-width:120px;}
+  img.deviceIcon {    display: block;    margin: rem-calc(20) auto rem-calc(30);  }
+  .description{margin-top:rem-calc(5);margin-bottom:rem-calc(24);
     span{font-weight:400;}
   }
   a.mailTo{display:inline-block;background-color:#0e9ec1;border-radius:15px;color:$pure-white;padding:rem-calc(2) rem-calc(15);}
+  .animationWrap{max-width:360px;max-height:360px;position:relative;    margin: 0 auto;}
+  .rc-progress-circle{position:absolute;top:0;left:0;}
+  .description{color:$pure-white;
+    &.black{color:$black;}
+  }
+  .percentage{margin-top:rem-calc(30);max-height:rem-calc(60);line-height:1;
+    span{font-size:rem-calc(50);font-weight:300;line-height:1;}
+  }
+  .animatedImg{opacity:0;}
+  .finishPartWrap{position:relative;height:rem-calc(410)}
+  .finishPart {    position: absolute;    width: 100%;
+  }
+  #finishContentWrap2{display:none;opacity:0;}
 }

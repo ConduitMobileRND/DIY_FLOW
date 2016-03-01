@@ -138,7 +138,7 @@ export default class Step1 extends Component {
                                                 onBlur={this.props.handleGeoValidation}
                                                 onChange={this.props.getLocationData.bind(null,this)}
                                                 onSuggestSelect={this.props.getLocationData.bind(null,this)}
-                                                value={this.props.form.businessAddress.value}
+                                                initialValue={this.props.form.businessAddress.value}
                                             />
                                             <div className="errorMessage">Please provide your business address</div>
                                         </label>
@@ -160,7 +160,6 @@ export default class Step1 extends Component {
                                         validType="text"
                                         errorMsg="Please provide some general information about your business"
                                         value={this.props.form.info.value}/>
-
                                 </div>
                                 <div className="row">
                                     <Button foundationClasses="large-10 columns large-centered" buttonSize="large" btnText="Next" onClick={this._handleBtnClick}/>

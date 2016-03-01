@@ -24,10 +24,9 @@ export default class Step3 extends Component {
 
     }
     _handleBtnClick(){
-        jQuery("#step3 .btnWrap button").html("<img src='images/ajax-loader1.gif'/>");
+        jQuery("#step3 .btnWrap button").html("<img src='images/spinner_1.gif'/>").addClass("loading");
         this.props.handleBtnClick(this.refs, "sendImages", event);
     }
-
 
     _createImageItem(item,index){
         let imageId = "image_"+item.image.image_id+"_index_"+index;
@@ -53,7 +52,7 @@ export default class Step3 extends Component {
     render(){
         let wrapClass = "phone "+this.props.phoneColors.brightness;
         return (
-            <div id="step3" className="pageWrap lightGreyBg" onClick={this.props.onPageClick}>
+            <div id="step3" className="pageWrap" onClick={this.props.onPageClick}>
                 <div className="absolute pagination"><span className="huge">3</span><span className="tiny">/4</span></div>
                 <div className="vAlign">
                     <div className="row">
@@ -121,7 +120,7 @@ export default class Step3 extends Component {
                     </div>
                     <div className="nextBtn">
                         <div className="row">
-                            <Button foundationClasses="large-4 columns large-offset-7" buttonSize="large" btnText="NEXT" onClick={this._handleBtnClick}/>
+                            <Button foundationClasses="large-4 columns large-offset-7" buttonSize="large" btnText="Next" onClick={this._handleBtnClick}/>
                         </div>
                     </div>
                 </div>

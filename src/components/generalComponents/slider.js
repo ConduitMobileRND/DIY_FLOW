@@ -41,8 +41,8 @@ export default class ThumbsSlider extends Component {
             arrows:true,
             autoplay:false,
             useCSS:true,
-            focusOnSelect: true,
-            slickGoTo: this.props.thumbGoTo
+            focusOnSelect: true
+            /*slickGoTo: this.props.thumbGoTo*/
 
         };
         return (

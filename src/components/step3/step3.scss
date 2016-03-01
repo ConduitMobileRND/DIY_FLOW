@@ -2,8 +2,10 @@
 @import '../../../bower_components/slick-carousel/slick/slick.scss';
 
 #step3 {
-  .subtitle{font-size:rem-calc(18);padding-top:rem-calc(10);line-height:1.5;}
-  .pagination {right:-198px;
+  &.pageWrap{background-color: #08b9e4;}
+  .vAlign{background-color:#08b9e4;}
+  .subtitle{font-size:rem-calc(18);padding-top:rem-calc(10);line-height:1.5;color:$pure-white;}
+  .pagination {right:-198px; color:$pure-white;
     .huge{letter-spacing:0px};line-height: 0.82;
   }
   .phone{max-width:rem-calc(500);    background-size: 100%;padding-top:6%;padding-bottom:100%;opacity:0;
@@ -20,11 +22,13 @@
     h1.businessTitle {
       margin-bottom: 0;
     }
-    h1,p{color:$black;}
+   /* h1,p{color:$black;}*/
 
   }
   .btnWrap{margin-top:rem-calc(30);margin-bottom:rem-calc(0);
-    .button{margin-bottom:10px;}
+    .button{margin-bottom:10px;    background-color: $button-on-blue-hover-blue;;
+      &:hover{    background-color: $button-blue;}
+    }
   }
 }
 .lightGreyBg{background-color:$lightGreyBg;}
@@ -40,7 +44,7 @@
 .selectedThumb .afterStriker{background-color:$pure-white;}
 .borderWrap {  padding: 3px;  width: 142px;  height: 142px;  border: solid 3px transparent;  border-radius: 8px;    margin: 0 auto;}
 .selected .borderWrap{border: solid 3px $black;}
-.imageWrap{display:inline-block;text-align:center;overflow:hidden;position: relative;opacity:0;
+.imageWrap{display:inline-block;text-align:center;overflow:hidden;position: relative;opacity:0;-webkit-animation-duration: 0.3s;   animation-duration: 0.3s;
   &.alwaysVisible{opacity:1!important;}
   &:hover{
     .blanket{background-color:rgba(0,0,0,0.5);}

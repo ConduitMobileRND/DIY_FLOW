@@ -1,6 +1,7 @@
 @import '../../styles/foundation/settings.scss';
 #currentScreen{background-color:$pure-white;}
 #step1.pageWrap{background-image:none;background-color:#08b9e4;
+  .vAlign{background-color:#08b9e4;}
 
   form{margin-bottom:0;}
 
@@ -28,7 +29,7 @@ form > .row{position:relative;margin-bottom:rem-calc(15);}
   img{display:inline-block;}
   i{display:inline-block;    height: 100%;}
 }
-label > span{color:$pure-white;}
+label > span{color:$pure-white;position:relative;bottom:2px;}
 #step1 .btnWrap{margin:0 auto;
 
   /*.vAlign.visible{opacity: 1;}*/

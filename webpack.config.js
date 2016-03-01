@@ -25,14 +25,30 @@ var config = getConfig({
     }
 });
 // Preloaders
-// config.module.preLoaders =[{
-//   test: /\.jsx$|\.js$/,
-//   loader: 'eslint-loader',
-//   exclude: /dist|node_modules/
+ //config.module.preLoaders =[{
+ //  test: /\.jsx$|\.js$/,
+ //  loader: 'eslint-loader',
+ //  exclude: /dist|node_modules/
 // }];
-
+//config.module.preLoaders = [{
+// test: /.jsx?$/, // A regexp to test the require path
+// loader: 'babel-loader' // The module to load. "jsx" is short for "jsx-loader"
+// }];
 // Plugins
+/*config.module.preLoaders = [{
 
+
+                loader: "babel-loader",
+
+                // Skip any files outside of your project's `src` directory
+                include: "/node_modules/react-circular-progress",
+
+                // Only run `.js` and `.jsx` files through Babel
+                test: /\.jsx?$/
+
+
+
+}]*/
 //require("https://maps.googleapis.com/maps/api/js?libraries=places");
 //config.module.loaders.push({ test: /\.(svg)$/, loader: 'raw-loader' });
 config.plugins.push(new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}));

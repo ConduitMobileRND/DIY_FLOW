@@ -73,12 +73,18 @@
 .slick-arrow.slick-hidden {
   display: none; }
 
+#step3.pageWrap {
+  background-color: #08b9e4; }
+#step3 .vAlign {
+  background-color: #08b9e4; }
 #step3 .subtitle {
   font-size: 1.125rem;
   padding-top: 0.625rem;
-  line-height: 1.5; }
+  line-height: 1.5;
+  color: #ffffff; }
 #step3 .pagination {
   right: -198px;
+  color: #ffffff;
   line-height: 0.82; }
   #step3 .pagination .huge {
     letter-spacing: 0px; }
@@ -103,16 +109,18 @@
   width: 46%;
   padding-bottom: 44%; }
 #step3 .titleWrap {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  /* h1,p{color:$black;}*/ }
   #step3 .titleWrap h1.businessTitle {
     margin-bottom: 0; }
-  #step3 .titleWrap h1, #step3 .titleWrap p {
-    color: #282f3a; }
 #step3 .btnWrap {
   margin-top: 1.875rem;
   margin-bottom: 0; }
   #step3 .btnWrap .button {
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    background-color: #0694b5; }
+    #step3 .btnWrap .button:hover {
+      background-color: #1da7c7; }
 
 .lightGreyBg {
   background-color: #f1f1f1; }
@@ -179,7 +187,9 @@
   text-align: center;
   overflow: hidden;
   position: relative;
-  opacity: 0; }
+  opacity: 0;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s; }
   .imageWrap.alwaysVisible {
     opacity: 1 !important; }
   .imageWrap:hover .blanket {

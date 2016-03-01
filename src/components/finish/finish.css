@@ -1,22 +1,29 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 #finish {
-  background-color: #08b9e3; }
+  background-color: #00b0e0;
+  /*$border-blue*/ }
   #finish .code {
-    max-width: 18.875rem;
     background-color: #f1f1f1;
     border-radius: 5px;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 1.4375rem 0; }
+    text-align: left;
+    padding: 1.25rem 0.625rem; }
+    #finish .code p {
+      color: #282f3a; }
+      #finish .code p.description {
+        font-size: 1.875rem;
+        margin-bottom: 5px;
+        text-align: left; }
   #finish .qrWrap {
-    margin-top: 5.625rem; }
+    margin-top: 1.875rem; }
   #finish img.react-qr {
-    border-radius: 5px; }
+    border-radius: 5px;
+    max-width: 120px; }
   #finish img.deviceIcon {
     display: block;
-    margin: 1.25rem auto 5rem; }
+    margin: 1.25rem auto 1.875rem; }
   #finish .description {
-    margin-top: 0.3125rem; }
+    margin-top: 0.3125rem;
+    margin-bottom: 1.5rem; }
     #finish .description span {
       font-weight: 400; }
   #finish a.mailTo {
@@ -25,5 +32,37 @@
     border-radius: 15px;
     color: #ffffff;
     padding: 0.125rem 0.9375rem; }
+  #finish .animationWrap {
+    max-width: 360px;
+    max-height: 360px;
+    position: relative;
+    margin: 0 auto; }
+  #finish .rc-progress-circle {
+    position: absolute;
+    top: 0;
+    left: 0; }
+  #finish .description {
+    color: #ffffff; }
+    #finish .description.black {
+      color: #282f3a; }
+  #finish .percentage {
+    margin-top: 1.875rem;
+    max-height: 3.75rem;
+    line-height: 1; }
+    #finish .percentage span {
+      font-size: 3.125rem;
+      font-weight: 300;
+      line-height: 1; }
+  #finish .animatedImg {
+    opacity: 0; }
+  #finish .finishPartWrap {
+    position: relative;
+    height: 25.625rem; }
+  #finish .finishPart {
+    position: absolute;
+    width: 100%; }
+  #finish #finishContentWrap2 {
+    display: none;
+    opacity: 0; }
 
 /*# sourceMappingURL=finish.css.map */
