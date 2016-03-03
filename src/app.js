@@ -18,10 +18,10 @@ injectTapEventPlugin();
 import Fetch from './utils/fetch/fetch'
 
 // Import API handlers
-import RegFormApi from './api/reg-form-api'
-import LocationApi from './api/location-api'
-import LanguageApi from './api/language-api'
-import ConfigApi from './api/config-api'
+//import RegFormApi from './api/reg-form-api'
+//import LocationApi from './api/location-api'
+//import LanguageApi from './api/language-api'
+//import ConfigApi from './api/config-api'
 
 // Import components to render in App
 import Routes from './routes'

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import style from './step3.scss';
 import Button from '../generalComponents/button';
 import lodash from 'lodash';
-import Handler from '../../api/handler';
 import ThumbsSlider from '../generalComponents/slider';
 import jQuery from 'jquery';
 import InfoIcon from '../generalComponents/icons/infoIcon';
