@@ -5,8 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "prebuild": "rm -rf dist && mkdir dist",
-    "build": "NODE_ENV=production webpack"
+    "prebuild": "rmdir /Q /S dist && mkdir dist",
+    "build": "set NODE_ENV=production&& webpack"
   },
   "author": "",
   "license": "ISC",

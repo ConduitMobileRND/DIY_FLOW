@@ -4,7 +4,9 @@ import Input from '../generalComponents/input';
 import Button from '../generalComponents/button';
 
 class Home extends Component {
+
     constructor(props) {
+
         super(props);
         this.state = { data: {
             }

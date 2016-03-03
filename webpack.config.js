@@ -6,7 +6,7 @@ var config = getConfig({
     out: 'dist',
     clearBeforeBuild: '!(images|favicon.ico)',
     isDev: process.env.NODE_ENV !== 'production',
-
+      //isDev: false,
     html: function (context) {
         //     debugger;
         return {
