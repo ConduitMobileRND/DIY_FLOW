@@ -38,6 +38,8 @@ class Father extends Component {
                     category:{value:"", isValid:true},
                     businessAddress:{value:"", isValid:true},
                     info:{value:"", isValid:true},
+                    pos:{value:"", isValid:true},
+                    numberOfLocations:{value:"",isValid:true},
                     addressDetails:{value:{
                         placeId:"",
                         lat:"",lng:""
@@ -1157,6 +1159,7 @@ class Father extends Component {
                     showAutoComplete = {this._showAutoComplete.bind(this)}
                     onWrapperClick = {this._onWrapperClick.bind(this)}
                     show = {this.state.data.activePages.step1}
+                    numberOfLocationsOptions = {Constants.numberOfLocationsOptions}
                 />
                 <Step2
                     show = {this.state.data.activePages.step2}

@@ -27,7 +27,7 @@ export default class Step1 extends Component {
     }
 
     render(){
-        let geoClassName = "inputWrap columns large-5 end";
+        let geoClassName = "inputWrap columns large-5 large-offset-1";
         if(!this.props.form.businessAddress.isValid){
             geoClassName += " error";
         }
@@ -111,22 +111,6 @@ export default class Step1 extends Component {
                                         value={this.props.form.website.value}/>
                                 </div>
                                 <div className="row">
-                                    <Select
-                                        foundationClasses="columns large-5 large-offset-1"
-                                        ref="category"
-                                        name="category"
-                                        stateId="category"
-                                        options={this.props.businessCategories}
-                                        onBlur={this.props.handleValidation}
-                                        onChange={this.props.setData.bind(null, this.props.stateId)}
-                                        isValid={this.props.form.category.isValid}
-                                        isRequired={true}
-                                        labelText="Business type"
-                                        defaultValue={this.props.form.category.value}
-                                        value={this.props.form.category.value}
-                                        validType="text"
-                                        errorMsg='Please choose the type of your business'
-                                    />
                                     <div className={geoClassName}>
                                         <label className="geoWrap">
                                             <span>Business address</span>
@@ -143,6 +127,56 @@ export default class Step1 extends Component {
                                             <div className="errorMessage">Please provide your business address</div>
                                         </label>
                                     </div>
+                                    <Select
+                                        foundationClasses="columns large-5 end"
+                                        ref="category"
+                                        name="category"
+                                        stateId="category"
+                                        options={this.props.businessCategories}
+                                        onBlur={this.props.handleValidation}
+                                        onChange={this.props.setData.bind(null, this.props.stateId)}
+                                        isValid={this.props.form.category.isValid}
+                                        isRequired={true}
+                                        labelText="Business type"
+                                        defaultValue={this.props.form.category.value}
+                                        value={this.props.form.category.value}
+                                        validType="text"
+                                        errorMsg='Please choose the type of your business'
+                                    />
+                                </div>
+                                <div className="row">
+                                    <Input
+                                        foundationClasses="columns large-5 large-offset-1"
+                                        ref="pos"
+                                        name="pos"
+                                        stateId="pos"
+                                        onChange={this.props.setData.bind(null, this.props.stateId)}
+                                        isValid={this.props.form.pos.isValid}
+                                        type="text"
+                                        isRequired={false}
+                                        labelText="POS type"
+                                        onBlur={this.props.handleValidation}
+                                        onKeyUp={this.props.handleValidation}
+                                        validType="text"
+                                        errorMsg="Please provide a valid POS type"
+                                        placeholder="Your point of sale type"
+                                        value={this.props.form.pos.value}/>
+                                    <Select
+                                        foundationClasses="columns large-5 end"
+                                        ref="numberOfLocations"
+                                        name="numberOfLocations"
+                                        stateId="numberOfLocations"
+                                        options={this.props.numberOfLocationsOptions}
+                                        onBlur={this.props.handleValidation}
+                                        onChange={this.props.setData.bind(null, this.props.stateId)}
+                                        isValid={this.props.form.numberOfLocations.isValid}
+                                        isRequired={false}
+                                        labelText="Number of locations"
+                                        defaultValue={this.props.form.numberOfLocations.value}
+                                        value={this.props.form.numberOfLocations.value}
+                                        validType="text"
+                                        errorMsg='Please choose your number of locations range'
+                                    />
                                 </div>
                                 <div className="row">
                                     <Textarea

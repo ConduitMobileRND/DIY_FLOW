@@ -67,5 +67,5 @@ Constants.animationEnd = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oani
 Constants.wrapAnimateTime = 300;
 Constants.itemAnimateTime = 200;
 Constants.bgimages = ["images/bgImage1.jpg","images/bgImage2.jpg", "images/bgImage3.jpg","images/bgImage4.jpg"];
-
+Constants.numberOfLocationsOptions = [{id:"Select",value:"",text:"Select number of locations"},{id:"1",value:"1",text:"1"},{id:"2-10",value:"2-10",text:"2-10"},{id:"11-100",value:"11-100",text:"11-100"},{id:"101+",value:"101+",text:"101+"},{id:"0",value:"0",text:"I don't have a physical location"}];
 export default Constants;
