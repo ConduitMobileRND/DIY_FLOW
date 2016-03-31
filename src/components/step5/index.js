@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import jQuery from 'jquery';
-import style from './step4.scss';
+import style from './step5.scss';
 import Button from '../generalComponents/button';
 import PhoneColumn from '../generalComponents/phoneColumn';
 
 
-export default class Step4 extends Component {
+export default class Step5 extends Component {
     constructor(props) {
         super();
 
@@ -17,8 +17,7 @@ export default class Step4 extends Component {
         this._handleBtnClick=this._handleBtnClick.bind(this);
     }
     _handleBtnClick(){
-     //   let cpTask = new Handler(this);
-     //   let cpReturnData = cpTask.handleData();
+
      this.props.handleBtnClick(this.refs, "getPublished", event);
     }
 
@@ -27,8 +26,8 @@ export default class Step4 extends Component {
         let url = "https://qa.keeprz.com/?location_id="+this.state.data.locationId+"&location_version=0&token="+this.state.data.token;
 
         return (
-            <div id="step4" className="pageWrap">
-              <div className="absolute pagination"><span className="huge">4</span><span className="tiny">/4</span></div>
+            <div id="step5" className="pageWrap">
+              <div className="absolute pagination"><span className="huge">5</span><span className="tiny">/5</span></div>
               <div className="vAlign">
                     <div className="row">
                         <div className="columns large-10 large-offset-1 titleWrap">
@@ -60,7 +59,7 @@ export default class Step4 extends Component {
     }
 }
 
-Step4.propTypes = {
+Step5.propTypes = {
     phoneColors: React.PropTypes.object.isRequired,
     handleBtnClick: React.PropTypes.func.isRequired
 }
