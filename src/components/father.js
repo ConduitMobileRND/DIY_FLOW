@@ -10,6 +10,7 @@ import Step1 from "./step1";
 import Step2 from "./step2";
 import Step3 from "./step3";
 import Step4 from "./step4";
+import Step5 from "./step5";
 import Finish from "./finish";
 import AutoComplete from './generalComponents/autocomplete';
 import animate from '../styles/animate.min.css';
@@ -21,7 +22,6 @@ jQuery.easing.jswing=jQuery.easing.swing;jQuery.extend(jQuery.easing,{def:"easeO
 class Father extends Component {
     constructor(props) {
         super(props);
-        let defaultColor = "white";
         this.state = {
             data: {
                 HPBackgrounds:{
@@ -50,7 +50,15 @@ class Father extends Component {
                     },
                     options:{},
                     showFBOptions:true,
-                    chosenFromFbOptions : false
+                    chosenFromFbOptions : false,
+                    giftName:{value:"Joining gift",isValid:true},
+                    giftDescription:{value:"Thank you for joining our loyalty club",isValid:true},
+                    punchName:{value:"Our loyalty punch card",isValid:true},
+                    punchDescription:{value:"Shop Punch & Win",isValid:true},
+                    punchNumber:{value:10,isValid:true},
+                    pointsName:{value:"Item of the week", isValid:true},
+                    pointsDescription:{value:"Our buyers enjoy more",isValid:true},
+                    pointsNumber:{value:25, isValid:true}
                 },
                 unresolvedFbPage: false,
                 fbData:{
@@ -66,15 +74,17 @@ class Father extends Component {
                 fbUiThemes:[],
                 schemes:[],
                 phoneColors:{
-                    upperColor: {defaultColor},
-                    iconsColor: {defaultColor},
-                    bgColor:{defaultColor},
+                    upperColor: "white",
+                    iconsColor: "white",
+                    bgColor:"white",
                     brightness:"dark"
                 },
                 upperColorsSrc:"",
                 iconsColorSrc:"",
                 selectedScheme:"",
                 paletteSelected: false,
+                layouts:Constants.layouts,
+                selectedLayout: Constants.layouts[0],
                 CPData:{
                     userId: "",
                     locationId: "",
@@ -106,6 +116,7 @@ class Father extends Component {
                 bgInterval: "",
                 progressBarInterval: "",
                 publishInterval:"",
+                marketingInterval:"",
                 progressPercent:0,
                 activePages:{
                     home: true,
@@ -129,7 +140,6 @@ class Father extends Component {
         this._isFBPageValid = this._isFBPageValid.bind(this);
         this._getUrl = this._getUrl.bind(this);
         this._setImages = this._setImages.bind(this);
-       // this._moveProgressBar = this._moveProgressBar(this);
         this._postData = this._postData.bind(this);
         this._getData = this._getData.bind(this);
     }
@@ -142,6 +152,16 @@ class Father extends Component {
         }
 
     }
+
+    _setAnimationItem(){
+        jQuery(".finishPart.first").addClass("prev").animate({"left":"-100%", opacity:0},400,"easeOutCubic");
+        let nextElem = jQuery(".finishPart.first").next().length > 0 ? jQuery(".finishPart.first").next() : jQuery(".finishPart:first-child");
+        nextElem.animate({"left":0, opacity:1},700,"easeOutCubic", function(){
+            nextElem.addClass("first");
+            jQuery(".prev").removeClass("first").removeClass("prev").css("left","100%");
+        });
+    }
+
     _getUISchemes(){
         let themeSchemes = [];
         let selectedThemeId= "";
@@ -206,8 +226,13 @@ class Father extends Component {
         this.setState({data: this.state.data});
     }
     _handleFieldsValidation(props, e){
-         let isValid = true;
-         let theValue = typeof e != "undefined" ? e.target.value.trim() : props.value.trim();
+        let isValid = true;
+        let theValue = "";
+        if(typeof e != "undefined"){
+            theValue = typeof e.target.value == "string" ? e.target.value.trim() : e.target.value;
+        }else{
+            theValue = typeof props.value == "string" ? props.value.trim() : props.value;
+        }
          if(!props.isRequired && theValue==""){
             isValid = true;
          }else if(props.isRequired && theValue == ""){
@@ -224,6 +249,9 @@ class Father extends Component {
              case 'number':
                 isValid = Validator.isNumeric(theValue);
                 break;
+             case 'positiveInteger':
+                 isValid = Validator.isInt(theValue) && theValue > 0;
+                 break;
              case 'url':
                 isValid = Validator.isURL(theValue);
                 break;
@@ -255,7 +283,7 @@ class Father extends Component {
     }
      _getValidationResults(obj){
          let formValid = true;
-         if(this.state.data.action == "initial" || this.state.data.action == "register" || this.state.data.action == "sendForm") {
+         if(this.state.data.action == "initial" || this.state.data.action == "register" || this.state.data.action == "sendForm" || this.state.data.action == "setLoyalty") {
 
              for (var key in obj) {
                  if (this.state.data.action == "register") {
@@ -279,15 +307,21 @@ class Father extends Component {
          }
          return formValid;
      }
+
     _handleBtnClick(obj, action, event){
         this.state.data.action = action;
         event.preventDefault();
-
         //forms validation
         let formValid = this._getValidationResults(obj);
         if (!formValid) {
             if (this.state.data.action == "register") {
                 this.state.data.action = "initial";
+            }else if(this.state.data.action == "setLoyalty"){
+                jQuery(".featureBox").removeClass("show");
+                jQuery(".error").each(function(){
+                    jQuery(this).parents(".featureBox").addClass("show");
+                });
+                //several sections might be opened with invalid fields, the page becomes longer, need to remove overflow hidden from root
             }
             formValid = true;
             return;
@@ -307,6 +341,11 @@ class Father extends Component {
 
             case "sendForm":
                 //set "loading" view
+                if(typeof this.state.data.form.addressDetails.value.lng == "undefined" || typeof this.state.data.form.addressDetails.value.lat == "undefined"){
+                    this.state.data.form.businessAddress.isValid = false;
+                    this.setState({data: this.state.data});
+                    return;
+                }
                 jQuery("#step1 form .btnWrap button").html("<img src='images/spinner_1.gif'/>").addClass("loading");
                 //facebook flow - get data from server
                 if(this.state.data.form.facebook.value != ""){
@@ -346,12 +385,12 @@ class Father extends Component {
                 sendData =  {data: {status:"success",code:200, codeStatus:"OK",
                     facebookPage:this.state.data.fbData.link,website:this.state.data.form.website.value, displayName:this.state.data.form.store.value,
                     generalInfo:this.state.data.form.info.value,colorscheme_id: "33855", phone:this.state.data.form.phoneLocal.value,phone_prefix:this.state.data.form.areaCode.value,
-                    category:this.state.data.form.category.value, longDisplayName:this.state.data.form.store.value,addressName:this.state.data.form.businessAddress.value,
+                    category:this.state.data.form.category.value, POS:this.state.data.form.pos.value, numberOfLocations: this.state.data.form.numberOfLocations.value, longDisplayName:this.state.data.form.store.value,addressName:this.state.data.form.businessAddress.value,
                     auth_location_id:this.state.data.CPData.locationId,auth_location_version:0,token:this.state.data.CPData.token,
                     data:  {data_id: 78654, timezone: 247, update_time: createDate, create_time: createDate, location_id:this.state.data.CPData.locationId, version: 0,zap_id : 12,
                     displayName: this.state.data.form.store.value, longDisplayName:this.state.data.form.store.value, email:this.state.data.form.email.value,category:this.state.data.form.category,
                     phone:this.state.data.form.phoneLocal.value,generalInfo_text_alignment:"",phone_prefix:this.state.data.form.areaCode.value, joinClubOptions: "JoinClubQuestion",
-                    uipacks_font:1, app_lang:1,decimals_amount:2, decimals_amount_view_points:0, branchesRangeLimit:0}
+                    uipacks_font:1, app_lang:1,decimals_amount:2, decimals_amount_view_points:0, branchesRangeLimit:0, POS:this.state.data.form.pos.value, numberOfLocations: this.state.data.form.numberOfLocations.value}
                     },token:this.state.data.CPData.token,auth_location_id:this.state.data.CPData.locationId,auth_location_version:0};
                 this._sendData("POST", Constants.updateLocationUrl, sendData);
 
@@ -398,6 +437,8 @@ class Father extends Component {
                 let scheme = this.state.data.schemes[selectedKey];
                 sendData = {data:scheme, auth_location_id:this.state.data.CPData.locationId, auth_location_version:0, token:this.state.data.CPData.token}
                 this._sendData("POST",Constants.updateThemeUrl,sendData);
+                sendData = {id:184, tcalt:1, auth_location_id:this.state.data.CPData.locationId, auth_location_version:0, token:this.state.data.CPData.token}
+                this._sendData("POST",Constants.updateLayoutUrl,sendData);
                 this.state.data.currentPage = "step3";
                 this._getPage();
                 break;
@@ -414,6 +455,10 @@ class Father extends Component {
                 this.state.data.currentPage = "step4";
                 this._getPage();
                 break;
+            case "setLoyalty":
+                this.state.data.currentPage = "step5";
+                this._getPage();
+                break;
             case "getPublished":
                 this.state.data.currentPage = "finish";
                 sendData = {
@@ -423,6 +468,10 @@ class Father extends Component {
                 }
                 this._sendData("GET", Constants.publishApp, sendData);
                 this._getPage();
+                break;
+            case "downloadApp":
+                this._showPublished();
+                break;
         }
         //this._sendData(sendMethod, sendURL, sendData);
     }
@@ -449,8 +498,16 @@ class Father extends Component {
         let index = this._getIndexByPaletteId(paletteId);
         this.state.data.phoneColors.upperColor = this.state.data.schemes[index][this.state.data.upperColorsSrc];
         this.state.data.phoneColors.iconsColor = this.state.data.schemes[index][this.state.data.iconsColorSrc];
-        this.state.data.phoneColors.bgColor = this.state.data.schemes[index].backgroundImageOverlayColor;
+        if(_.endsWith(this.state.data.schemes[index].backgroundImageOverlayColor,",0)")){
+            this.state.data.phoneColors.bgColor = "white";
+        }else {
+            this.state.data.phoneColors.bgColor = this.state.data.schemes[index].backgroundImageOverlayColor;
+        }
         this.state.data.phoneColors.brightness = this.state.data.schemes[index].brightness;
+        this.setState({data: this.state.data});
+    }
+    _toggleSelectedLayout(layout){
+        this.state.data.selectedLayout = layout;
         this.setState({data: this.state.data});
     }
     _getSelectedSchemeIndex(){
@@ -818,7 +875,7 @@ class Father extends Component {
             return;
         }
         if(jQuery("input[name='facebook']").val() == ""){
-            this._cleanAutoComplete(this);
+        //    this._cleanAutoComplete(this);
             return;
         }
         this.state.data.form.showFBOptions = false;
@@ -911,7 +968,7 @@ class Father extends Component {
                             });
 
                             jQuery("#step3 .pagination").addClass("visible");
-                            jQuery("#root").css("background-color", "#f1f1f1");
+                            jQuery("#root").css("background-color", "#f1f1f1").css("overflow-y","visible");
                         });
 
                     }else{
@@ -929,39 +986,54 @@ class Father extends Component {
                     jQuery("#step4.pageWrap .vAlign").css("right","-15%");
                     jQuery("#step4.pageWrap .vAlign").animate({right:0,opacity:1}, Constants.wrapAnimateTime, "easeOutCubic",function(){
                         jQuery("#step4 .phoneWrap:nth-child(1)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
-                        setTimeout(function(){
-                            jQuery("#step4 .phoneWrap:nth-child(2)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
-                        },400);
-                        setTimeout(function(){
-                            jQuery("#step4 .phoneWrap:nth-child(3)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
-                        },600);
-                        setTimeout(function(){
-                            jQuery("#step4 .phoneWrap:nth-child(4)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
-                        },800);
+
                     });
                 });
-                jQuery("#root").css("background-color","#f1f1f1");
+                jQuery("#root").css("background-color","#ffffff").css("overflow-y","visible");;
                 jQuery("#step4 .pagination").css("display","block").addClass("animated fadeIn");
                 jQuery("#step4 .bottomLeftImg").css("display","block").addClass("animated fadeIn");
 
                 break;
-            case "finish":
+            case "step5":
+                jQuery(".featureBox").removeClass("show");
+                jQuery("#step5.pageWrap .vAlign").css("opacity",0);
                 jQuery("#step4 .pagination").css("display","none").addClass("animated fadeOut");
+                jQuery("#step4.pageWrap").animate({left:"-100%"}, "easeOutCubic");
+                jQuery("#step5.pageWrap").animate({left:"0"}, "easeOutCubic",function(){
+                    jQuery("#step5.pageWrap .vAlign").css("right","-15%");
+                    jQuery("#step5.pageWrap .vAlign").animate({right:0,opacity:1}, Constants.wrapAnimateTime, "easeOutCubic",function(){
+                        jQuery("#step5 .phoneWrap:nth-child(1)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
+                        setTimeout(function(){
+                            jQuery("#step5 .phoneWrap:nth-child(2)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
+                        },400);
+                        setTimeout(function(){
+                            jQuery("#step5 .phoneWrap:nth-child(3)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
+                        },600);
+                        setTimeout(function(){
+                            jQuery("#step5 .phoneWrap:nth-child(4)").children(".device").css({"right":"-50%px","opacity":"0"}).animate({opacity: 1, "right": 0},1200,"easeOutCubic");
+                        },800);
+                    });
+                });
+                jQuery("#root").css("background-color","#f1f1f1").css("overflow-y","hidden");
+                jQuery("#step5 .pagination").css("display","block").addClass("animated fadeIn");
+                jQuery("#step5 .bottomLeftImg").css("display","block").addClass("animated fadeIn");
+                break;
+            case "finish":
+                jQuery("#step5 .pagination").css("display","none").addClass("animated fadeOut");
                 jQuery("#finish .vAlign").css("opacity",1);
                 jQuery("#finish .animationWrap").css("opacity",0);
-                jQuery("#step4.pageWrap").animate({left:"-100%"}, "easeOutCubic");
+                jQuery("#step5.pageWrap").animate({left:"-100%"}, "easeOutCubic");
                 jQuery("#finish.pageWrap").animate({left:"0"}, "easeOutCubic",function(){
-                    jQuery("#finish .animationWrap").css("max-width","100px").css("top","95px").animate({opacity: 1, "max-width": 270, top:0}, 1000,"easeOutBack",function() {
-                        setTimeout(function () {
-                            _self.state.data.progressBarInterval = setInterval(function () {
-                                _self._moveProgressBar(_self);
-                                jQuery("#finish .animatedImg").animate({opacity:1},Constants.itemAnimateTime,"easeOutCubic");
-                            }, 500);
-                        });
+                    setTimeout(function () {
+                        _self.state.data.progressBarInterval = setInterval(function () {
+                            _self._moveProgressBar(_self);
+                        }, 500);
+                        _self.state.data.marketingInterval = setInterval(function(){
+                            _self._setAnimationItem();
+                        },4000);
                     },500);
                 });
                 break;
-
         }
     }
     _checkForPublished(_self){
@@ -1091,23 +1163,15 @@ class Father extends Component {
             _self.setState({data:_self.state.data});
             if(_self.state.data.progressPercent > 99){
                 clearInterval(_self.state.data.progressBarInterval);
-                jQuery(".animatedImg").addClass("animated fadeOut").one(Constants.animationEnd, function(){
-                    jQuery("#finish .animationWrap").css("max-width","270px").css("top","0").animate({opacity: 0, "max-width": 100, top:0}, 1000,"easeOutBack",function() {
-                        _self._showPublished();
-                    });
-                })
-
-
+                jQuery(".downloadAppSection").addClass("download");
             }
         },1);
     }
     _showPublished(){
-        jQuery("#finishContentWrap1").addClass("animated fadeOut").one(Constants.animationEnd, function(){
-            jQuery("#finishContentWrap1").css("display","none");
-        });
-        jQuery("#finishContentWrap2").css("display","block").addClass("animated fadeIn");
-        jQuery("#finish h1").text("Great! You're done!")
-        jQuery("#finish .titleWrap p").text("Download Como Preview App and use your email and password");
+        clearInterval(this.state.data.marketingInterval);
+        jQuery("#part1").animate({left:"-100%", "opacity":1}, 400, "easeOutCubic");
+        jQuery("#part2").animate({left:0, "opacity":1}, 400, "easeOutCubic");
+        jQuery(".downloadAppSection").removeClass("download");
     }
     componentDidMount(){
         this._centerContent = this._centerContent.bind(this);
@@ -1118,6 +1182,28 @@ class Father extends Component {
         this._getPage();
 
         window.addEventListener("resize", this._centerContent.bind(this));
+        jQuery(".featureBox h2").click(function(){
+            if(jQuery(this).parents(".featureBox").hasClass("show")) {
+                jQuery(".featureBox").removeClass("show");
+            }else{
+                jQuery(".featureBox").removeClass("show");
+                jQuery(this).parents(".featureBox").addClass("show");
+            }
+
+        });
+        jQuery(".phoneHint").on("mouseover",function(){
+            console.log("in");
+            jQuery(this).parents(".featureTopPart").children(".phoneToolTip").css("display","block").removeClass("fadeOut").addClass("fadeIn").one(Constants.animationEnd, function(){
+               // jQuery(this).parents(".featureTopPart").children(".phoneToolTip").css("opacity",1);
+            });
+        });
+        jQuery(".phoneHint").on("mouseleave",function(){
+            console.log("out");
+            jQuery(this).parents(".featureTopPart").children(".phoneToolTip").removeClass("fadeIn").addClass("fadeOut").one(Constants.animationEnd, function(){
+                jQuery(this).parents(".featureTopPart").children(".phoneToolTip").css("display","none");
+            });
+        });
+
     }
     _switchPageDev(step){
         this.state.data.currentPage = step;
@@ -1126,6 +1212,7 @@ class Father extends Component {
         }
         this._getPage();
     }
+
     render(){
         return(
             <div className="allPagesWrap">
@@ -1172,6 +1259,9 @@ class Father extends Component {
                     onPaletteClick = {this._toggleSelectedPalette.bind(this)}
                     getIndexByPaletteId = {this._getIndexByPaletteId.bind(this)}
                     paletteSelected = {this.state.data.paletteSelected}
+                    onLayoutClick = {this._toggleSelectedLayout.bind(this)}
+                    layouts = {this.state.data.layouts}
+                    selectedLayout = {this.state.data.selectedLayout}
                 />
                 <Step3
                     phoneColors = {this.state.data.phoneColors}
@@ -1186,9 +1276,20 @@ class Father extends Component {
                     toggleClass = {this._toggleClass}
                     onTextInputBlur = {this._onTextInputBlur.bind(this)}
                     handleBtnClick = {this._handleBtnClick}
+                    selectedLayout = {this.state.data.selectedLayout}
                 />
-                <Step4  phoneColors = {this.state.data.phoneColors} handleBtnClick = {this._handleBtnClick}/>
-                <Finish handleBtnClick = {this._handleBtnClick} progressPercent={this.state.data.progressPercent} code={this.state.data.CPData.publishCode} email = {this.state.data.form.email.value}/>
+                <Step4
+                    handleValidation = {this._handleFieldsValidation}
+                    form = {this.state.data.form}
+                    setData = {this._setData}
+                    handleBtnClick = {this._handleBtnClick}
+                    areaCodeOptions = {Constants.areaCodeOptions}
+                />
+                <Step5  phoneColors = {this.state.data.phoneColors} handleBtnClick = {this._handleBtnClick}/>
+                <Finish handleBtnClick = {this._handleBtnClick}
+                        progressPercent={this.state.data.progressPercent}
+                        code={this.state.data.CPData.publishCode}
+                        email = {this.state.data.form.email.value}/>
             </div>
         )
     }

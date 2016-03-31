@@ -10,6 +10,8 @@
   h1{color:$pure-white;}
   [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color']{height:$input-narrow-height;line-height:$input-narrow-height;}
   select{height:$input-narrow-height;line-height:rem-calc(22);}
+  textarea{height:rem-calc(70)}
+  .column, .columns{padding-left:rem-calc(7.5);padding-right:rem-calc(7.5)}
 }
 form{margin-bottom:rem-calc(27)}
 form > .row{position:relative;margin-bottom:rem-calc(15);}

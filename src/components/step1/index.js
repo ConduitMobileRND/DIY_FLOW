@@ -35,7 +35,7 @@ export default class Step1 extends Component {
         let pageWrapClasses = "pageWrap " + showClass;
                 return (
                     <div id="step1" className={pageWrapClasses} onClick={this.props.onWrapperClick}>
-                        <div className="absolute pagination"><span className="huge">1</span><span className="tiny">/4</span></div>
+                        <div className="absolute pagination"><span className="huge">1</span><span className="tiny">/5</span></div>
                         <div className="vAlign">
                             <div className="row">
                                 <h1 className="businessTitle columns large-10 large-offset-1">About your business</h1>
@@ -85,7 +85,7 @@ export default class Step1 extends Component {
                                         isValid={this.props.form.phoneLocal.isValid}
                                         type="tel"
                                         isRequired={true}
-                                        labelText="Phone number"
+                                        labelText="Your phone number"
                                         onBlur={this.props.handleValidation}
                                         onKeyUp={this.props.handleValidation}
                                         errorMsg="Please provide a valid phone number"

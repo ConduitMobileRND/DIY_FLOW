@@ -1,23 +1,27 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 #finish {
-  background-color: #00b0e0;
-  /*$border-blue*/ }
+  background-color: #00b0e0; }
+  #finish .row {
+    max-width: 60.625rem; }
+  #finish h1 {
+    font-size: 1.875rem;
+    line-height: 2.375rem;
+    margin-bottom: 3.125rem; }
   #finish .code {
-    background-color: #f1f1f1;
-    border-radius: 5px;
+    background-color: #ffffff;
     text-align: left;
-    padding: 1.25rem 0.625rem; }
+    padding: 1.25rem 0.625rem;
+    height: 10rem; }
     #finish .code p {
       color: #282f3a; }
       #finish .code p.description {
         font-size: 1.875rem;
-        margin-bottom: 5px;
+        margin-bottom: 0.9375rem;
         text-align: left; }
   #finish .qrWrap {
     margin-top: 1.875rem; }
   #finish img.react-qr {
-    border-radius: 5px;
-    max-width: 120px; }
+    max-width: 160px; }
   #finish img.deviceIcon {
     display: block;
     margin: 1.25rem auto 1.875rem; }
@@ -28,10 +32,10 @@
       font-weight: 400; }
   #finish a.mailTo {
     display: inline-block;
-    background-color: #0e9ec1;
-    border-radius: 15px;
     color: #ffffff;
-    padding: 0.125rem 0.9375rem; }
+    padding: 0.125rem 0.9375rem 0.125rem 0; }
+    #finish a.mailTo:hover {
+      text-decoration: underline; }
   #finish .animationWrap {
     max-width: 360px;
     max-height: 360px;
@@ -57,12 +61,102 @@
     opacity: 0; }
   #finish .finishPartWrap {
     position: relative;
-    height: 25.625rem; }
+    height: 18.75rem; }
   #finish .finishPart {
     position: absolute;
-    width: 100%; }
+    width: 100%;
+    opacity: 0;
+    left: 100%; }
+    #finish .finishPart.first {
+      opacity: 1;
+      left: 0; }
   #finish #finishContentWrap2 {
     display: none;
     opacity: 0; }
+  #finish .subtitleAnim {
+    font-size: 1.875rem;
+    line-height: 2.375rem;
+    font-weight: 300;
+    margin: 5rem 0 1.5625rem; }
+  #finish .descriptionAnim {
+    font-size: 0.875rem;
+    line-height: 1.125rem; }
+  #finish .progress {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    height: 7px;
+    margin-bottom: 1.5625rem; }
+    #finish .progress .progress-bar {
+      background-color: white;
+      height: 100%;
+      transition: all 1s;
+      border-radius: 5px; }
+  #finish .progressWrap p {
+    text-align: center; }
+    #finish .progressWrap p.subtitleAnim {
+      margin-top: 3.125rem; }
+
+.downloadAppSection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #b6d12c;
+  transition: all 0.5s ease-in-out;
+  z-index: 1;
+  overflow: hidden; }
+  .downloadAppSection .row {
+    height: 100%; }
+  .downloadAppSection.download {
+    height: 6.25rem; }
+  .downloadAppSection .notification {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: inline-block;
+    float: none;
+    text-align: right; }
+    .downloadAppSection .notification:before {
+      content: " ";
+      width: 1.625rem;
+      height: 1.625rem;
+      background-image: url("../../styles/main/images/sprite-phase2.png");
+      background-repeat: no-repeat;
+      background-position: 0px -46px; }
+  .downloadAppSection button {
+    background-color: #ffffff !important;
+    color: #282f3a !important;
+    border-radius: 5px !important;
+    max-width: 160px !important;
+    font-size: 1.25rem !important;
+    line-height: 40px !important; }
+    .downloadAppSection button:hover {
+      background-color: #f1f1f1 !important; }
+  .downloadAppSection span {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%; }
+  .downloadAppSection .btnWrap {
+    display: inline-block !important;
+    float: none !important; }
+
+#part1 {
+  position: absolute;
+  width: 100%; }
+
+#part2 {
+  left: 100%;
+  opacity: 0;
+  position: absolute;
+  width: 100%; }
+  #part2 padding-top:rem-calc(67)
+  .subtitleAnim {
+    margin-top: 3.125rem; }
+
+.scanExplain {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  text-align: center;
+  margin-bottom: 3.125rem; }
 
 /*# sourceMappingURL=finish.css.map */

@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+#step5 {
+  background-color: #f1f1f1; }
+  #step5 .vAlign {
+    background-color: #f1f1f1; }
+  #step5 .subtitle {
+    font-size: 1.125rem;
+    line-height: 1.5; }
+  #step5 .pagination .huge {
+    letter-spacing: -4px; }
+  #step5 h1 {
+    color: #282f3a;
+    margin-bottom: 0.25rem; }
+  #step5 .titleWrap {
+    margin-bottom: 1.875rem; }
+  #step5 svg {
+    width: 1.625rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.3125rem; }
+  #step5 .description {
+    margin-bottom: 0.8125rem; }
+  #step5 .btnWrap button {
+    margin: 2.1875rem auto 1.25rem; }
+  #step5 a.button {
+    background-color: #1da7c7;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    line-height: 3.125rem;
+    max-width: 9.375rem; }
+    #step5 a.button:hover {
+      background-color: #08b9e4; }
+  #step5 .phoneWrap img {
+    max-width: 85px;
+    display: block;
+    margin: 0 auto; }
+    #step5 .phoneWrap img.device {
+      opacity: 0;
+      position: relative; }
+
+/*# sourceMappingURL=step5.css.map */

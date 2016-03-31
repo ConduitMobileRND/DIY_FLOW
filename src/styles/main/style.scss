@@ -306,7 +306,8 @@ body.direction-ltr .locale-text-align {
 
 
 /*olga*/
-
+.no-pad-left{padding-left:0!important;}
+.no-pad-right{padding-right:0!important;}
 #root{overflow-x:hidden;}
 .vAlign{position:relative;    margin-right: 0;  margin-left: 0;}
 .clearfix{clear:both;}
@@ -350,7 +351,7 @@ body button.button:hover{background-color:$button-hover-blue;}
 body textarea{height:rem-calc(120);    line-height: 1.5;  padding-top: 16px;}
 
 /*phone*/
-.phone{background-image:url("images/imge_page_selectcolors_device.png");background-repeat:no-repeat;max-width:rem-calc(460);margin:0 auto;height:0;    padding-bottom: 160%;position:relative;background-size:cover;
+.phone{background-image:url("images/imge_page_selectcolors_deviceflat.png");background-repeat:no-repeat;max-width:rem-calc(460);margin:0 auto;height:0;    padding-bottom: 160%;position:relative;background-size:cover;
   .inner{width:73.5%;max-width:rem-calc(319);border:solid 2px rgba(0,0,0,0.3);margin:0 auto; position:relative; top:rem-calc(42);border-radius:3px;
     .topPas{width:100%;height:rem-calc(43);padding-top:rem-calc(17); border-bottom: $gentle-border;
       .dynamic{width:50%;height:rem-calc(10);margin:0 auto;border-radius:10px;background-color:rgba(255,255,255,0.5);}
@@ -362,7 +363,17 @@ body textarea{height:rem-calc(120);    line-height: 1.5;  padding-top: 16px;}
       .dynamic {background-color: rgba(0, 0, 0, 0.5);    }
   }
 }
+.longImgLayout{
+  .welcomeImages img{margin-top: 7%;    width: 87%;}
+  .iconsRow{padding-bottom:3%;}
+}
   .iconColumnWrap{width:50%;margin:4% 0;}
+  .iconColumnWrap.one-4th{width:25%;
+    .iconColumn{width: 61%;padding-bottom:57%;}
+  }
+.iconColumnWrap.one-3rd{width:33.33%;margin: 4% 0 7%;
+  .iconColumn{    padding-bottom: 67%;    width: 72%;}
+}
   .iconColumn{width:46%;height:0;padding-bottom:44%;border-radius:50%;margin:0 auto;border:$gentle-border;}
   .iconBorder{width:64%;height:0; padding-bottom:6%;background-color:#c8cccd; margin:0 auto;border-radius:5px;margin-top:8%;}
   .welcomeImages{text-align:center;
@@ -413,7 +424,7 @@ ul.geosuggest__suggests{background-color:$pure-white;borde-radius:3px;overflow:h
 .vAlign{/*-webkit-animation-duration: .5s;-moz-animation-duration: .5s;-ms-animation-duration: .5s;*/}
 .paletteWrap{}
 
-#step1,#step2,#step3,#step4{left:100%;}
+#step1,#step2,#step3,#step4,#step5{left:100%;}
 
 .slick-track{transition:all 0.3s ease-in-out !important;}
 

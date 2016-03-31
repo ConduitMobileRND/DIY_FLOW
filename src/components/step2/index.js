@@ -5,10 +5,7 @@ import Button from '../generalComponents/button';
 import lodash from 'lodash';
 import jQuery from 'jquery';
 
-import InfoIcon from '../generalComponents/icons/infoIcon';
-import RewardsIcon from '../generalComponents/icons/rewardsIcon';
-import FavouritesIcon from '../generalComponents/icons/favouritesIcon';
-import FbIcon from '../generalComponents/icons/fbIcon';
+import DemoPhoneLayout from "../generalComponents/demoPhoneLayout";
 
 export default class Step2 extends Component {
     constructor(props) {
@@ -35,24 +32,42 @@ export default class Step2 extends Component {
     }
 
     _createPaletteRow(palette, index){
-        if(typeof palette == "undefined"){
-            return;
-        }
+        if(typeof palette == "undefined") return;
         let selected = palette.uipack_id == this.props.selectedScheme || (index == 0 && !this.props.paletteSelected)? "selected" : "";
-        let className = "paletteWrap " + selected;
+        let specificColumnClass = "";
+        if(index == 0) specificColumnClass = " no-pad-left";
+        if(index == 2) specificColumnClass = " end";
+        let className = "paletteWrapNew columns large-3 " + selected + specificColumnClass;
         let id="uiPack_"+ palette.uipack_id;
-       // debugger;
         let index1 = this.props.getIndexByPaletteId(palette.uipack_id);
         return(
-            <div className={className} key={palette.uipack_id} onClick={this.props.onPaletteClick.bind(null,palette.uipack_id)}>
+            <div className={className} key={palette.uipack_id}>
                 <div className="palette">
                     <div className="color" style={{backgroundColor:this.props.schemes[index1][this.props.upperColorsSrc]}}></div>
                     <div className="color" style={{backgroundColor:this.props.schemes[index1].backgroundImageOverlayColor}}></div>
                     <div className="color" style={{backgroundColor:this.props.schemes[index1][this.props.iconsColorSrc]}}></div>
                     <div className="clearfix"></div>
                 </div>
+                <div className="choiceBtn" onClick={this.props.onPaletteClick.bind(null,palette.uipack_id)}></div>
             </div>
         )
+    }
+
+    _createLayoutRow(layout, index){
+        if (typeof layout == "undefined") return;
+        let selected = layout == this.props.selectedLayout ? " selected" : "";
+        let specificColumnClass = "";
+        if(index == 0) specificColumnClass = " no-pad-left";
+        if(index == 2) specificColumnClass = " end";
+        let className = "columns large-3" + selected + specificColumnClass;
+        let imgSrc = "images/imge_layout"+ (index+1) + ".png";
+        return(
+            <div className={className} key={index}>
+                <img src={imgSrc}/>
+                <div className="choiceBtn" onClick={this.props.onLayoutClick.bind(null,layout)}></div>
+            </div>
+        )
+
     }
     /*TEMPORARY FOR DESIGNERS NEEDS*/
     _createCompletePaletteRow(){
@@ -139,66 +154,41 @@ export default class Step2 extends Component {
         )
     }
 
-
-
     render() {
         let wrapClass = "phone "+this.props.phoneColors.brightness;
+        let phoneBodyBgColor = _.endsWith(this.props.phoneColors.bgColor,",0)") ? "white" : this.props.phoneColors.bgColor;
+
         return (
             <div id="step2" className="pageWrap">
-                <div className="absolute pagination"><span className="huge">2</span><span className="tiny">/4</span></div>
+                <div className="absolute pagination"><span className="huge">2</span><span className="tiny">/5</span></div>
                 <div className="vAlign">
                     <div className="row">
-                        <h1 className="businessTitle columns large-10 medium-10 medium-offset-2 large-offset-2">Choose your colors</h1>
-                    </div>
-                    <div className="row phoneContent">
-                        <div className="columns large-2 medium-2 medium-offset-2 large-offset-2 paletteSchemes">
-                            {this.props.schemes.map(this._createPaletteRow, this)}
+                        <div className="columns large-8">
+                            <div className="row">
+                                <h1 className="businessTitle">Choose layout and color</h1>
+                                <p className="subtitle">Personalize your app with your brand colors an unique layout</p>
+                            </div>
+                            <div className="row layoutsWrap">
+                                <p className="h2-text">Layouts:</p>
+                                {this.props.layouts.map(this._createLayoutRow, this)}
+                            </div>
+                            <div className="row">
+                                <p className="h2-text">Colors:</p>
+                                {this.props.schemes.map(this._createPaletteRow, this)}
+                            </div>
                         </div>
-                        <div className="columns large-4 medium-4 end">
+                        <div className="columns large-4 end demoWrap">
                             <div className={wrapClass}>
                                 <div className="inner">
                                     <div className="topPas" style={{backgroundColor: this.props.phoneColors.upperColor}}>
                                         <div className="dynamic"></div>
                                     </div>
-                                    <div className="bgWrap" style={{backgroundColor:this.props.phoneColors.bgColor}}>
-                                        <div className="iconsRow">
-                                            <div className="iconColumnWrap" style={{float:"left"}}>
-                                                <div className="iconColumn"  ref="iconBg">
-                                                    <InfoIcon fillColor={this.props.phoneColors.iconsColor}/>
-                                                </div>
-                                                <div className="iconBorder"></div>
-                                            </div>
-                                            <div className="iconColumnWrap" style={{float:"right"}}>
-                                                <div className="iconColumn">
-                                                    <RewardsIcon fillColor={this.props.phoneColors.iconsColor}/>
-                                                </div>
-                                                <div className="iconBorder"></div>
-                                            </div>
-                                            <div className="clearfix"></div>
-                                        </div>
-                                        <div className="welcomeImages">
-                                            <img src="images/imge_placeholder.png" alt=""/>
-                                        </div>
-                                        <div className="iconsRow">
-                                            <div className="iconColumnWrap" style={{float:"left"}}>
-                                                <div className="iconColumn">
-                                                    <FavouritesIcon fillColor={this.props.phoneColors.iconsColor}/>
-                                                </div>
-                                                <div className="iconBorder"></div>
-                                            </div>
-                                            <div className="iconColumnWrap" style={{float:"right"}}>
-                                                <div className="iconColumn">
-                                                    <FbIcon fillColor={this.props.phoneColors.iconsColor}/>
-                                                </div>
-                                                <div className="iconBorder"></div>
-                                            </div>
-                                            <div className="clearfix"></div>
-                                        </div>
-                                    </div>
+                                    <DemoPhoneLayout origin="getLayout" bgImage = "images/imge_placeholder.png" iconsColor = {this.props.phoneColors.iconsColor} phoneBodyBgColor = {phoneBodyBgColor} layout={this.props.selectedLayout}/>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div className="row relative">
                         <Button foundationClasses="large-4 large-offset-4 columns medium-4 medium-offset-4" buttonSize="large" btnText="Next" onClick={this._handleBtnClick}/>
 
@@ -219,5 +209,8 @@ Step2.propTypes = {
     selectedScheme: React.PropTypes.string.isRequired,
     getIndexByPaletteId: React.PropTypes.func.isRequired,
     onPaletteClick: React.PropTypes.func.isRequired,
-    paletteSelected: React.PropTypes.bool.isRequired
+    paletteSelected: React.PropTypes.bool.isRequired,
+    onLayoutClick: React.PropTypes.func.isRequired,
+    layouts: React.PropTypes.array.isRequired,
+    selectedLayout: React.PropTypes.string.isRequired
 }

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import jQuery from 'jquery';
 import style from './finish.scss';
 import QRCode from 'react-qr';
-var Circle = require('rc-progress').Circle;
+import Button from '../generalComponents/button';
+
 
 export default class Finish extends Component {
     constructor(props) {
@@ -15,64 +16,169 @@ export default class Finish extends Component {
 
             }
         }
+        this._handleBtnClick=this._handleBtnClick.bind(this);
     }
 
-
-
-    componentDidMount(){
-     //   this._initProgress();
+    _handleBtnClick(){
+        this.props.handleBtnClick(this.refs, "downloadApp", event);
     }
-
     render(){
+        let barWidth = this.props.progressPercent+"%";
         return(
             <div className="pageWrap" id="finish">
-                <div className="vAlign" ref="vAlign">
+                <div className="downloadAppSection">
                     <div className="row">
-                        <div className="columns large-12 titleWrap">
-                            <h1>Great! You're almost done!</h1>
-                            <p className="description black">Your newly created app is being published right now! This might take several minutes.</p>
-                        </div>
+                        <p className="notification large-3 columns large-offset-3">Your App is ready</p>
+                        <Button foundationClasses="large-3 columns end" buttonSize="large" btnText="DOWNLOAD" onClick={this._handleBtnClick}/>
+                        <span></span>
                     </div>
-                    <div className="row centered finishPartWrap">
-                        <div className="finishPart"  id="finishContentWrap1">
-                            <div className="animationWrap">
-                                <img className="animatedImg" src="images/AnimationInsideOnly2.gif"/>
-                                <Circle percent={this.props.progressPercent} strokeWidth="2" strokeColor="#ffffff" trailColor="#32c6e9"/>
+                </div>
+                <div className="vAlign" ref="vAlign">
+                    <div style={{position:"relative",height:"600px"}}>
+                    <div id="part1">
+                        <div className="row">
+                            <div className="columns large-12 titleWrap">
+                                <h1>Whether you've got a single store, several locations, or an expanding chain, we've got the right solution for you</h1>
                             </div>
-                            <p className="text-center percentage" >{this.props.progressPercent}%</p>
                         </div>
-
-
-                        <div className="finishPart"  id="finishContentWrap2">
-                            <div>
-                                <div className="columns large-10 large-centered">
-                                    <div className="code">
-                                        <p>Email:</p>
-                                        <p className="description">{this.props.email}</p>
-                                        <br/>
-                                        <p>Password:</p>
-                                        <p className="description">{this.props.code}</p>
+                        <div className="centered finishPartWrap">
+                            <div className="finishPart first animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_1Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Modular Loyalty Platform</p>
+                                        <p className="descriptionAnim">Flexible design makes it easy to adjust the platform to your business and manage a wide variety of features in minutes.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row qrWrap">
-                                <div className="large-4 large-offset-2 columns text-center">
-                                    <QRCode text={this.state.data.linkApple} />
-                                    <img src="images/icon_apple.png" className="deviceIcon" alt="Apple"/>
-                                </div>
-                                <div className="large-4 end columns text-center">
-                                    <QRCode text={this.state.data.linkAndroid}/>
-                                    <img src="images/icon_android.png" className="deviceIcon" alt="Android"/>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_2Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Information & Content</p>
+                                        <p className="descriptionAnim">Keep all your business's important information at your customers' fingertips:Catalogs, menus,photos, store locator, opening hours, and more.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row text-center">
-                                <p>One of our business operation representatives will call you soon.</p>
-                                <p className="description black">Need more help? Feel free to contact us at <a className="mailTo" href="mailto:bizsupport@como.com">bizsupport@como.com</a></p>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_3Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Personalized Rewards</p>
+                                        <p className="descriptionAnim">Easily target the right customers at the right time with the right offer: points, cash back, coupons, punch cards, and other treats.</p>
+                                    </div>
+                                </div>
                             </div>
-                       </div>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_4Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Communication</p>
+                                        <p className="descriptionAnim">See your customers' activities, send them relevant deals and rewards, and get their feedback.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_5Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Gamification</p>
+                                        <p className="descriptionAnim">Spark up your customers' experience with fun ways earn rewards like scratch cards and more.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_6Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Social integration</p>
+                                        <p className="descriptionAnim">Integration to social networks lets your loyal customers share what they love about your business and take an active part in your community.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_7Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Seamless Management Console</p>
+                                        <p className="descriptionAnim">Integration to social networks lets your loyal customers share what they love about your business and take an active part in your community.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_8Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Actionable Analytics & Targeting</p>
+                                        <p className="descriptionAnim">Business intelligence that helps you understand your customers' behavior, and use that data to target effectively and increase sales.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="finishPart animated">
+                                <div className="row">
+                                    <div className="columns large-6">
+                                        <img src="/images/imge_9Progress.png" alt=""/>
+                                    </div>
+                                    <div className="columns large-6">
+                                        <p className="subtitleAnim">Integration & Connectivity</p>
+                                        <p className="descriptionAnim">Seamless connectivity with your POS and other services allows for multiple closing-the-loop options to capture relevant customer data and transactions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="large-6 columns large-centered progressWrap">
+                                <p className="subtitleAnim">{this.props.progressPercent}%</p>
+                                <div className="progress">
+                                    <div className="progress-bar" role="progressbar" style={{width:barWidth}}></div>
+                                </div>
+                                <p>Please wait, this can take a few seconds...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="part2">
+                        <div className="row">
+                            <div className="columns large-10 large-centered">
+                                 <p className="scanExplain">Scan the QR code to download Como Preview app.<br/>Open your Como Preview app login using your Email and Password</p>
+                            </div>
+                        </div>
+                        <div className="row large-collapse">
+                            <div className="large-3 large-offset-1 columns">
+                                <QRCode text={this.state.data.linkApple} />
+                            </div>
+                            <div className="code large-7 end columns">
+                                <p>Email:</p>
+                                <p className="description codeDescription">{this.props.email}</p>
+                                <p>Password:</p>
+                                <p className="description codeDescription">{this.props.code}</p>
+                            </div>
+                        </div>
+                        <div className="row text-center">
+                            <p className="subtitleAnim">One of our business operation persons will contact you soon helping you create the best CLM solution for your business.</p>
+                            <p className="description black">Need more help? Feel free to contact us at: &nbsp;<a className="mailTo" href="mailto:bizsupport@como.com">bizsupport@como.com</a></p>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
+
+
         )
     }
 }

@@ -4,8 +4,8 @@ import Button from '../generalComponents/button';
 import lodash from 'lodash';
 import ThumbsSlider from '../generalComponents/slider';
 import jQuery from 'jquery';
-import InfoIcon from '../generalComponents/icons/infoIcon';
-import RewardsIcon from '../generalComponents/icons/rewardsIcon';
+
+import DemoPhoneLayout from "../generalComponents/demoPhoneLayout";
 
 const defaultImgText = "Add your image title";
 
@@ -50,6 +50,8 @@ export default class Step3 extends Component {
 
     render(){
         let wrapClass = "phone "+this.props.phoneColors.brightness;
+        let phoneBodyBgColor = _.endsWith(this.props.phoneColors.bgColor,",0)") ? "white" : this.props.phoneColors.bgColor;
+
         return (
             <div id="step3" className="pageWrap" onClick={this.props.onPageClick}>
                 <div className="absolute pagination"><span className="huge">3</span><span className="tiny">/4</span></div>
@@ -62,7 +64,7 @@ export default class Step3 extends Component {
                     <div className="topPhone">
                         <div className="row">
                             <div className="columns large-4">
-                                <p className="subtitle">Edit your welcom messages to attract and engage users, showcasing your delicious food, great products, happy customers etc.</p>
+                                <p className="subtitle">Edit your welcome messages to attract and engage users, showcasing your delicious food, great products, happy customers etc.</p>
                             </div>
                             <div className="columns large-4 end large-offset-3">
                                 <div className={wrapClass}>
@@ -70,38 +72,8 @@ export default class Step3 extends Component {
                                         <div className="topPas" style={{backgroundColor: this.props.phoneColors.upperColor}}>
                                             <div className="dynamic"></div>
                                         </div>
-                                        <div className="bgWrap" style={{backgroundColor:this.props.phoneColors.bgColor}}>
-                                            <div className="iconsRow">
-                                                <div className="iconColumnWrap" style={{float:"left"}}>
-                                                    <div className="iconColumn"  ref="iconBg">
-                                                        <InfoIcon fillColor={this.props.phoneColors.iconsColor}/>
-                                                    </div>
-                                                    <div className="iconBorder"></div>
-                                                </div>
-                                                <div className="iconColumnWrap" style={{float:"right"}}>
-                                                    <div className="iconColumn">
-                                                        <RewardsIcon fillColor={this.props.phoneColors.iconsColor}/>
-                                                    </div>
-                                                    <div className="iconBorder"></div>
-                                                </div>
-                                                <div className="clearfix"></div>
-                                            </div>
-                                            <div className="welcomeImages">
-                                                <div className="imageOnScreen" style={{backgroundImage:"url('"+this.props.imageOnScreen+"')"}}></div>
+                                        <DemoPhoneLayout  origin="getImages" bgImage = {this.props.imageOnScreen} iconsColor = {this.props.phoneColors.iconsColor} phoneBodyBgColor = {phoneBodyBgColor} layout={this.props.selectedLayout}/>
 
-                                            </div>
-                                            <div className="iconsRow">
-                                                <div className="iconColumnWrap" style={{float:"left"}}>
-                                                    <div className="iconColumn" style={{backgroundColor: this.props.phoneColors.iconsColor}}></div>
-                                                    <div className="iconBorder"></div>
-                                                </div>
-                                                <div className="iconColumnWrap" style={{float:"right"}}>
-                                                    <div className="iconColumn" style={{backgroundColor: this.props.phoneColors.iconsColor}}></div>
-                                                    <div className="iconBorder"></div>
-                                                </div>
-                                                <div className="clearfix"></div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,5 +108,6 @@ Step3.propTypes = {
     onClickThumb: React.PropTypes.func.isRequired,
     selectImage: React.PropTypes.func.isRequired,
     onTextInputBlur: React.PropTypes.func.isRequired,
-    handleBtnClick: React.PropTypes.func.isRequired
+    handleBtnClick: React.PropTypes.func.isRequired,
+    selectedLayout: React.PropTypes.string.isRequired
 }

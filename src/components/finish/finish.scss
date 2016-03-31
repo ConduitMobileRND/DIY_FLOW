@@ -1,17 +1,21 @@
 @import '../../styles/foundation/settings.scss';
-#finish{background-color:#00b0e0;/*$border-blue*/
-  .code{background-color:$lightGreyBg;border-radius:5px;text-align:left;padding:rem-calc(20) rem-calc(10);
+#finish{background-color:#00b0e0;
+  .row{max-width:rem-calc(970);}
+  h1{font-size:rem-calc(30);line-height:rem-calc(38);margin-bottom:rem-calc(50);}
+  .code{background-color:$pure-white;text-align:left;padding:rem-calc(20) rem-calc(10);height:rem-calc(160);
     p{color:$black;
-      &.description{font-size:rem-calc(30);margin-bottom: 5px;text-align:left;}
+      &.description{font-size:rem-calc(30);margin-bottom: rem-calc(15);text-align:left;}
     }
   }
   .qrWrap{margin-top:rem-calc(30)}
-  img.react-qr{border-radius:5px;max-width:120px;}
+  img.react-qr{max-width:160px;}
   img.deviceIcon {    display: block;    margin: rem-calc(20) auto rem-calc(30);  }
   .description{margin-top:rem-calc(5);margin-bottom:rem-calc(24);
     span{font-weight:400;}
   }
-  a.mailTo{display:inline-block;background-color:#0e9ec1;border-radius:15px;color:$pure-white;padding:rem-calc(2) rem-calc(15);}
+  a.mailTo{display:inline-block;color:$pure-white;padding:rem-calc(2) rem-calc(15) rem-calc(2) 0;
+    &:hover{text-decoration:underline;}
+  }
   .animationWrap{max-width:360px;max-height:360px;position:relative;    margin: 0 auto;}
   .rc-progress-circle{position:absolute;top:0;left:0;}
   .description{color:$pure-white;
@@ -21,8 +25,35 @@
     span{font-size:rem-calc(50);font-weight:300;line-height:1;}
   }
   .animatedImg{opacity:0;}
-  .finishPartWrap{position:relative;height:rem-calc(410)}
-  .finishPart {    position: absolute;    width: 100%;
+  .finishPartWrap{position:relative;height:rem-calc(300)}
+  .finishPart {position: absolute;    width: 100%; opacity:0;left:100%;
+      &.first{opacity:1;left:0;}
   }
   #finishContentWrap2{display:none;opacity:0;}
+  .subtitleAnim{font-size:rem-calc(30);line-height:rem-calc(38);font-weight:300;margin:rem-calc(80) 0 rem-calc(25);}
+  .descriptionAnim{font-size:rem-calc(14);line-height:rem-calc(18);}
+  .progress{background-color:rgba(255,255,255,0.2);border-radius:5px;height:7px;margin-bottom:rem-calc(25);
+    .progress-bar{background-color:rgba(255,255,255,1);height:100%;transition:all 1s;border-radius:5px;}
+  }
+  .progressWrap p{text-align:center;
+    &.subtitleAnim{margin-top:rem-calc(50);}
+  }
 }
+.downloadAppSection{position:fixed;top:0;left:0;width:100%;height:0;background-color:#b6d12c;transition:all 0.5s ease-in-out;z-index:1;overflow:hidden;
+  .row{height:100%;}
+  &.download{height:rem-calc(100);}
+  .notification{font-size:rem-calc(20);font-weight:600;display:inline-block;float:none;text-align:right;
+    &:before{content:" ";width:rem-calc(26);height:rem-calc(26);background-image:url("../../styles/main/images/sprite-phase2.png");background-repeat:no-repeat;background-position:0px -46px;}
+  }
+  button{background-color:$pure-white!important;color:$black!important;border-radius:5px!important;max-width:160px!important;font-size:rem-calc(20)!important;line-height: 40px!important;
+    &:hover{background-color:$lightGreyBg!important;}
+  }
+  span{display: inline-block;vertical-align:middle;height:100%;}
+  .btnWrap{display: inline-block!important;float:none!important;}
+
+}
+#part1{position:absolute;width:100%;}
+#part2{left:100%;opacity:0;position:absolute;width:100%;padding-top:rem-calc(67);
+  .subtitleAnim{margin-top:rem-calc(50);}
+}
+.scanExplain{font-size:rem-calc(18);line-height:rem-calc(24);text-align:center;margin-bottom:rem-calc(50);}
