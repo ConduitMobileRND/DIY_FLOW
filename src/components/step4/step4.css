@@ -17,14 +17,14 @@
     position: relative;
     display: inline-block; }
     #step4 h2 .hint {
-      color: #bfc1c4; }
+      color: #a0a0a0; }
     #step4 h2:before {
       content: " ";
       display: block;
       width: 1.75rem;
       height: 1.75rem;
       position: relative;
-      top: 5px;
+      top: 2px;
       float: left;
       margin-right: 0.625rem;
       background-image: url("../../styles/main/images/sprite-phase2.png");
@@ -36,7 +36,7 @@
     display: inline-block;
     height: 1.4375rem;
     width: 0.75rem;
-    margin-left: 0.4375rem;
+    margin-left: 0.75rem;
     position: relative;
     top: -2px;
     background-image: url("../../styles/main/images/sprite-phase2.png");
@@ -58,7 +58,17 @@
   #step4 .featureImg {
     margin-top: 2.5rem;
     max-width: 10.625rem;
-    padding: 0; }
+    padding: 0;
+    width: 10.625rem;
+    height: 10.625rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; }
+    #step4 .featureImg:hover .blanket {
+      background-color: rgba(0, 0, 0, 0.5);
+      background-image: url("../../styles/main/images/ic_edit.png");
+      background-repeat: no-repeat;
+      background-position: center center; }
   #step4 textarea {
     height: 5rem; }
   #step4 .titleWrap {
@@ -68,7 +78,7 @@
   #step4 .inputWrap label {
     margin-top: 0.9375rem; }
   #step4 .inputWrap label > span {
-    color: #bfc1c4; }
+    color: #a0a0a0; }
   #step4 input {
     height: 2.5rem;
     line-height: 2.5rem; }
@@ -102,7 +112,8 @@
   #step4 .arrow_box {
     /*position: relative;*/
     background: #f1f1f1;
-    border: 1px solid #c9c9c9; }
+    border: 1px solid #c9c9c9;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 5px; }
   #step4 .arrow_box:after, #step4 .arrow_box:before {
     right: 100%;
     top: 35%;
@@ -122,6 +133,93 @@
     border-right-color: #c9c9c9;
     border-width: 16px;
     margin-top: -16px; }
+
+.popupWrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.2s; }
+  .popupWrap.show {
+    opacity: 1;
+    z-index: 55; }
+
+.popup {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 35.125rem;
+  background-color: #ffffff;
+  border-radius: 5px; }
+
+.popupOutline > div {
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.375rem;
+  border-bottom: solid 1px #bfc1c4; }
+  .popupOutline > div .closeIcon {
+    display: block;
+    float: right;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../styles/main/images/sprite-phase2.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    position: relative;
+    top: 1.875rem;
+    right: 0.9375rem;
+    cursor: pointer; }
+    .popupOutline > div .closeIcon:hover {
+      opacity: 1; }
+
+.popupOutline.bottom > div {
+  border-bottom: none;
+  border-top: solid 1px #bfc1c4; }
+
+.popupMain {
+  padding: 3.125rem 0 0.625rem;
+  height: 31.375rem;
+  overflow: scroll; }
+
+.loyaltyThumbWrap {
+  margin-bottom: 2.5rem; }
+  .loyaltyThumbWrap .loyaltyThumbBorder {
+    margin: 0 auto;
+    width: 6.375rem !important;
+    height: 6.375rem !important;
+    background-color: #ffffff;
+    width: 5.5rem;
+    height: 5.5rem;
+    padding: 3px;
+    border-radius: 5px;
+    border: solid 4px #ffffff;
+    transition: all .2s;
+    opacity: 0.85; }
+    .loyaltyThumbWrap .loyaltyThumbBorder.selected {
+      border: solid 4px #08b9e3; }
+      .loyaltyThumbWrap .loyaltyThumbBorder.selected .loyaltyThumb {
+        opacity: 1; }
+    .loyaltyThumbWrap .loyaltyThumbBorder:hover .loyaltyThumb {
+      opacity: 1; }
+    .loyaltyThumbWrap .loyaltyThumbBorder .loyaltyThumb {
+      width: 5.5rem;
+      height: 5.5rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      border-radius: 3px;
+      cursor: pointer;
+      opacity: .85;
+      transition: opacity .2s; }
+
+.popupStyle button {
+  border-radius: 7px;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 300; }
 
 @media only screen and (max-width: 800px) {
   h2:after {

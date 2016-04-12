@@ -47,7 +47,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_1Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Modular Loyalty Platform</p>
                                         <p className="descriptionAnim">Flexible design makes it easy to adjust the platform to your business and manage a wide variety of features in minutes.</p>
                                     </div>
@@ -58,7 +58,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_2Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Information & Content</p>
                                         <p className="descriptionAnim">Keep all your business's important information at your customers' fingertips:Catalogs, menus,photos, store locator, opening hours, and more.</p>
                                     </div>
@@ -69,7 +69,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_3Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Personalized Rewards</p>
                                         <p className="descriptionAnim">Easily target the right customers at the right time with the right offer: points, cash back, coupons, punch cards, and other treats.</p>
                                     </div>
@@ -80,7 +80,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_4Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Communication</p>
                                         <p className="descriptionAnim">See your customers' activities, send them relevant deals and rewards, and get their feedback.</p>
                                     </div>
@@ -91,7 +91,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_5Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Gamification</p>
                                         <p className="descriptionAnim">Spark up your customers' experience with fun ways earn rewards like scratch cards and more.</p>
                                     </div>
@@ -102,7 +102,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_6Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Social integration</p>
                                         <p className="descriptionAnim">Integration to social networks lets your loyal customers share what they love about your business and take an active part in your community.</p>
                                     </div>
@@ -113,7 +113,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_7Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Seamless Management Console</p>
                                         <p className="descriptionAnim">Integration to social networks lets your loyal customers share what they love about your business and take an active part in your community.</p>
                                     </div>
@@ -124,7 +124,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_8Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Actionable Analytics & Targeting</p>
                                         <p className="descriptionAnim">Business intelligence that helps you understand your customers' behavior, and use that data to target effectively and increase sales.</p>
                                     </div>
@@ -135,7 +135,7 @@ export default class Finish extends Component {
                                     <div className="columns large-6">
                                         <img src="/images/imge_9Progress.png" alt=""/>
                                     </div>
-                                    <div className="columns large-6">
+                                    <div className="columns large-6 featureExplained">
                                         <p className="subtitleAnim">Integration & Connectivity</p>
                                         <p className="descriptionAnim">Seamless connectivity with your POS and other services allows for multiple closing-the-loop options to capture relevant customer data and transactions.</p>
                                     </div>
@@ -153,20 +153,20 @@ export default class Finish extends Component {
                         </div>
                     </div>
                     <div id="part2">
-                        <div className="row">
-                            <div className="columns large-10 large-centered">
-                                 <p className="scanExplain">Scan the QR code to download Como Preview app.<br/>Open your Como Preview app login using your Email and Password</p>
-                            </div>
-                        </div>
                         <div className="row large-collapse">
-                            <div className="large-3 large-offset-1 columns">
+                            <div className="large-2 large-offset-2 columns">
                                 <QRCode text={this.state.data.linkApple} />
                             </div>
-                            <div className="code large-7 end columns">
+                            <div className="code large-6 end columns">
                                 <p>Email:</p>
                                 <p className="description codeDescription">{this.props.email}</p>
                                 <p>Password:</p>
                                 <p className="description codeDescription">{this.props.code}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="columns large-10 large-centered">
+                                 <p className="scanExplain">Scan the QR code to download Como Preview app.<br/>Open your Como Preview app login using your Email and Password</p>
                             </div>
                         </div>
                         <div className="row text-center">

@@ -112,6 +112,13 @@ class Father extends Component {
                 imageOnScreen:"",
                 selectedFromGalleryImageId:0,
                 thumbGoTo:0,
+                loyaltyImages : {
+                    gift: {archive: null,category: "0",image_group: null,image_id: Math.floor(Math.random() * (900000) + 10000),location_id: "",public: "0", resource_id: null, resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/giftImg.jpg"},
+                    punch: {archive: null, category: "0", image_group: null, image_id: Math.floor(Math.random() * (900000) + 10000), location_id: "", public: "0", resource_id: null, resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/pointsImg.jpg"},
+                    points: {archive: null, category: "0", image_group: null, image_id: Math.floor(Math.random() * (900000) + 10000), location_id: "", public: "0", resource_id: null, resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/pointsImg.jpg"}
+                },
+                loyaltyImageCached: {},
+                loyaltyFeatureInWork:"",
                 action: "initial",
                 bgInterval: "",
                 progressBarInterval: "",
@@ -154,11 +161,13 @@ class Father extends Component {
     }
 
     _setAnimationItem(){
-        jQuery(".finishPart.first").addClass("prev").animate({"left":"-100%", opacity:0},400,"easeOutCubic");
+        jQuery(".finishPart.first").addClass("prev").animate({"left":"-100%", opacity:0},700,"easeOutCubic");
         let nextElem = jQuery(".finishPart.first").next().length > 0 ? jQuery(".finishPart.first").next() : jQuery(".finishPart:first-child");
-        nextElem.animate({"left":0, opacity:1},700,"easeOutCubic", function(){
+        nextElem.css("left", "100%;").css("opacity","0");
+        nextElem.animate({"left":0,opacity:1},700,"easeOutCubic", function(){
+            nextElem.find(".featureExplained").animate({opacity:1}, 400 ,"easeOutCubic");
             nextElem.addClass("first");
-            jQuery(".prev").removeClass("first").removeClass("prev").css("left","100%");
+            jQuery(".prev").removeClass("first").removeClass("prev").css("left","100%").find(".featureExplained").css("opacity",0);
         });
     }
 
@@ -1027,11 +1036,11 @@ class Father extends Component {
                     setTimeout(function () {
                         _self.state.data.progressBarInterval = setInterval(function () {
                             _self._moveProgressBar(_self);
-                        }, 500);
+                        }, 1000);
                         _self.state.data.marketingInterval = setInterval(function(){
                             _self._setAnimationItem();
-                        },4000);
-                    },500);
+                        },8000);
+                    },1000);
                 });
                 break;
         }
@@ -1101,8 +1110,20 @@ class Father extends Component {
         this.setState({data:this.state.data});
         return;
     }
-    _selectImage(index,imageId,event){
 
+    _onLoyaltyThumbSelect(thumb,event){
+        this.state.data.loyaltyImages[this.state.data.loyaltyFeatureInWork] = thumb;
+        //this.setState({data:this.state.data});
+        jQuery(".loyaltyThumbBorder").removeClass("selected");
+        jQuery(event.target).parents(".loyaltyThumbBorder").addClass("selected");
+    }
+    _onLoyaltyImageClick(feature, currentChosen){
+        this.state.data.loyaltyFeatureInWork = feature;
+        this.state.data.loyaltyImageCached = currentChosen;
+        jQuery(".popupWrap").addClass("show");
+    }
+
+    _selectImage(index,imageId,event){
         if(this.state.data.selectedImages[index].selected == true){
             if(jQuery(".slider").hasClass("show")){
                 jQuery(".slider").removeClass("show");
@@ -1129,8 +1150,9 @@ class Father extends Component {
         this._showSlider();
 
     }
-    _showSlider(){
 
+
+    _showSlider(){
         jQuery(".slider").addClass("show");
         /*check if slider is in view, if not scroll down to it*/
         let visibleSliderHeight = 127;
@@ -1174,6 +1196,7 @@ class Father extends Component {
         jQuery(".downloadAppSection").removeClass("download");
     }
     componentDidMount(){
+        let _self = this;
         this._centerContent = this._centerContent.bind(this);
         //load first page (home)
         if(this.state.data.currentPage == "home") {
@@ -1183,28 +1206,41 @@ class Father extends Component {
 
         window.addEventListener("resize", this._centerContent.bind(this));
         jQuery(".featureBox h2").click(function(){
-            if(jQuery(this).parents(".featureBox").hasClass("show")) {
+            if(jQuery(this).parents(".featureBox").hasClass("show")){
                 jQuery(".featureBox").removeClass("show");
             }else{
                 jQuery(".featureBox").removeClass("show");
-                jQuery(this).parents(".featureBox").addClass("show");
-            }
+                let _self = this;
+                setTimeout(function(){
+                    jQuery(_self).parents(".featureBox").addClass("show");
+                },200)
 
+            }
         });
         jQuery(".phoneHint").on("mouseover",function(){
-            console.log("in");
-            jQuery(this).parents(".featureTopPart").children(".phoneToolTip").css("display","block").removeClass("fadeOut").addClass("fadeIn").one(Constants.animationEnd, function(){
-               // jQuery(this).parents(".featureTopPart").children(".phoneToolTip").css("opacity",1);
-            });
+            jQuery(this).parents(".featureTopPart").children(".phoneToolTip").fadeIn(200);
         });
         jQuery(".phoneHint").on("mouseleave",function(){
-            console.log("out");
-            jQuery(this).parents(".featureTopPart").children(".phoneToolTip").removeClass("fadeIn").addClass("fadeOut").one(Constants.animationEnd, function(){
-                jQuery(this).parents(".featureTopPart").children(".phoneToolTip").css("display","none");
-            });
+            jQuery(this).parents(".featureTopPart").children(".phoneToolTip").fadeOut(200);
         });
 
+        jQuery(".popupWrap").on("click", function(event){
+            let elem = jQuery(event.target);
+            if(elem.hasClass("button")){
+                _self.setState({data:_self.state.data});
+                jQuery(this).removeClass("show");
+            }else if(!elem.hasClass("loyaltyThumbBorder") && !elem.hasClass("loyaltyThumb") && !elem.hasClass("popupMain") && !elem.hasClass("large-12")){
+                _self.state.data.loyaltyImages[_self.state.data.loyaltyFeatureInWork] = _self.state.data.loyaltyImageCached;
+                _self.setState({data:_self.state.data});
+                jQuery(this).removeClass("show");
+            }
+            jQuery(".loyaltyThumbBorder").removeClass("selected");
+        });
+        let popupTop = (jQuery(window).height() - parseInt(jQuery(".popup").css("height")))/2;
+        if(popupTop < 0) popoupTop = 0;
+        jQuery(".popup").css("top", popupTop);
     }
+
     _switchPageDev(step){
         this.state.data.currentPage = step;
         if(step == "step2"){
@@ -1216,7 +1252,7 @@ class Father extends Component {
     render(){
         return(
             <div className="allPagesWrap">
-                <div style={{display:"none",position:"fixed", top: "20px", left: "2px",backgroundColor:"pink", width:"100px", height:"75px",zIndex:"9"}}>
+                <div style={{display:"block",position:"fixed", top: "20px", left: "2px",backgroundColor:"pink", width:"100px", height:"75px",zIndex:"9"}}>
                     <div style={{borderBottom: "solid 1px white", cursor:"pointer"}} onClick={this._switchPageDev.bind(this, "step1")}>Go to Step 1</div>
                     <div style={{borderBottom: "solid 1px white", cursor:"pointer"}} onClick={this._switchPageDev.bind(this, "step2")}>Go to Step 2</div>
                     <div style={{borderBottom: "solid 1px white", cursor:"pointer"}} onClick={this._switchPageDev.bind(this, "step3")}>Go to Step 3</div>
@@ -1284,6 +1320,13 @@ class Father extends Component {
                     setData = {this._setData}
                     handleBtnClick = {this._handleBtnClick}
                     areaCodeOptions = {Constants.areaCodeOptions}
+                    loyaltyImages = {this.state.data.loyaltyImages}
+                    thumbs = {this.state.data.allImages}
+                    defaultThumbs = {this.state.data.defaultImages}
+                    onThumbSelect = {this._onLoyaltyThumbSelect.bind(this)}
+                    loyaltyFeatureInWork = {this.state.data.loyaltyFeatureInWork}
+                    onLoyaltyImageClick = {this._onLoyaltyImageClick.bind(this)}
+
                 />
                 <Step5  phoneColors = {this.state.data.phoneColors} handleBtnClick = {this._handleBtnClick}/>
                 <Finish handleBtnClick = {this._handleBtnClick}

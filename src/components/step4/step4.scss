@@ -9,9 +9,9 @@
   }
   h2{font-weight:400;font-size:rem-calc(18);margin-bottom:0;position:relative;display:inline-block;
     .hint{color:$placeholder-color;}
-    &:before{content:" ";display:block;width:rem-calc(28);height:rem-calc(28);position:relative;top:5px;float:left;margin-right:rem-calc(10);background-image:url("../../styles/main/images/sprite-phase2.png");background-repeat:no-repeat;background-position:-64px 0px;cursor:pointer;z-index:1;}
+    &:before{content:" ";display:block;width:rem-calc(28);height:rem-calc(28);position:relative;top:2px;float:left;margin-right:rem-calc(10);background-image:url("../../styles/main/images/sprite-phase2.png");background-repeat:no-repeat;background-position:-64px 0px;cursor:pointer;z-index:1;}
   }
-  .phoneHint{display:inline-block;height:rem-calc(23);width:rem-calc(12);margin-left:rem-calc(7);position:relative;top:-2px;background-image:url("../../styles/main/images/sprite-phase2.png");background-repeat:no-repeat;background-position:0px -20px;cursor:pointer;z-index:1;}
+  .phoneHint{display:inline-block;height:rem-calc(23);width:rem-calc(12);margin-left:rem-calc(12);position:relative;top:-2px;background-image:url("../../styles/main/images/sprite-phase2.png");background-repeat:no-repeat;background-position:0px -20px;cursor:pointer;z-index:1;}
   .featureBox{margin-bottom:rem-calc(20);position:relative;}
   .featureBox .featureDetails{max-height:0px;overflow:hidden;transition:all .3s ease-in-out;}
   .featureBox.show{
@@ -19,7 +19,14 @@
     h2:before{background-position:-64px -28px;}
   }
 
-  .featureImg{margin-top:rem-calc(40);max-width:rem-calc(170);padding:0;}
+  .featureImg{margin-top:rem-calc(40);max-width:rem-calc(170);padding:0;width:rem-calc(170);height:rem-calc(170);background-repeat:no-repeat;background-position: center center;background-size:cover;
+    &:hover{
+      .blanket{background-color:rgba(0,0,0,0.5);background-image:url("../../styles/main/images/ic_edit.png");background-repeat:no-repeat;background-position:center center;
+    }
+  }
+  }
+
+
   textarea{height:rem-calc(80);}
   .titleWrap{margin-bottom:rem-calc(40);}
   .featureBoxesWrap{margin-bottom:rem-calc(40);}
@@ -38,7 +45,7 @@
   .arrow_box {
    /*position: relative;*/
     background: #f1f1f1;
-    border: 1px solid #c9c9c9;
+    border: 1px solid #c9c9c9;box-shadow: rgba(0,0,0,0.2) 2px 2px 5px;
   }
   .arrow_box:after, .arrow_box:before {
     right: 100%;
@@ -64,7 +71,31 @@
     margin-top: -16px;
   }
 }
+.popupWrap{position:fixed;width:100%;height:100%;overflow: hidden;background-color:rgba(0,0,0,0.5);z-index:-1;opacity:0;transition:all 0.2s;
+  &.show{opacity:1;z-index:55;}
+}
 
+.popup{position:relative;margin:0 auto; width:100%;max-width:rem-calc(562);background-color:$pure-white;border-radius:5px;}
+.popupOutline > div{height:rem-calc(80);line-height:rem-calc(80);font-size:rem-calc(22);border-bottom:solid 1px $placeholder-color-light;
+  .closeIcon{display:block;float:right;width:20px;height:20px;background-image:url("../../styles/main/images/sprite-phase2.png");background-repeat:no-repeat;background-position:0 0;position:relative;top:rem-calc(30);right:rem-calc(15);cursor:pointer;
+    &:hover{opacity:1;}
+  }
+}
+.popupOutline.bottom > div {border-bottom:none;border-top:solid 1px $placeholder-color-light;}
+.popupMain{padding:rem-calc(50) 0 rem-calc(10);height:rem-calc(502);overflow:scroll;}
+.loyaltyThumbWrap{margin-bottom:rem-calc(40);
+  .loyaltyThumbBorder{margin: 0 auto;width:rem-calc(102)!important;height:rem-calc(102)!important;background-color:$pure-white;width:rem-calc(88);height:rem-calc(88);padding:3px;border-radius:5px;border:solid 4px $pure-white;transition: all .2s;opacity:0.85;
+    &.selected{border:solid 4px $border-blue;
+      .loyaltyThumb{opacity:1;}
+    }
+    &:hover{
+      .loyaltyThumb{opacity:1;}
+    }
+    .loyaltyThumb{width:rem-calc(88);height:rem-calc(88);background-repeat:no-repeat; background-position:center center;background-size:cover;border-radius:3px; cursor:pointer;opacity:.85;transition:opacity .2s;}
+  }
+
+}
+.popupStyle button{border-radius:7px;font-size:rem-calc(18);text-transform:uppercase;font-weight:300;}
 @media only screen and (max-width: 800px) {
   h2:after{display:none;}
 }

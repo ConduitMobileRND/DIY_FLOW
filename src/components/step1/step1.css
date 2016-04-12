@@ -19,6 +19,11 @@
   #step1.pageWrap select {
     height: 2.5rem;
     line-height: 1.375rem; }
+  #step1.pageWrap textarea {
+    height: 4.375rem; }
+  #step1.pageWrap .column, #step1.pageWrap .columns {
+    padding-left: 0.46875rem;
+    padding-right: 0.46875rem; }
 
 form {
   margin-bottom: 1.6875rem; }

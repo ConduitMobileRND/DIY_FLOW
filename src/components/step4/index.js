@@ -21,10 +21,45 @@ export default class Step4 extends Component {
     _handleBtnClick() {
         this.props.handleBtnClick(this.refs, "setLoyalty", event);
     }
-
+    _createThumb(thumb, index, thumbs){
+        if(typeof thumb == "undefined") return;
+        let className = "loyaltyThumbWrap columns large-3 ";
+        if(index == thumbs.length - 1) className += "end";
+        let urlStr = "url('"+thumb.url+"')";
+        return(
+            <div className={className} key={index}>
+                <div className="loyaltyThumbBorder">
+                    <div className="loyaltyThumb" style={{backgroundImage:urlStr}} onClick={this.props.onThumbSelect.bind(null,thumb)}></div>
+                </div>
+            </div>
+        )
+    }
     render() {
+
+        let giftImg = "url('"+ this.props.loyaltyImages.gift.url +"')";
+        let punchImg = "url('"+ this.props.loyaltyImages.punch.url +"')";
+        let pointsImg = "url('"+ this.props.loyaltyImages.points.url +"')";
+        let thumbs = this.props.thumbs.length > 0 ? this.props.thumbs : this.props.defaultThumbs;
         return(
             <div id="step4" className="pageWrap">
+                <div className="popupWrap">
+                 <div className="popup">
+                    <div className="row popupOutline">
+                        <div className="columns large-12">Select image <i className="closeIcon"></i></div>
+                    </div>
+                     <div className="row popupMain">
+                         {thumbs.map(this._createThumb, this, thumbs)}
+                     </div>
+                     <div className="row popupOutline bottom">
+                         <div className="columns large-12">
+                             <Button foundationClasses="large-4 large-offset-8 columns medium-4 medium-offset-4 popupStyle" buttonSize="large" btnText="DONE"/>
+                         </div>
+                     </div>
+                 </div>
+
+                </div>
+
+
                 <div className="absolute pagination"><span className="huge">4</span><span className="tiny">/5</span></div>
                 <div className="vAlign">
                     <div className="row">
@@ -74,7 +109,9 @@ export default class Step4 extends Component {
                                               errorMsg="Please provide a valid description"
                                               value={this.props.form.giftDescription.value}/>
                                     </div>
-                                    <img src="/images/giftImg.jpg" className="featureImg columns large-3"/>
+                                    <div className="innerWrap columns large-3 featureImg" style={{backgroundImage:giftImg}} onClick={this.props.onLoyaltyImageClick.bind(null,"gift", this.props.loyaltyImages.gift)}>
+                                        <div className="blanket"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="featureBox">
@@ -134,7 +171,13 @@ export default class Step4 extends Component {
                                             placeholder=""
                                             value={this.props.form.punchNumber.value}/>
                                     </div>
-                                    <img src="/images/pointsImg.jpg" className="featureImg columns large-3"/>
+
+
+
+
+                                    <div className="innerWrap columns large-3 featureImg" style={{backgroundImage:punchImg}}  onClick={this.props.onLoyaltyImageClick.bind(null,"punch", this.props.loyaltyImages.punch)}>
+                                        <div className="blanket"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="featureBox">
@@ -194,7 +237,9 @@ export default class Step4 extends Component {
                                             placeholder=""
                                             value={this.props.form.pointsNumber.value}/>
                                     </div>
-                                    <img src="/images/pointsImg.jpg" className="featureImg columns large-3"/>
+                                    <div className="innerWrap columns large-3 featureImg" style={{backgroundImage:pointsImg}} onClick={this.props.onLoyaltyImageClick.bind(null,"points", this.props.loyaltyImages.points)}>
+                                        <div className="blanket"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -205,6 +250,7 @@ export default class Step4 extends Component {
                         </div>
                     </div>
                 </div>
+
             </div>
         )
     }
@@ -213,5 +259,11 @@ Step4.propTypes = {
     handleValidation: React.PropTypes.func.isRequired,
     form:React.PropTypes.object.isRequired,
     setData: React.PropTypes.func.isRequired,
-    handleBtnClick: React.PropTypes.func.isRequired
+    handleBtnClick: React.PropTypes.func.isRequired,
+    loyaltyImages: React.PropTypes.object.isRequired,
+    thumbs: React.PropTypes.array.isRequired,
+    defaultThumbs: React.PropTypes.array.isRequired,
+    onThumbSelect: React.PropTypes.func.isRequired,
+    onLoyaltyImageClick: React.PropTypes.func.isRequired
+
 };

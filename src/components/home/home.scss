@@ -10,7 +10,7 @@ body button.button{width: 100%;  margin: 0;  padding: rem-calc(8) 1rem;
 h1, p{color:$pure-white;}
 .home form{margin-bottom:rem-calc(13);}
 .description{margin:0 0 rem-calc(47) 0;}
-.home input[type='email']{border-left:solid 1px $placeholder-color;}
+.home input[type='email']{border-left:solid 1px $placeholder-color-light;}
 .terms{font-size:$rem-base;color:$grey;display: inline-block;position:relative;top:rem-calc(1px);}
 .terms:hover{text-decoration:underline;color:$grey;}
 .btnWrap button.borderRight{    border-bottom-right-radius: 3px;  border-top-right-radius: 3px;  border-bottom-left-radius: 0px;  border-top-left-radius: 0px;}

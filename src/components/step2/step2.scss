@@ -17,8 +17,8 @@
 }
 .paletteSchemes{padding-top:rem-calc(42);}
 .h2-text{color:$black; margin:rem-calc(30) 0 rem-calc(20);}
-.choiceBtn{width:30px;height:30px;background-color:$pure-white;border:solid 1px rgba(0,0,0,0.1);border-radius:50%; margin: rem-calc(15) 0 0 rem-calc(24);cursor:pointer;background-image:url("../../styles/main/images/check_on_copy_transparent.png");background-repeat:no-repeat;background-position:center center;}
-.selected .choiceBtn{background-color:$border-blue;}
+.choiceBtn{width:30px;height:30px;background-color:$pure-white;border:solid 1px rgba(0,0,0,0.1);border-radius:50%; margin: rem-calc(15) 0 0 rem-calc(24);cursor:pointer;}
+.selected .choiceBtn{background-color:$border-blue;background-image:url("../../styles/main/images/check_on_copy_transparent.png");background-repeat:no-repeat;background-position:center center;}
 #step2{
   .phone{background-size:100%;}
 }

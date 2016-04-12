@@ -152,7 +152,12 @@
 
 .thumb {
   margin: 0 auto;
-  border-radius: 3px; }
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: all 0.2s; }
+  .thumb:hover {
+    opacity: 1; }
 
 .thumbWrap.slick-slide {
   position: relative;
@@ -192,10 +197,15 @@
   animation-duration: 0.3s; }
   .imageWrap.alwaysVisible {
     opacity: 1 !important; }
-  .imageWrap:hover .blanket {
-    background-color: rgba(0, 0, 0, 0.5); }
-  .imageWrap:hover input {
-    background-color: #f1f1f1; }
+  .imageWrap:hover {
+    transition: all .2s; }
+    .imageWrap:hover .blanket {
+      background-color: rgba(0, 0, 0, 0.5);
+      background-image: url("../../styles/main/images/ic_edit.png");
+      background-repeat: no-repeat;
+      background-position: center center; }
+    .imageWrap:hover input {
+      background-color: #f1f1f1; }
   .imageWrap .innerWrap {
     position: relative;
     height: 8.125rem;

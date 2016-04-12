@@ -3,14 +3,13 @@
   background-color: #f1f1f1; }
 
 #step2.pageWrap {
-  background-color: #ffffff; }
+  background-color: #f1f1f1; }
   #step2.pageWrap .vAlign {
-    background-color: #ffffff; }
+    background-color: #f1f1f1; }
   #step2.pageWrap h1 {
-    margin-bottom: 2.8125rem;
-    color: #08b9e3; }
+    margin-bottom: 0.125rem;
+    color: #282f3a; }
   #step2.pageWrap .pagination {
-    color: #08b9e3;
     right: -198px;
     line-height: 0.82; }
     #step2.pageWrap .pagination .huge {
@@ -30,25 +29,45 @@
     border: solid 3px #08b9e3; }
 
 .palette {
-  position: relative;
-  border-radius: 50%;
-  border: solid 5px #fefefe;
-  width: 4.5rem;
-  height: 4.5rem;
-  overflow: hidden;
-  cursor: pointer; }
+  overflow: hidden; }
   .palette .color {
     float: left;
-    width: 33.3%;
-    height: 100%;
-    border-left: solid 1px rgba(255, 255, 255, 0.1);
-    border-right: solid 1px rgba(255, 255, 255, 0.1); }
+    width: 24px;
+    height: 24px;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    margin: 0 0.1875rem 0 0; }
 
 .paletteSchemes {
   padding-top: 2.625rem; }
 
+.h2-text {
+  color: #282f3a;
+  margin: 1.875rem 0 1.25rem; }
+
+.choiceBtn {
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  margin: 0.9375rem 0 0 1.5rem;
+  cursor: pointer; }
+
+.selected .choiceBtn {
+  background-color: #08b9e3;
+  background-image: url("../../styles/main/images/check_on_copy_transparent.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
 #step2 .phone {
   background-size: 100%; }
+
+.layoutsWrap {
+  margin-bottom: 1.25rem; }
+
+.demoWrap {
+  padding-top: 12%; }
 
 @media (max-width: 640px) {
   .paletteSchemes {

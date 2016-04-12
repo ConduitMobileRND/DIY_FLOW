@@ -3,6 +3,9 @@ import InfoIcon from './icons/infoIcon';
 import RewardsIcon from './icons/rewardsIcon';
 import FavouritesIcon from './icons/favouritesIcon';
 import FbIcon from './icons/fbIcon';
+import PunchcardIcon from './icons/punchcardIcon';
+import PointsIcon from './icons/pointsIcon';
+import WebSiteIcon from './icons/website';
 
 export default class DemoPhoneLayout extends Component {
     constructor(props) {
@@ -28,14 +31,15 @@ export default class DemoPhoneLayout extends Component {
                         <div className="bgWrap" style={{backgroundColor:this.props.phoneBodyBgColor}}>
                             <div className="iconsRow">
                                 <div className="iconColumnWrap" style={{float:"left"}}>
-                                    <div className="iconColumn" ref="iconBg">
-                                        <InfoIcon fillColor={this.props.iconsColor}/>
+                                    <div className="iconColumn">
+                                        <RewardsIcon fillColor={this.props.iconsColor}/>
                                     </div>
                                     <div className="iconBorder"></div>
                                 </div>
                                 <div className="iconColumnWrap" style={{float:"right"}}>
                                     <div className="iconColumn">
-                                        <RewardsIcon fillColor={this.props.iconsColor}/>
+
+                                        <FavouritesIcon fillColor={this.props.iconsColor}/>
                                     </div>
                                     <div className="iconBorder"></div>
                                 </div>
@@ -47,7 +51,8 @@ export default class DemoPhoneLayout extends Component {
                             <div className="iconsRow">
                                 <div className="iconColumnWrap" style={{float:"left"}}>
                                     <div className="iconColumn">
-                                        <FavouritesIcon fillColor={this.props.iconsColor}/>
+
+                                        <InfoIcon fillColor={this.props.iconsColor}/>
                                     </div>
                                     <div className="iconBorder"></div>
                                 </div>
@@ -72,25 +77,29 @@ export default class DemoPhoneLayout extends Component {
                         <div className="iconsRow">
                             <div className="iconColumnWrap one-4th" style={{float:"left"}}>
                                 <div className="iconColumn">
-                                    <FavouritesIcon fillColor={this.props.iconsColor}/>
+                                    <RewardsIcon fillColor={this.props.iconsColor}/>
+
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
                             <div className="iconColumnWrap one-4th" style={{float:"left"}}>
                                 <div className="iconColumn">
-                                    <FbIcon fillColor={this.props.iconsColor}/>
+                                    <FavouritesIcon fillColor={this.props.iconsColor}/>
+
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
-                            <div className="iconColumnWrap one-4th" style={{float:"right"}}>
-                                <div className="iconColumn" ref="iconBg">
+                            <div className="iconColumnWrap one-4th" style={{float:"left"}}>
+                                <div className="iconColumn">
+
                                     <InfoIcon fillColor={this.props.iconsColor}/>
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
                             <div className="iconColumnWrap one-4th" style={{float:"right"}}>
                                 <div className="iconColumn">
-                                    <RewardsIcon fillColor={this.props.iconsColor}/>
+                                    <FbIcon fillColor={this.props.iconsColor}/>
+
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
@@ -104,7 +113,7 @@ export default class DemoPhoneLayout extends Component {
                 return (
                     <div className="bgWrap" style={{backgroundColor:this.props.phoneBodyBgColor}}>
                         <div className="iconsRow">
-                            <div className="iconColumnWrap one-3rd" style={{float:"right"}}>
+                            <div className="iconColumnWrap one-3rd" style={{float:"left"}}>
                                 <div className="iconColumn">
                                     <RewardsIcon fillColor={this.props.iconsColor}/>
                                 </div>
@@ -112,13 +121,13 @@ export default class DemoPhoneLayout extends Component {
                             </div>
                             <div className="iconColumnWrap one-3rd" style={{float:"left"}}>
                                 <div className="iconColumn" ref="iconBg">
-                                    <InfoIcon fillColor={this.props.iconsColor}/>
+                                    <PunchcardIcon fillColor={this.props.iconsColor}/>
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
                             <div className="iconColumnWrap one-3rd" style={{float:"right"}}>
                                 <div className="iconColumn">
-                                    <RewardsIcon fillColor={this.props.iconsColor}/>
+                                    <PointsIcon fillColor={this.props.iconsColor}/>
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
@@ -130,13 +139,13 @@ export default class DemoPhoneLayout extends Component {
                         <div className="iconsRow">
                             <div className="iconColumnWrap one-3rd" style={{float:"left"}}>
                                 <div className="iconColumn">
-                                    <FavouritesIcon fillColor={this.props.iconsColor}/>
+                                    <WebSiteIcon fillColor={this.props.iconsColor}/>
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>
                             <div className="iconColumnWrap one-3rd" style={{float:"left"}}>
                                 <div className="iconColumn">
-                                    <RewardsIcon fillColor={this.props.iconsColor}/>
+                                    <InfoIcon fillColor={this.props.iconsColor}/>
                                 </div>
                                 <div className="iconBorder"></div>
                             </div>

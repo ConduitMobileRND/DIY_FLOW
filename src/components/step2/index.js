@@ -62,9 +62,9 @@ export default class Step2 extends Component {
         let className = "columns large-3" + selected + specificColumnClass;
         let imgSrc = "images/imge_layout"+ (index+1) + ".png";
         return(
-            <div className={className} key={index}>
-                <img src={imgSrc}/>
-                <div className="choiceBtn" onClick={this.props.onLayoutClick.bind(null,layout)}></div>
+            <div className={className} key={index} onClick={this.props.onLayoutClick.bind(null,layout)}>
+                <img className="cursorPointer" src={imgSrc}/>
+                <div className="choiceBtn cursorPointer"></div>
             </div>
         )
 
