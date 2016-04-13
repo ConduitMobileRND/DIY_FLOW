@@ -31,15 +31,15 @@ export default class Step5 extends Component {
               <div className="vAlign">
                     <div className="row">
                         <div className="columns large-10 large-offset-1 titleWrap">
-                            <h1 className="businessTitle">Publish your app</h1>
-                            <p className="subtitle">Explanation text about these images.</p>
+                            <h1 className="businessTitle">Your app will also include these great features</h1>
+
                         </div><div className="clearfix"></div>
                     </div>
                     <div className="row">
-                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Info" deviceImageSrc="images/imge_device_info.png" iconName="infoIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Providing Information"/>
-                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Rewards" deviceImageSrc="images/imge_device_rewards.png" iconName="rewardsIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Providing Information"/>
-                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Favourites" deviceImageSrc="images/imge_device_favourites.png" iconName="favouritesIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Providing Information"/>
-                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Facebook" deviceImageSrc="images/imge_device_fb.png" iconName="fbIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Providing Information"/>
+                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Info" deviceImageSrc="images/imge_device_info.png" iconName="infoIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Provide useful information on your business"/>
+                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Rewards" deviceImageSrc="images/imge_device_rewards.png" iconName="rewardsIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Reward your loyal customers"/>
+                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Favourites" deviceImageSrc="images/imge_device_favourites.png" iconName="favouritesIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Update customers on special events, discounts, and more."/>
+                        <PhoneColumn wrapClasses="phoneWrap columns large-3 text-center" feature="Facebook" deviceImageSrc="images/imge_device_fb.png" iconName="fbIcon" iconBgColor={this.props.phoneColors.iconsColor} text="Stay connect to customers with social media"/>
                         <div className="clearfix"/>
                     </div>
                     <div className="nextBtn">
@@ -49,7 +49,7 @@ export default class Step5 extends Component {
                     </div>
                     <div className="nextBtn">
                         <div className="row">
-                            <Button foundationClasses="large-4 columns large-offset-4" buttonSize="large" btnText="Publish" onClick={this._handleBtnClick}/>
+                            <Button foundationClasses="large-4 columns large-offset-4" buttonSize="large" btnText="Make my app!" onClick={this._handleBtnClick}/>
                         </div>
                     </div>
                     <div className="clearfix"></div>

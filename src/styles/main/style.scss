@@ -356,13 +356,13 @@ body textarea{height:rem-calc(120);    line-height: 1.5;  padding-top: 16px;}
 .phone{background-image:url("images/imge_page_selectcolors_deviceflat.png");background-repeat:no-repeat;max-width:rem-calc(460);margin:0 auto;height:0;    padding-bottom: 160%;position:relative;background-size:cover;
   .inner{width:73.5%;max-width:rem-calc(319);border:solid 2px rgba(0,0,0,0.3);margin:0 auto; position:relative; top:rem-calc(42);border-radius:3px;
     .topPas{width:100%;height:rem-calc(43);padding-top:rem-calc(17); border-bottom: $gentle-border;
-      .dynamic{width:50%;height:rem-calc(10);margin:0 auto;border-radius:10px;background-color:rgba(255,255,255,0.5);}
+      .dynamic{width:50%;height:rem-calc(10);margin:0 auto;border-radius:10px;text-align:center;text-transform:uppercase;font-weight:600;}
     }
   }
 }
 .phone.bright .inner {
   .topPas {
-      .dynamic {background-color: rgba(0, 0, 0, 0.5);    }
+      .dynamic {}
   }
 }
 .longImgLayout{

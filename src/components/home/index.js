@@ -41,8 +41,7 @@ render() {
                   </div>
                      <div className="text-center vAlign">
                        <div className="columns large-12">
-                           <h1>Your Customer Loyalty Management Mobile App.</h1>
-                           <p className="description">Branded mobile app with built-in engagement and rewards features.<br/> We provide the tips and guidance. You take control.</p>
+                           <h1>Let's extend your loyalty solution and build your branded mobile app!</h1>
                            <form>
                                <div className="row collapse">
                                    <Input className="borderLeft" foundationClasses="large-5 medium-5 columns" ref= "store" name="store" stateId="store" placeholder="Store name" isValid={this.props.form.store.isValid} type="text" value={this.props.form.store.value} onChange={this.props.setData.bind(null, this.props.stateId)} onFocus={this.props.onFocus} onBlur={this.props.handleValidation.bind(null, this.props)} onKeyUp={this.props.handleValidation.bind(null, this.props)} errorMsg={this.props.form.errorMessages.store} isRequired='true' validType='text'/>

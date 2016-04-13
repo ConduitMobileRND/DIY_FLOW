@@ -55,7 +55,7 @@ export default class Step2 extends Component {
 
     _createLayoutRow(layout, index){
         if (typeof layout == "undefined") return;
-        let selected = layout == this.props.selectedLayout ? " selected" : "";
+        let selected = layout.id == this.props.selectedLayout ? " selected" : "";
         let specificColumnClass = "";
         if(index == 0) specificColumnClass = " no-pad-left";
         if(index == 2) specificColumnClass = " end";
@@ -165,11 +165,10 @@ export default class Step2 extends Component {
                     <div className="row">
                         <div className="columns large-8">
                             <div className="row">
-                                <h1 className="businessTitle">Choose layout and color</h1>
-                                <p className="subtitle">Personalize your app with your brand colors an unique layout</p>
+                                <h1 className="businessTitle">Choose the colors and design you love</h1>
                             </div>
                             <div className="row layoutsWrap">
-                                <p className="h2-text">Layouts:</p>
+                                <p className="h2-text">Design:</p>
                                 {this.props.layouts.map(this._createLayoutRow, this)}
                             </div>
                             <div className="row">
@@ -181,7 +180,7 @@ export default class Step2 extends Component {
                             <div className={wrapClass}>
                                 <div className="inner">
                                     <div className="topPas" style={{backgroundColor: this.props.phoneColors.upperColor}}>
-                                        <div className="dynamic"></div>
+                                        <div className="dynamic" style={{color:this.props.phoneColors.pageHeaderTextColor}}>Welcome</div>
                                     </div>
                                     <DemoPhoneLayout origin="getLayout" bgImage = "images/imge_placeholder.png" iconsColor = {this.props.phoneColors.iconsColor} phoneBodyBgColor = {phoneBodyBgColor} layout={this.props.selectedLayout}/>
                                 </div>
@@ -212,5 +211,5 @@ Step2.propTypes = {
     paletteSelected: React.PropTypes.bool.isRequired,
     onLayoutClick: React.PropTypes.func.isRequired,
     layouts: React.PropTypes.array.isRequired,
-    selectedLayout: React.PropTypes.string.isRequired
+    selectedLayout: React.PropTypes.number.isRequired
 }

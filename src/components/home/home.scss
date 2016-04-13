@@ -8,7 +8,7 @@ body button.button{width: 100%;  margin: 0;  padding: rem-calc(8) 1rem;
 }
 .logo{padding:rem-calc(40);position:absolute;top:0;left:0;  }
 h1, p{color:$pure-white;}
-.home form{margin-bottom:rem-calc(13);}
+.home form{margin-bottom:rem-calc(50);}
 .description{margin:0 0 rem-calc(47) 0;}
 .home input[type='email']{border-left:solid 1px $placeholder-color-light;}
 .terms{font-size:$rem-base;color:$grey;display: inline-block;position:relative;top:rem-calc(1px);}
@@ -17,3 +17,4 @@ h1, p{color:$pure-white;}
 .home .description{color:$pure-white; font-size:rem-calc(18);margin-bottom:rem-calc(33);}
 
 .bgWrapDiv > div{background-size:cover;position:absolute;width:100%;height:100%;opacity:0;}
+body .home h1{max-width:rem-calc(790);margin:0 auto;margin-bottom:rem-calc(40);}

@@ -58,19 +58,19 @@ export default class Step3 extends Component {
                 <div className="vAlign">
                     <div className="row">
                         <div className="columns large-10 titleWrap">
-                            <h1 className="businessTitle">Welcome messages</h1>
+                            <h1 className="businessTitle">Greet your customers</h1>
                         </div>
                     </div>
                     <div className="topPhone">
                         <div className="row">
-                            <div className="columns large-4">
-                                <p className="subtitle">Edit your welcome messages to attract and engage users, showcasing your delicious food, great products, happy customers etc.</p>
+                            <div className="columns large-6">
+                                <p className="subtitle">Add an engaging image to your welcome note and make your customers feel at home.</p>
                             </div>
-                            <div className="columns large-4 end large-offset-3">
+                            <div className="columns large-4 end large-offset-1">
                                 <div className={wrapClass}>
                                     <div className="inner">
                                         <div className="topPas" style={{backgroundColor: this.props.phoneColors.upperColor}}>
-                                            <div className="dynamic"></div>
+                                            <div className="dynamic" style={{color:this.props.phoneColors.pageHeaderTextColor}}>Welcome</div>
                                         </div>
                                         <DemoPhoneLayout  origin="getImages" bgImage = {this.props.imageOnScreen} iconsColor = {this.props.phoneColors.iconsColor} phoneBodyBgColor = {phoneBodyBgColor} layout={this.props.selectedLayout}/>
 
@@ -109,5 +109,5 @@ Step3.propTypes = {
     selectImage: React.PropTypes.func.isRequired,
     onTextInputBlur: React.PropTypes.func.isRequired,
     handleBtnClick: React.PropTypes.func.isRequired,
-    selectedLayout: React.PropTypes.string.isRequired
+    selectedLayout: React.PropTypes.number.isRequired
 }

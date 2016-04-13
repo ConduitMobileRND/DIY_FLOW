@@ -40,6 +40,7 @@ export default class Step4 extends Component {
         let punchImg = "url('"+ this.props.loyaltyImages.punch.url +"')";
         let pointsImg = "url('"+ this.props.loyaltyImages.points.url +"')";
         let thumbs = this.props.thumbs.length > 0 ? this.props.thumbs : this.props.defaultThumbs;
+        let giftDescription = "Welcome to the "+this.props.form.store.value+" loyalty club";
         return(
             <div id="step4" className="pageWrap">
                 <div className="popupWrap">
@@ -64,12 +65,11 @@ export default class Step4 extends Component {
                 <div className="vAlign">
                     <div className="row">
                         <div className="columns large-12 titleWrap">
-                            <h1 className="businessTitle">Configure your loyalty features</h1>
-                            <p className="subtitle">Configure these loyalty features to match you business type. Set up the right name, description and image that will appear on your loyalty mobile app.</p>
+                            <h1 className="businessTitle">Create your own loyalty and rewards program!</h1>
                         </div><div className="clearfix"></div>
                         <div className="featureBoxesWrap columns large-12">
                             <div className="featureBox show">
-                                <div className="featureTopPart"><h2>Joining gift <span className="hint">increase engagement</span></h2><div className="phoneHint"></div><div className="clearfix"></div>
+                                <div className="featureTopPart"><h2>Welcome gift <span className="hint">– great way to raise engagement</span></h2><div className="phoneHint"></div><div className="clearfix"></div>
                                     <div className="phoneToolTip arrow_box animated">
                                         <img src="/images/imge_tooltip_gift.png"/>
                                         <span></span>
@@ -90,7 +90,7 @@ export default class Step4 extends Component {
                                             onBlur={this.props.handleValidation}
                                             onKeyUp={this.props.handleValidation}
                                             validType="text"
-                                            errorMsg="Please provide a valid name"
+                                            errorMsg="Please provide a valid gift name"
                                             placeholder=""
                                             value={this.props.form.giftName.value}/>
                                           <Textarea
@@ -107,7 +107,7 @@ export default class Step4 extends Component {
                                               onKeyUp={this.props.handleValidation}
                                               validType="text"
                                               errorMsg="Please provide a valid description"
-                                              value={this.props.form.giftDescription.value}/>
+                                              value={giftDescription}/>
                                     </div>
                                     <div className="innerWrap columns large-3 featureImg" style={{backgroundImage:giftImg}} onClick={this.props.onLoyaltyImageClick.bind(null,"gift", this.props.loyaltyImages.gift)}>
                                         <div className="blanket"></div>
@@ -115,7 +115,7 @@ export default class Step4 extends Component {
                                 </div>
                             </div>
                             <div className="featureBox">
-                                <div className="featureTopPart"><h2>Punch card <span className="hint">bring customers back</span></h2><div className="phoneHint"></div><div className="clearfix"></div>
+                                <div className="featureTopPart"><h2>Punch card <span className="hint">– keep customers coming back</span></h2><div className="phoneHint"></div><div className="clearfix"></div>
                                     <div className="phoneToolTip arrow_box animated">
                                         <img src="/images/imge_tooltip_punchcard.png"/>
                                         <span></span>
@@ -181,7 +181,7 @@ export default class Step4 extends Component {
                                 </div>
                             </div>
                             <div className="featureBox">
-                                <div className="featureTopPart"><h2>Show with points <span className="hint">increase customers shopping cart</span></h2><div className="phoneHint"></div><div className="clearfix"></div>
+                                <div className="featureTopPart"><h2>Earn points and redeem rewards <span className="hint">– drives sales and loyalty</span></h2><div className="phoneHint"></div><div className="clearfix"></div>
                                     <div className="phoneToolTip arrow_box animated">
                                         <img src="/images/imge_tooltip_points.png"/>
                                         <span></span>

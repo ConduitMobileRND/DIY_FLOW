@@ -15,18 +15,19 @@ export default class DemoPhoneLayout extends Component {
     render(){
 
         function getImgStr(layout, origin, image){
-            let bgImage = layout == "MainLocatinoTC-0x4" ? "images/imge_placeholder_long.png" : "images/imge_placeholder.png";
+
+            let bgImage = layout == 191 ? "images/imge_placeholder_long.png" : "images/imge_placeholder.png";
             if(origin == "getImages"){
                 bgImage = image;
             }
-            let wrapHeight = layout == "MainLocatinoTC-0x4" ? "117%" : "70%";
+            let wrapHeight = layout == 191 ? "117%" : "70%";
             return(
                 <div className="imageOnScreen" style={{backgroundImage:"url('"+bgImage+"')", paddingBottom: wrapHeight}}></div>
             )
         }
 
         switch(this.props.layout) {
-            case "MainLocatinoTC-2x0x2":
+            case 184:
                 return (
                         <div className="bgWrap" style={{backgroundColor:this.props.phoneBodyBgColor}}>
                             <div className="iconsRow">
@@ -68,7 +69,7 @@ export default class DemoPhoneLayout extends Component {
                         </div>
                 );
                 break;
-            case "MainLocatinoTC-0x4":
+            case 191:
                 return (
                     <div className="bgWrap longImgLayout" style={{backgroundColor:this.props.phoneBodyBgColor}}>
                         <div className="welcomeImages">
@@ -109,7 +110,7 @@ export default class DemoPhoneLayout extends Component {
                     </div>
                 );
                 break;
-            case "MainLocatinoTC-6x0":
+            case 174:
                 return (
                     <div className="bgWrap" style={{backgroundColor:this.props.phoneBodyBgColor}}>
                         <div className="iconsRow">
@@ -168,7 +169,7 @@ export default class DemoPhoneLayout extends Component {
 DemoPhoneLayout.propTypes = {
     iconsColor: React.PropTypes.string.isRequired,
     phoneBodyBgColor: React.PropTypes.string.isRequired,
-    layout: React.PropTypes.string.isRequired,
+    layout: React.PropTypes.number.isRequired,
     bgImage: React.PropTypes.string.isRequired,
     origin: React.PropTypes.string.isRequired
 }

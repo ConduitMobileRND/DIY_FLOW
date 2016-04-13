@@ -33,12 +33,13 @@ export default class Step1 extends Component {
         }
         let showClass = this.props.show ? " show" : "";
         let pageWrapClasses = "pageWrap " + showClass;
+        let pageTitle = this.props.form.store.value != "" ? 'Tell us  about "'+ this.props.form.store.value +'"' : "Tell us about your business";
                 return (
                     <div id="step1" className={pageWrapClasses} onClick={this.props.onWrapperClick}>
                         <div className="absolute pagination"><span className="huge">1</span><span className="tiny">/5</span></div>
                         <div className="vAlign">
                             <div className="row">
-                                <h1 className="businessTitle columns large-10 large-offset-1">About your business</h1>
+                                <h1 className="businessTitle columns large-10 large-offset-1">{pageTitle}</h1>
                             </div>
                             <form>
                                 <div className="row fbRow">

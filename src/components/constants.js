@@ -33,6 +33,8 @@ Constants.updateBranchUrl = Constants.baseUrl+"/api/private/branches/Update";
 Constants.updateThemeUrl = Constants.baseUrl+"/api/private/uipacks/updateActive";
 Constants.updateImagesUrl = Constants.baseUrl+"/api/private/welcomeMessages/bulkupdate";
 Constants.updateLayoutUrl = Constants.baseUrl+"/api/private/Layouts/SetScreen";
+Constants.updateBlockUrl = Constants.baseUrl+"/api/private/LayoutsBlocks/SetBlock";
+Constants.createTemplateUrl = Constants.baseUrl+"/api/private/assetTemplates/create";
 Constants.publishApp = Constants.baseUrl+"/api/private/StoredRequests/PublishApp";
 Constants.getPublishStatus = Constants.baseUrl+"/api/private/storedRequests/";
 Constants.defaultThemes = {
@@ -70,6 +72,8 @@ Constants.wrapAnimateTime = 300;
 Constants.itemAnimateTime = 200;
 Constants.bgimages = ["images/bgImage1.jpg","images/bgImage2.jpg", "images/bgImage3.jpg","images/bgImage4.jpg"];
 Constants.numberOfLocationsOptions = [{id:"Select",value:"",text:"Select number of locations"},{id:"1",value:"1",text:"1"},{id:"2-10",value:"2-10",text:"2-10"},{id:"11-100",value:"11-100",text:"11-100"},{id:"101+",value:"101+",text:"101+"},{id:"0",value:"0",text:"I don't have a physical location"}];
-Constants.layouts=["MainLocatinoTC-2x0x2","MainLocatinoTC-0x4","MainLocatinoTC-6x0"];
+//Constants.layouts=["MainLocatinoTC-2x0x2","MainLocatinoTC-0x4","MainLocatinoTC-6x0"];
+Constants.layouts = [{id:184, name:"MainLocatinoTC-2x0x2", blocks:[{block_id:119, tile_id:75},{block_id:108, tile_id:74},{block_id:110, tile_id:73},{block_id:1153, tile_id:72}]},{id:191, name:"MainLocatinoTC-0x4", blocks:[{id:1153, tileId:104},{id:108, tileId:103},{id:110, tileId:102},{id:111, tileId:101}]},{id:174, name:"MainLocatinoTC-6x0", blocks:[{id:119, tileId:28},{id:108, tileId:27},{id:1014, tileId:26},{id:113, tileId:25},{id:112, tileId:24},{id:1153, tileId:23}]}];
+
 Constants.loyaltyDefaultImages = {gift: "/images/giftImg.jpg",punch:"/images/pointsImg.jpg",points: "/images/pointsImg.jpg"};
 export default Constants;

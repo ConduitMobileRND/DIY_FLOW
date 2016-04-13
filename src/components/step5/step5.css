@@ -18,9 +18,11 @@
     margin-top: 0.625rem;
     margin-bottom: 0.3125rem; }
   #step5 .description {
-    margin-bottom: 0.8125rem; }
+    margin-bottom: 0.8125rem;
+    min-height: 4.5rem; }
   #step5 .btnWrap button {
-    margin: 2.1875rem auto 1.25rem; }
+    margin: 2.1875rem auto 1.25rem;
+    max-width: 14.375rem; }
   #step5 a.button {
     background-color: #1da7c7;
     border-radius: 5px;

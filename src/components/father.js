@@ -51,13 +51,13 @@ class Father extends Component {
                     options:{},
                     showFBOptions:true,
                     chosenFromFbOptions : false,
-                    giftName:{value:"Joining gift",isValid:true},
-                    giftDescription:{value:"Thank you for joining our loyalty club",isValid:true},
-                    punchName:{value:"Our loyalty punch card",isValid:true},
-                    punchDescription:{value:"Shop Punch & Win",isValid:true},
+                    giftName:{value:"Welcome gift",isValid:true},
+                    giftDescription:{value:"",isValid:true},
+                    punchName:{value:"Wine punch card",isValid:true},
+                    punchDescription:{value:"For every 10 punches, get a free glass of wine!",isValid:true},
                     punchNumber:{value:10,isValid:true},
-                    pointsName:{value:"Item of the week", isValid:true},
-                    pointsDescription:{value:"Our buyers enjoy more",isValid:true},
+                    pointsName:{value:"Earn 25 points with Fettuccine Alfredo", isValid:true},
+                    pointsDescription:{value:"Earn points with every meal",isValid:true},
                     pointsNumber:{value:25, isValid:true}
                 },
                 unresolvedFbPage: false,
@@ -77,14 +77,15 @@ class Father extends Component {
                     upperColor: "white",
                     iconsColor: "white",
                     bgColor:"white",
-                    brightness:"dark"
+                    brightness:"dark",
+                    pageHeaderTextColor:"black"
                 },
                 upperColorsSrc:"",
                 iconsColorSrc:"",
                 selectedScheme:"",
                 paletteSelected: false,
                 layouts:Constants.layouts,
-                selectedLayout: Constants.layouts[0],
+                selectedLayout: Constants.layouts[0].id,
                 CPData:{
                     userId: "",
                     locationId: "",
@@ -113,7 +114,8 @@ class Father extends Component {
                 selectedFromGalleryImageId:0,
                 thumbGoTo:0,
                 loyaltyImages : {
-                    gift: {archive: null,category: "0",image_group: null,image_id: Math.floor(Math.random() * (900000) + 10000),location_id: "",public: "0", resource_id: null, resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/giftImg.jpg"},
+                    gift: {archive: null,category: "0",image_group: null,image_id: Math.floor(Math.random() * (900000) + 10000),location_id: "",public: "0", resource_id: null,
+                        resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/giftImg.jpg"},
                     punch: {archive: null, category: "0", image_group: null, image_id: Math.floor(Math.random() * (900000) + 10000), location_id: "", public: "0", resource_id: null, resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/pointsImg.jpg"},
                     points: {archive: null, category: "0", image_group: null, image_id: Math.floor(Math.random() * (900000) + 10000), location_id: "", public: "0", resource_id: null, resource_version: null, size: "original", source: "default", thumb: null, type: null, url: "http://www.como.com/wp-content/uploads/2016/04/pointsImg.jpg"}
                 },
@@ -134,7 +136,6 @@ class Father extends Component {
                 currentPage: "home"
             }
         };
-
         this._handleRegisterValidation = this._handleRegisterValidation.bind(this);
         this._handleFieldsValidation = this._handleFieldsValidation.bind(this);
         this._setData = this._setData.bind(this);
@@ -441,13 +442,24 @@ class Father extends Component {
                 break;
             case "getImages":
                 let _self = this;
+                let screenId = this.state.data.selectedLayout;
+                let layoutBlocks = _.find(Constants.layouts, {'id': screenId});
+
                 /*send UI theme data*/
                 let selectedKey=_.findIndex(this.state.data.schemes, function(o) { return o.constant_id == _self.state.data.selectedScheme; });
                 let scheme = this.state.data.schemes[selectedKey];
                 sendData = {data:scheme, auth_location_id:this.state.data.CPData.locationId, auth_location_version:0, token:this.state.data.CPData.token}
                 this._sendData("POST",Constants.updateThemeUrl,sendData);
-                sendData = {id:184, tcalt:1, auth_location_id:this.state.data.CPData.locationId, auth_location_version:0, token:this.state.data.CPData.token}
+
+                /*send layout screen and blocks*/
+                sendData = {id:screenId, tcalt:1, auth_location_id:this.state.data.CPData.locationId, auth_location_version:0, token:this.state.data.CPData.token}
                 this._sendData("POST",Constants.updateLayoutUrl,sendData);
+                layoutBlocks.blocks.forEach(function(value){
+                    sendData = {block_id: value.id, tile_id: value.tileId, auth_location_id:_self.state.data.CPData.locationId, auth_location_version:0, token:_self.state.data.CPData.token}
+                    _self._sendData("POST", Constants.updateBlockUrl,sendData);
+                });
+
+                /*go on to the next page*/
                 this.state.data.currentPage = "step3";
                 this._getPage();
                 break;
@@ -465,6 +477,48 @@ class Father extends Component {
                 this._getPage();
                 break;
             case "setLoyalty":
+
+                /*dates format sets - TBD move out of here*/
+                let today = new Date();
+                let mo = (today.getMonth()+1).toString();
+                let mo2 = mo.length == 1 ? "0"+mo : mo;
+                let day = today.getDate().toString();
+                let day2 = day.length == 1 ? "0"+day : day;
+                let minutes = today.getMinutes().toString();
+                let minutes2 = minutes.length == 1 ? "0"+minutes : minutes;
+                let seconds = today.getSeconds().toString();
+                let seconds2 = seconds.length == 1 ? "0"+seconds : seconds;
+                let expirationYear = mo < 10 ? today.getFullYear() : today.getFullYear()+1;
+                let expirationMo = (parseInt(mo) + 3).toString();
+                if(expirationMo > 12){
+                    expirationMo = (expirationMo - 12).toString();
+                }
+                let expirationMo2 = expirationMo.length == 1 ? "0"+expirationMo : expirationMo;
+                let HourByGreenwichDate = today.getHours() + today.getTimezoneOffset()/60;
+                let formattedDateByGreenwich = today.getFullYear()+"-"+ mo2 + "-" + day2+"T"+ HourByGreenwichDate+":" + minutes2+":"+seconds2+".000Z";
+                let formattedDateTime = today.getFullYear()+"-"+mo+"-"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+                let expiredDateByGreenwich = expirationYear+"-"+ expirationMo2 + "-" + day2+"T"+ HourByGreenwichDate+":" + minutes2+":"+seconds2+".000Z";
+                let expiredDateTime = expirationYear+"-"+mo+"-"+expirationMo+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+
+                /*create gift card*/
+                  sendData = {data:{"discounts":{"Type":"","Params":{},"Percent":null,"Limit":null},
+                    "sku_show":"N","requiresSecretCode":"N","notifyUsers":"N","value":0,"cost":0,
+                    "validFrom":{"hour":today.getHours(),"minutes":today.getMinutes(),"seconds":today.getSeconds(),"date":formattedDateByGreenwich,"datetime":formattedDateTime},
+                    "validUntil":{"hour":today.getHours(),"minutes":today.getMinutes(),"seconds":today.getSeconds(),"date":expiredDateByGreenwich,"datetime":expiredDateTime},
+                    "secondsDelay_multiplier":86400,"secondsValid_multiplier":86400,"codes_type":"none","stockTracked":0,"app_action_id":0,"app_action_params":{},
+                    "app_action_id_2":0,"app_action_params_2":{},"title":this.state.data.form.giftName,"description":this.state.data.form.giftDescription,
+                    "image_id":this.state.data.loyaltyImages.gift.image_id,
+                    "thumb":{"image_id":this.state.data.loyaltyImages.gift.image_id,"location_id":this.state.data.CPData.locationId,
+                        "url":this.state.data.loyaltyImages.gift.url,"image_group":null,"public":0,"category":0,"type":null,"size":"original","archive":0,"source":null,
+                        "resource_id":null,"resource_version":null,"thumb":null},"codeText":this.state.data.form.giftName,"type":"gift"},
+                      token:this.state.data.CPData.token,auth_location_id:this.state.data.CPData.locationId, auth_location_version:0}
+                this._sendData("POST",Constants.createTemplateUrl, sendData);
+                sendData = {data:{"conditionsOperator":"and","trigger":"joinedapp","actionMultiplier":{"Source":{"Condition":{"Source":"ItemCode","Value":[],"Type":"FieldInList"},
+                    "Source":"Purchase/Items","Type":"ListSum","AggregateSource":"Quantity"}},"TimeframeValue":12,"TimeframeUnits":"months","name":"DIY loyalty features",
+                    "maxInvokesOfRulesPerTag":"1","MaxInvokesPerTagPerTimeframe":1,"actions":[{"ActionType":"GiveAsset","Template":4106,"NotifyUsers":"N","action_params":{"MultiplierOverride":1}}]},
+                    auth_location_id:this.state.data.CPData.locationId,
+                    auth_location_version:0, token:this.state.data.CPData.token}
+
                 this.state.data.currentPage = "step5";
                 this._getPage();
                 break;
@@ -513,10 +567,11 @@ class Father extends Component {
             this.state.data.phoneColors.bgColor = this.state.data.schemes[index].backgroundImageOverlayColor;
         }
         this.state.data.phoneColors.brightness = this.state.data.schemes[index].brightness;
+        this.state.data.phoneColors.pageHeaderTextColor = this.state.data.schemes[index].pageHeaderTextColor;
         this.setState({data: this.state.data});
     }
     _toggleSelectedLayout(layout){
-        this.state.data.selectedLayout = layout;
+        this.state.data.selectedLayout = layout.id;
         this.setState({data: this.state.data});
     }
     _getSelectedSchemeIndex(){
@@ -603,6 +658,7 @@ class Father extends Component {
         _self.state.data.phoneColors.upperColor = schemes[0][upperColorsSrc];
         _self.state.data.phoneColors.iconsColor = schemes[0][iconsColorSrc];
         _self.state.data.phoneColors.brightness = schemes[0].brightness;
+        _self.state.data.phoneColors.pageHeaderTextColor = schemes[0].pageHeaderTextColor;
         _self.state.data.upperColorsSrc = upperColorsSrc;
         _self.state.data.iconsColorSrc = iconsColorSrc;
         _self.setState({data:_self.state.data});
@@ -944,6 +1000,7 @@ class Father extends Component {
                 });
                 break;
             case "step3":
+                var counter = 0;
                 var imagePageInterval = setInterval(function(){
                     /*if I received images already or have no facebook filled or didn't get themes from facebook (cannot get data from facebook for this name)*/
                     if(_self.state.data.fbImages.length > 0 || _self.state.data.form.facebook.value == "" || _self.state.data.fbUiThemes.length == 0){
@@ -981,7 +1038,9 @@ class Father extends Component {
                         });
 
                     }else{
-                        console.log("no images yet");
+                        counter++;
+                        console.log("no images yet "+counter);
+
                     }
                 },1000);
 
@@ -1073,7 +1132,7 @@ class Father extends Component {
         let targetElemHeight = parseInt(targetElem.css("height"));
         vTop = (windowH - targetElemHeight)/2 > 20 ? (windowH - targetElemHeight)/2 : 20; //minimum margin top 20 px
         if(_self.state.data.currentPage == "home"){
-            vTop = vTop - 74;
+            vTop = vTop - 15;
         }
         targetElem.css("top", vTop + "px");
     }
@@ -1250,6 +1309,7 @@ class Father extends Component {
     }
 
     render(){
+
         return(
             <div className="allPagesWrap">
                 <div style={{display:"block",position:"fixed", top: "20px", left: "2px",backgroundColor:"pink", width:"100px", height:"75px",zIndex:"9"}}>
